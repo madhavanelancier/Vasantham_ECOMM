@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Payment_Reciept">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/splashimg" />
+
+
+    <ScrollView
+        android:id="@+id/scr"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:padding="16dp"
+                    android:tint="@android:color/white"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_left_arrow"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageButton
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@android:color/transparent"
+                    android:padding="16dp"
+                    android:tint="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView3"
+                    app:srcCompat="@drawable/ic_share"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="@font/brandon_text_med_otf"
+                    android:gravity="center|start"
+                    android:padding="16dp"
+                    android:text="Payment Receipt"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                    app:layout_constraintEnd_toStartOf="@+id/share"
+                    app:layout_constraintStart_toEndOf="@+id/imageButton"
+                    app:layout_constraintTop_toTopOf="@+id/imageButton" />
+
+                <ImageView
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="700dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/success_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:fontFamily="@font/brandon_bold"
+                    android:text="Thank You !"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/view" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/brandon_bold"
+                    android:text="for using Vasantham Stores App "
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/dashed_border"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view2">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|start"
+                        android:padding="4dp"
+                        android:paddingLeft="8dp"
+                        android:text="Payment Date "
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/paydt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|end"
+                        android:padding="4dp"
+                        android:paddingRight="8dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/dashed_borderdup"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view3">
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|start"
+                        android:padding="4dp"
+                        android:paddingLeft="8dp"
+                        android:text="Due"
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|end"
+                        android:padding="4dp"
+                        android:paddingRight="8dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/dashed_borderdup"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout21"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout21"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout21" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view4">
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|start"
+                        android:padding="4dp"
+                        android:paddingLeft="8dp"
+                        android:text="Name "
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:ellipsize="marquee"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|end"
+                        android:padding="4dp"
+                        android:paddingRight="8dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/dashed_borderdup"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout21"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout21"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout22" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view5">
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|start"
+                        android:padding="4dp"
+                        android:paddingLeft="8dp"
+                        android:text="Card No."
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|end"
+                        android:padding="4dp"
+                        android:paddingRight="8dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/dashed_borderdup"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout21"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout21"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout23" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view6">
+
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|start"
+                        android:padding="4dp"
+                        android:paddingLeft="8dp"
+                        android:text="Receipt ID"
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/ordid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/brandon_text_med_otf"
+                        android:gravity="center|end"
+                        android:padding="4dp"
+                        android:paddingRight="8dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/dashed_borderdup"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout21"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout21"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout24" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/brandon_bold"
+                    android:text="Amount Paid"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@+id/view7"
+                    app:layout_constraintStart_toStartOf="@+id/view7"
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹ 500"
+                    android:textColor="@android:color/black"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/round_button"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="DOWNLOAD RECEIPT"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/view7"
+                    app:layout_constraintStart_toStartOf="@+id/view7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
