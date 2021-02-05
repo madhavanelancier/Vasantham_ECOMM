@@ -51,8 +51,8 @@ class SigninActivity : AppCompatActivity() {
 
         pDialog=Dialog(activity)
 //        loading_show(activity,pDialog).show()
-        FirebaseMessaging.getInstance()
-            .subscribeToTopic(getString(R.string.msg_subscribed))
+       /* FirebaseMessaging.getInstance()
+            .subscribeToTopic(getString(R.string.msg_subscribed))*/
 
         val it = Intent(activity, OtpActivity::class.java)
         it.putExtra("type","signin")

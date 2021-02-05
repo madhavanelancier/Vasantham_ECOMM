@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
+import com.google.firebase.messaging.FirebaseMessaging
 
 class Splashscreen : AppCompatActivity() {
     val tag = "Welcome"
@@ -34,6 +35,9 @@ class Splashscreen : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splashscreen)
         utils = Utils(activity)
+
+        FirebaseMessaging.getInstance()
+            .subscribeToTopic(("vasantham"))
 
         val currentapiVersion = Build.VERSION.SDK_INT
        /* if (currentapiVersion <= 21) {

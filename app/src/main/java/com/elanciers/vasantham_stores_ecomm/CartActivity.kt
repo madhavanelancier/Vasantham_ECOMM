@@ -53,17 +53,14 @@ class CartActivity : AppCompatActivity() , PaymentResultListener {
     lateinit var db: DBController
     lateinit var pDialog: Dialog
     lateinit var deli_add: AddressData
-
     var order_id = ""
     var catidlist = ArrayList<String>()
-
     var vendor_id = ""
     var vendor_nm = ""
     var vendor_loc = ""
     var vendor_img = ""
     var vendor_mail = ""
     var vendor_mobile = ""
-
     var cid = ""
     var cdis = ""
     var cuse = ""
@@ -71,18 +68,11 @@ class CartActivity : AppCompatActivity() , PaymentResultListener {
     var cminimum_order = ""
     var discount = 0.toDouble()
     var delivery = 0.00
-
     var profail = false
-
     var cartlist = ArrayList<CartProduct>()
     lateinit var adp: CartAdapter
-
     var seladdress = AddressData()
-
-
     var tid = "";
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
