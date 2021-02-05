@@ -53,7 +53,8 @@ class Due_list(private val mRecyclerViewItems2: List<Any>, private val context: 
                 val itemViewHolder = holder as ItemViewHolder
                 val item = mRecyclerViewItems2[position] as Rewardpointsbo
 
-                holder.username.text = "Card_No :"+item.username
+                holder.username.text = "Reciept No : "+item.whome
+                holder.pay_dt.text = ""+item.name
                 holder.date.text = "Paid \n"+ Appconstands.rupees+item.date
                 holder.name.text = item.id
 
@@ -73,6 +74,7 @@ class Due_list(private val mRecyclerViewItems2: List<Any>, private val context: 
                     // holder.fab.setBackground(context.resources.getDrawable(R.drawable.ic_tick))
                     //holder.fab.setBackgroundColor(context.resources.getColor(R.color.white))
                     holder.username.setTextColor(context.resources.getColor(R.color.black))
+                    holder.pay_dt.setTextColor(context.resources.getColor(R.color.black))
                     holder.date.setTextColor(context.resources.getColor(R.color.black))
                     holder.name.setTextColor(context.resources.getColor(R.color.black))
                     holder.remark.setBackgroundDrawable(context.resources.getDrawable(R.drawable.drawab_corn))
@@ -84,6 +86,7 @@ class Due_list(private val mRecyclerViewItems2: List<Any>, private val context: 
                     // holder.fab.setBackground(context.resources.getDrawable(R.drawable.ic_tick))
                     //holder.fab.setBackgroundColor(context.resources.getColor(R.color.white))
                     holder.username.setTextColor(context.resources.getColor(R.color.white))
+                    holder.pay_dt.setTextColor(context.resources.getColor(R.color.white))
                     holder.date.setTextColor(context.resources.getColor(R.color.white))
                     holder.name.setTextColor(context.resources.getColor(R.color.white))
                 }
@@ -137,6 +140,7 @@ class Due_list(private val mRecyclerViewItems2: List<Any>, private val context: 
     inner class ItemViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         internal var username: TextView
+        internal var pay_dt: TextView
         internal var date: TextView
         internal var name: TextView
         internal lateinit var remark: LinearLayout
@@ -149,6 +153,7 @@ class Due_list(private val mRecyclerViewItems2: List<Any>, private val context: 
         init {
 
             username = itemView.findViewById<View>(R.id.textView14) as TextView
+            pay_dt = itemView.findViewById<View>(R.id.pay_dt) as TextView
             date = itemView.findViewById<View>(R.id.textView16) as TextView
             name = itemView.findViewById<View>(R.id.textView15) as TextView
             remark = itemView.findViewById<View>(R.id.card) as LinearLayout

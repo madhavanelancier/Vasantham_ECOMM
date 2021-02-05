@@ -56,7 +56,7 @@
 
                 <TextView
                     android:id="@+id/textView46"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
@@ -64,7 +64,7 @@
                     android:gravity="center|end"
                     android:text="TextView"
                     android:textColor="@color/grey"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView44"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView44"
@@ -88,6 +88,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="180dp"
+        tools:itemCount="5"
+        tools:listitem="@layout/due_list_items"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12">

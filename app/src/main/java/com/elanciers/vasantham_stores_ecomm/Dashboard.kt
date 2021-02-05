@@ -286,6 +286,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                         }
 
                         textView44.setText(utils.name_due())
+                        textView46.setText(jobject.getString("cardno"))
                        // pDialog.dismiss()
                         Dues_list().execute()
 
