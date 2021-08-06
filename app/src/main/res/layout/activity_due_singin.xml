@@ -33,101 +33,74 @@
             android:background="@drawable/logo"
             android:scaleType="centerCrop" />
     </LinearLayout>
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/commondp"
+            android:paddingTop="60dp"
+            android:paddingBottom="30dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:visibility="gone"
+                app:srcCompat="@mipmap/povalogo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/commondp"
+            android:paddingRight="@dimen/commondp">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/brandon_text_med_otf"
+                android:text="Welcome To"
+                android:textColor="@color/colorAccent"
+                android:textSize="30sp"
+                app:fontFamily="@font/brandon_text_med_otf" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/brandon_text_med_otf"
+                android:text="Vasantham Stores "
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/brandon_text_med_otf" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/commondp"
-                android:paddingTop="60dp"
-                android:paddingBottom="30dp">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:visibility="gone"
-                    app:srcCompat="@mipmap/povalogo" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/commondp"
-                android:paddingRight="@dimen/commondp">
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/brandon_text_med_otf"
-                    android:text="Welcome To"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="30sp"
-                    app:fontFamily="@font/brandon_text_med_otf" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/brandon_text_med_otf"
-                    android:text="Vasantham Stores "
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/brandon_text_med_otf" />
+                android:paddingBottom="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="20dp">
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/brandon_text_reg_otf"
-                            android:text="Your Name"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:fontFamily="@font/brandon_text_reg_otf" />
-
-                        <EditText
-                            android:id="@+id/name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/editext_back"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:padding="12dp"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:fontFamily="@font/brandon_text_reg_otf" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
@@ -159,19 +132,44 @@
                     <Button
                         android:id="@+id/signinbtn"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="120dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/background_whiteborder"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:text="Submit"
                         android:textSize="16sp" />
+
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:padding="8dp"
+            android:text="Recently Used : "
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/histories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/address_background"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/card_history_list_item" />
+
+    </LinearLayout>
 
 </FrameLayout>

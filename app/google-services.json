@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "630081783419",
-    "firebase_url": "https://vasantham-28d4d.firebaseio.com",
-    "project_id": "vasantham-28d4d",
-    "storage_bucket": "vasantham-28d4d.appspot.com"
+    "project_number": "720019040357",
+    "project_id": "vasanthamstores-30e66",
+    "storage_bucket": "vasanthamstores-30e66.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:630081783419:android:3370962e83460bf13144de",
+        "mobilesdk_app_id": "1:720019040357:android:99b51adae040ba27b8fe8c",
         "android_client_info": {
           "package_name": "com.elanciers.vasantham_stores_ecomm"
         }
       },
       "oauth_client": [
         {
-          "client_id": "630081783419-lui0gdacu3nuu42ab1dv9l5uk02ap7fa.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.elanciers.vasantham_stores_ecomm",
-            "certificate_hash": "b14abcb6e2fe670de252d68564e4a952a9f46342"
-          }
-        },
-        {
-          "client_id": "630081783419-81f5vaic2j6o9oqkdc4e6e8u9iorogqd.apps.googleusercontent.com",
+          "client_id": "720019040357-dbs9o7t8nn75hdq34e0pcfhtnm265qrl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB88UKp54YwKo4iYfJWJR8Lqd8IqVCUq6k"
+          "current_key": "AIzaSyACjhbHdMzvj8pz2mITfiy0yy5Uzy9Jx4g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "630081783419-81f5vaic2j6o9oqkdc4e6e8u9iorogqd.apps.googleusercontent.com",
+              "client_id": "720019040357-dbs9o7t8nn75hdq34e0pcfhtnm265qrl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
