@@ -143,6 +143,10 @@ interface usr {
                  @Field("token")token : String): Call<Resp>
 
     @FormUrlEncoded
+    @POST("customers/sendotp")
+    fun SendOTP(@Field("mobile")mobile : String): Call<Resp>
+
+    @FormUrlEncoded
     @POST("sponsorCheck")
     fun spons(@Field("mobile")api : String): Call<Respval>
 
@@ -166,7 +170,7 @@ interface usr {
     @POST("customers/otp_check")
     fun Otp(@Field("api")api : String,
                  @Field("mobile")mobile : String,
-                 @Field("token")type : String): Call<Resp>
+                 @Field("otp")otp : String): Call<Resp>
 
 
 
@@ -174,7 +178,7 @@ interface usr {
     @POST("customers/register")
     fun Otp_Reg(@Field("api")api : String,
             @Field("mobile")mobile : String,
-            @Field("token")type : String,
+            @Field("otp")otp : String,
                 @Field("name")name : String,
                 @Field("email")email : String): Call<Resp>
 

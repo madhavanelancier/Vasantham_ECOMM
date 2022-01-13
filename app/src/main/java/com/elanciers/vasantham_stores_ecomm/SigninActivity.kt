@@ -40,6 +40,7 @@ class SigninActivity : AppCompatActivity() {
         signinbtn.setOnClickListener {
             if (mobile.text.length==10){
                 SendLogin(mobile.text.toString().trim())
+
             }else{
                 mobile.setError("Enter Mobile No")
                 //Toast.makeText(activity,"Enter Mobile No",Toast.LENGTH_LONG).show()
@@ -48,68 +49,13 @@ class SigninActivity : AppCompatActivity() {
     }
 
     fun SendLogin(mobile:String){
-
-        pDialog=Dialog(activity)
-//        loading_show(activity,pDialog).show()
-       /* FirebaseMessaging.getInstance()
-            .subscribeToTopic(getString(R.string.msg_subscribed))*/
-
-        val it = Intent(activity, OtpActivity::class.java)
-        it.putExtra("type","signin")
-        it.putExtra("otp","2525")
-        it.putExtra("mobile",mobile)
-        startActivity(it)
+        val its = Intent(activity, OtpActivity::class.java)
+        its.putExtra("type","signin")
+        its.putExtra("otp","2525")
+        its.putExtra("mobile",mobile)
+        startActivity(its)
         finish()
-
-        /*FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.w(tag, "getInstanceId failed", task.exception)
-                    return@OnCompleteListener
-                }
-
-                // Get new Instance ID token
-                val token = task.result?.token
-                utils.setToken(token!!)
-                // Log and toast
-                //val msg = getString(R.string.msg_token_fmt, token)
-                Log.d(tag, token)
-                //Toast.makeText(activity, token, Toast.LENGTH_SHORT).show()
-                val call = ApproveUtils.Get.Login("1",mobile,token!!)
-                call.enqueue(object : Callback<Resp> {
-                    override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
-                        Log.e("$tag response", response.toString())
-                        if (response.isSuccessful()) {
-                            val example = response.body() as Resp
-                            println(example)
-                            if (example.status == "Success") {
-
-                            } else {
-                                Toast.makeText(
-                                    activity,
-                                    example.message,
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-                        pDialog.dismiss()
-                        //loading_show(activity).dismiss()
-                    }
-
-                    override fun onFailure(call: Call<Resp>, t: Throwable) {
-                        Log.e("$tag Fail response", t.toString())
-                        if (t.toString().contains("time")) {
-                            Toast.makeText(
-                                activity,
-                                "Poor network connection",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                        pDialog.dismiss()
-                        //loading_show(activity).dismiss()
-                    }
-                })
-            })*/
-
     }
+
+
 }

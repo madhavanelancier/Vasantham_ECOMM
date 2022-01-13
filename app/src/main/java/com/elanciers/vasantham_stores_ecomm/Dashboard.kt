@@ -249,7 +249,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             try {
                 val jobj = JSONObject()
                 jobj.put("userid",utils.due_id())
-                Log.i("rewardinput", Appconstands.payment + "    " + jobj.toString())
+                Log.i("rewardinputDues", Appconstands.payment + "    " + jobj.toString())
                 result = con.sendHttpPostjson2(Appconstands.payment, jobj, "")
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -260,6 +260,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         override fun onPostExecute(resp: String?) {
 
             try {
+                Log.e("resp",resp.toString())
                 if (resp != null) {
 
                     val jobj = JSONArray(resp)

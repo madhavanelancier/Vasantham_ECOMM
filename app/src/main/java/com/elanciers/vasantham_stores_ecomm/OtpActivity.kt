@@ -89,7 +89,7 @@ class OtpActivity : AppCompatActivity() {
 
                 //if(otpnew==enotp.text.toString().trim()) {
 
-                    if(intent.extras!!.getString("mobile").toString()!="8248455746") {
+                    //if(intent.extras!!.getString("mobile").toString()!="8248455746") {
                         if (type == "signup") {
                             val name = intent.extras!!.getString("name")
                             val mobile = intent.extras!!.getString("mobile")
@@ -107,12 +107,11 @@ class OtpActivity : AppCompatActivity() {
                 else{
                     toast("Invalid OTP")
                 }*/
-                    }
-                else{
+                   /* } else{
                         val mobile = intent.extras!!.getString("mobile")
                         CheckSigninOtp(mobile.toString(), otp, otp)
 
-                    }
+                    }*/
             }
 
             else{
@@ -132,13 +131,39 @@ class OtpActivity : AppCompatActivity() {
         pDialog=Dialog(activity)
         Log.e("mob",mobile)
         loading_show(activity,pDialog).show()
-        PhoneAuthProvider.getInstance(firebaseAuth!!).verifyPhoneNumber(
+        /*PhoneAuthProvider.getInstance(firebaseAuth!!).verifyPhoneNumber(
             "+91$mobile",
             60,
             TimeUnit.SECONDS,
             activity,
             mCallbacks
-        )
+        )*/
+        val call = ApproveUtils.Get.SendOTP(mobile)
+        call.enqueue(object : Callback<Resp> {
+            override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as Resp
+                    println(example)
+                    Toast.makeText(activity, example.message, Toast.LENGTH_LONG).show()
+                }
+                pDialog.dismiss()
+                //loading_show(activity).dismiss()
+            }
+
+            override fun onFailure(call: Call<Resp>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+                //loading_show(activity).dismiss()
+            }
+        })
     }
 
     private val mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks =
@@ -189,10 +214,34 @@ class OtpActivity : AppCompatActivity() {
 
     private fun verifyVerificationCode(otp: String) {
         //creating the credential
-        val credential = PhoneAuthProvider.getCredential(mVerificationId, otp)
+        //val credential = PhoneAuthProvider.getCredential(mVerificationId, otp)
 
         //signing the user
-        signInWithPhoneAuthCredential(credential)
+        //signInWithPhoneAuthCredential(credential)
+        if (enotp.text.toString().trim().isNotEmpty()) {
+            ///if(otpnew==enotp.text.toString().trim()) {
+
+            if (type == "signup") {
+                val name = intent.extras!!.getString("name")
+                val mobile = intent.extras!!.getString("mobile")
+                val email = intent.extras!!.getString("email")
+                CheckSignupOtp(
+                    name.toString(),
+                    mobile.toString(),
+                    email.toString(),
+                    enotp.text.toString().trim(),
+                    enotp.text.toString().trim()
+                )
+            } else {
+                val mobile = intent.extras!!.getString("mobile")
+                CheckSigninOtp(mobile.toString(), enotp.text.toString().trim(), enotp.text.toString().trim())
+            }
+            // }
+            /*else{
+                toast("Invalid OTP")
+            }*/
+
+        }
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -214,12 +263,12 @@ class OtpActivity : AppCompatActivity() {
                                         name.toString(),
                                         mobile.toString(),
                                         email.toString(),
-                                        otp,
-                                        otp
+                                        enotp.text.toString().trim(),
+                                        enotp.text.toString().trim()
                                     )
                                 } else {
                                     val mobile = intent.extras!!.getString("mobile")
-                                    CheckSigninOtp(mobile.toString(), otp, otp)
+                                    CheckSigninOtp(mobile.toString(), enotp.text.toString().trim(), enotp.text.toString().trim())
                                 }
                            // }
                             /*else{
@@ -248,7 +297,7 @@ class OtpActivity : AppCompatActivity() {
         println("res_otp"+otp)
         println("enter_otp"+otp)
         println("type"+"")
-        val call = ApproveUtils.Get.Otp("1", mob, "")
+        val call = ApproveUtils.Get.Otp("1", mob, otp)
         call.enqueue(object : Callback<Resp> {
             override fun onResponse(call:Call<Resp>, response:Response<Resp>) {
                 Log.e("$tag responce", response.toString())
@@ -340,7 +389,7 @@ class OtpActivity : AppCompatActivity() {
         println("type_Signup"+"")
        // Appconstands.loading_show(activity, pDialog).show()
 
-        val call = ApproveUtils.Get.Otp_Reg("1", mob, "",name,email)
+        val call = ApproveUtils.Get.Otp_Reg("1", mob, otp,name,email)
         call.enqueue(object : Callback<Resp> {
             override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
                 Log.e("$tag responce", response.toString())
