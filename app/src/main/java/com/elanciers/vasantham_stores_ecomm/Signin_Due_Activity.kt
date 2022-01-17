@@ -149,7 +149,9 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
                         }else{
                             db!!.cardDao()!!.updateCart(data);
                         }
-                        startActivity(Intent(this@Signin_Due_Activity,Dashboard::class.java))
+                        val st = Intent(this@Signin_Due_Activity,Dashboard::class.java)
+                        st.putExtra("cardno",cardno)
+                        startActivity(st)
 
                     } else {
                         toast(jobj.getJSONObject(0).getString("Response"))

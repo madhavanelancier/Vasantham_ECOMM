@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.elancier.vasantham_stores.Adapters.Due_list
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Connection
@@ -47,7 +48,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
         productItems = ArrayList()
         utils = Utils(activity)
-
+        val cardno = intent.getStringExtra("cardno")
         recyclerView.setLayoutManager(
             LinearLayoutManager(
                 this,
@@ -77,6 +78,11 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             startActivity(Intent(activity, HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
 
+        }
+        textView49.setOnClickListener {
+            val st = Intent(activity, DigitalCard::class.java)
+            st.putExtra("cardno",cardno)
+            startActivity(st)
         }
 
 
@@ -338,6 +344,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                     if (jobj.getJSONObject(0).getString("Status") == "Success") {
 
                         val jobject=jobj.getJSONObject(0).getJSONArray("Response")
+                        val qrimage=jobj.getJSONObject(0).getString("qrimage")
+                        println("qrimage : "+qrimage)
 
                         for(i in 0 until jobject.length()){
                             val cardno=(jobject.getJSONObject(i).getString("card_no"))
@@ -394,6 +402,17 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                         itemsAdapter.notifyDataSetChanged()
 
                         pDialog.dismiss()
+                        if (qrimage.isNotEmpty()){
+                            scroll.visibility=View.GONE
+                            imageView35.visibility=View.VISIBLE
+                            val decodedBytes = android.util.Base64.decode(qrimage,android.util.Base64.DEFAULT)
+                            val decodedString = String(decodedBytes)
+                            println("image : "+decodedString)
+                            Glide.with(this@Dashboard).load(decodedString).into(imageView35)
+                        }else{
+                            scroll.visibility=View.VISIBLE
+                            imageView35.visibility=View.GONE
+                        }
 
                     } else {
                         toast(jobj.getJSONObject(0).getString("Response"))

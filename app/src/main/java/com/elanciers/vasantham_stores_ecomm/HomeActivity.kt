@@ -81,8 +81,8 @@ var permissionCode = 1000;
     val catgs = ArrayList<ImageScroll>()
     var pinpop=""
     var locationmanager: LocationManager? = null
-    var lat: Double = 0.toDouble()
-    var longi:Double = 0.toDouble()
+    var lat =  9.939093//: Double = 0.toDouble()
+    var longi  = 78.121719//:Double = 0.toDouble()
     var locationrequest : LocationRequest? = null ;
     val poparr=ArrayList<String>()
     fun getLocation() {
@@ -185,9 +185,11 @@ var locationManager: LocationManager? = null;
         mFragmentIconList2.add(R.drawable.ic_baseline_account_balck_24px)
 
 
+        location_shimmer.visibility=View.GONE
+        location_layout.visibility=View.VISIBLE
+        location_shimmer.stopShimmerAnimation()
 
-
-        if (CheckingPermissionIsEnabledOrNot()){
+        /*if (CheckingPermissionIsEnabledOrNot()){
             if (ContextCompat.checkSelfPermission(
                     this,
                     android.Manifest.permission.ACCESS_COARSE_LOCATION
@@ -210,14 +212,12 @@ var locationManager: LocationManager? = null;
             //getLocation()
         }else{
             RequestMultiplePermission()
-        }
+        }*/
         sliderAdp = MyPageAdapter(supportFragmentManager, fList)
         viewPager.setAdapter(sliderAdp)
         //viewPager.setPageTransformer(false, CustPageTransformer(activity));
 
-        location_shimmer.visibility=View.VISIBLE
-        location_layout.visibility=View.GONE
-        location_shimmer.startShimmerAnimation()
+
 
         val handler = Handler()
         val Update = Runnable {

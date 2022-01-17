@@ -40,7 +40,7 @@ object Appconstands {
 
     val Domin ="http://teamdev.co.in/vasantham/api/"
     //val Domin_due ="http://vasanthamstore.in/chit/app/"
-    val Domin_due ="https://elancier.xyz/vasantham_stores/app/"
+    val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
     val ImageDomain ="http://teamdev.co.in/vasantham/"
     val rupees ="₹ "
     val new_reg = "customers/register"
@@ -69,6 +69,7 @@ object Appconstands {
     val duelogin= Domin_due+"login.php"
     val payment= Domin_due+"userdetails.php"
     val paymentlist= Domin_due+"payment.php"
+    val payment_list= Domin_due+"payment_list.php"
 
     /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
         //if (LocaleHelper.getLanguage(this)!=LANGUAGE_TAMIL) {

@@ -152,7 +152,7 @@
                                 android:drawablePadding="10dp"
                                 android:fontFamily="@font/brandon_text_light"
                                 android:singleLine="true"
-                                android:text="Madurai"
+                                android:text="Home"
                                 android:textColor="#1a1a1a"
                                 android:textSize="18sp" />
                         </LinearLayout>

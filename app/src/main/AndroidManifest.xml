@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.PASSIVE_PROVIDER" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.location"
         android:required="true" />
@@ -27,7 +28,7 @@
         android:required="false" />
 
     <application
-        android:name="com.elanciers.vasantham_stores_ecomm.AppClass"
+        android:name=".AppClass"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_logo"
@@ -38,78 +39,105 @@
         android:theme="@style/NoAction"
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.facebook.shimmer">
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Myrewards_point"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Referral_Activity"
-            android:screenOrientation="portrait"></activity>
-
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.PlaceOrder"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Mpin_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.OptionSelect_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.CategoriesActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.OffersActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.MapTrackingActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DigitalCard"
+            android:exported="true" />
+        <activity
+            android:name=".Myrewards_point"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Referral_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlaceOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Mpin_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OptionSelect_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CategoriesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OffersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapTrackingActivity"
+            android:screenOrientation="portrait" />
 
         <service
-            android:name="com.elanciers.vasantham_stores_ecomm.RouteService"
+            android:name=".RouteService"
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.ProductSearchActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.MainSearchActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.ContactUsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.SearchActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.ManageAddressActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.CouponActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.AddressMapActivity"
+        <activity
+            android:name=".ProductSearchActivity"
             android:screenOrientation="portrait"
-         android:windowSoftInputMode="adjustResize"/>
-
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.OrderDetailActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.OrderActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.ProductActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.StoresActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.CartActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.ProfileActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.HomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.OtpActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.SignupActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.SigninActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.SignActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.WelcomeScreen"
-            android:screenOrientation="portrait"/>
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MainSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ContactUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ManageAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CouponActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddressMapActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StoresActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OtpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SigninActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WelcomeScreen"
+            android:screenOrientation="portrait" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
         <activity
-            android:name="com.elanciers.vasantham_stores_ecomm.Splashscreen"
+            android:name=".Splashscreen"
             android:theme="@style/NoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -117,17 +145,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Termsconditions"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Signin_Due_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Dashboard"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.elanciers.vasantham_stores_ecomm.Payment_Reciept"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Termsconditions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Signin_Due_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Payment_Reciept"
+            android:screenOrientation="portrait" />
 
         <service
-            android:name="com.elanciers.vasantham_stores_ecomm.Common.FetchAddressIntentService"
+            android:name=".Common.FetchAddressIntentService"
             android:exported="false" />
 
         <meta-data
@@ -141,10 +173,9 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_763CV0upXALkzF" />
-
+            android:value="rzp_test_AdaX44eqqsaNOL" /> <!-- rzp_live_763CV0upXALkzF -->
         <service
-            android:name="com.elanciers.vasantham_stores_ecomm.pushnotification.MyFirebaseMessagingService"
+            android:name=".pushnotification.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -167,6 +198,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_vasanth_noti" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -174,7 +206,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 
