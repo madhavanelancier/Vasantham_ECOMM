@@ -1378,7 +1378,7 @@ var locationManager: LocationManager? = null;
                         println("example.message!! : " + example.message!!)
                         println("version2 : " + version2)
 
-                        if (example.message!!.toString() != version2.toString()) {
+                        if (example.message!!.toString().toInt() > version2.toString().toInt()) {
                             val alertDialog = AlertDialog.Builder(activity)
                             alertDialog.setCancelable(true)
                             alertDialog.setTitle("Update Available")
@@ -1389,7 +1389,7 @@ var locationManager: LocationManager? = null;
                                         dialog!!.dismiss()
                                         val i = Intent(android.content.Intent.ACTION_VIEW)
                                         i.data =
-                                            Uri.parse("https://play.google.com/store/apps/details?id=com.elanciers.vasantham_ecomm")
+                                            Uri.parse("https://play.google.com/store/apps/details?id="+BuildConfig.APPLICATION_ID)
                                         startActivity(i)
                                     }
 

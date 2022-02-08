@@ -5,14 +5,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.elanciers.vasantham_stores_ecomm"
         minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 8
-        versionName "1.8"
+        targetSdkVersion 31
+        versionCode 10
+        versionName "1.10"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

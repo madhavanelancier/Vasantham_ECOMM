@@ -138,6 +138,7 @@
 
         <activity
             android:name=".Splashscreen"
+            android:exported="true"
             android:theme="@style/NoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -165,12 +166,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_AdaX44eqqsaNOL" /> <!-- rzp_live_763CV0upXALkzF -->
@@ -208,6 +203,28 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:theme="@style/CheckoutTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <data
+                    android:host="rzp.io"
+                    android:scheme="io.rzp" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.razorpay.RzpTokenReceiver"
+            android:exported="true"
+            android:permission="android.permission.INTERNET">
+            <intent-filter>
+                <action android:name="rzp.device_token.share" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
