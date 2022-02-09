@@ -168,7 +168,7 @@
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_AdaX44eqqsaNOL" /> <!-- rzp_live_763CV0upXALkzF -->
+            android:value="rzp_live_763CV0upXALkzF" /> <!--  rzp_test_AdaX44eqqsaNOL-->
         <service
             android:name=".pushnotification.MyFirebaseMessagingService"
             android:exported="false">
