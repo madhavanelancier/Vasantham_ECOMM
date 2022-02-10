@@ -49,6 +49,16 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         productItems = ArrayList()
         utils = Utils(activity)
         val cardno = intent.getStringExtra("cardno")
+        val btn = intent.getStringExtra("btn")
+
+        if(btn=="1"){
+            pay.visibility=View.VISIBLE
+        }
+        else{
+            pay.visibility=View.GONE
+
+        }
+
         recyclerView.setLayoutManager(
             LinearLayoutManager(
                 this,
