@@ -128,7 +128,7 @@ class Termsconditions : AppCompatActivity() {
                     "check Input",
                     Appconstands.terms + "    " + jobj.toString()
                 )
-                result = con.sendHttpPostjson2(Appconstands.terms, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.terms, jobj)
 
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -106,6 +106,7 @@ class Splashscreen : AppCompatActivity() {
 
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
 
             Appconstands.RequestPermissionCode ->

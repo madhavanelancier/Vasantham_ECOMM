@@ -84,7 +84,7 @@ class DigitalCard : AppCompatActivity() {
                 val jobj = JSONObject()
                 jobj.put("cardno",intent.getStringExtra("cardno"))
                 Log.i("payment_list", Appconstands.payment_list + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.payment_list, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.payment_list, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

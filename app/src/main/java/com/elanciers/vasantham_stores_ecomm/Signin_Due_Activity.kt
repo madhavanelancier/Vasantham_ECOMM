@@ -111,7 +111,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
                 jobj.put("username", mobile.text.toString().trim())
                 jobj.put("version", BuildConfig.VERSION_CODE)
                 Log.i("rewardinput", Appconstands.duelogin + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.duelogin, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.duelogin, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

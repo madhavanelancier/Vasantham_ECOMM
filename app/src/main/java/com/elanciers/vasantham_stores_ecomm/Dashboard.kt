@@ -190,7 +190,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
 
                 Log.i("payment Input", Appconstands.order1 + "    " + jobj.toString())
-                result = Connection().sendHttpPostjson2(Appconstands.order1, jobj, "")
+                result = Connection().sendHttpPostjson(Appconstands.order1, jobj)
 
 
             } catch (e: Exception) {
@@ -266,7 +266,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 val jobj = JSONObject()
                 jobj.put("userid",utils.due_id())
                 Log.i("rewardinputDues", Appconstands.payment + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.payment, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.payment, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -338,7 +338,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 val jobj = JSONObject()
                 jobj.put("userid",utils.due_id())
                 Log.i("rewardinput", Appconstands.paymentlist + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.paymentlist, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.paymentlist, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
