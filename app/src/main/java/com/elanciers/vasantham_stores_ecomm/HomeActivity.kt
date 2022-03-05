@@ -242,7 +242,9 @@ var locationManager: LocationManager? = null;
 
         tabImageViews.setOnClickListener {
             startActivity(Intent(activity, Signin_Due_Activity::class.java))
-
+            /*val st = Intent(this,Dashboard::class.java)
+            st.putExtra("cardno","20220018")
+            startActivity(st)*/
         }
 
         if (net_status(activity)){

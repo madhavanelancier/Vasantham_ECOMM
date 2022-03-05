@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable-xxxhdpi/ic_baseline_local_phone_24.xml" value="0.24479166666666666" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_arrows_rotate_solid.xml" value="0.24479166666666666" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_assignment_24.xml" value="0.24479166666666666" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2064814814814815" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_filter_2_24.xml" value="0.24479166666666666" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_digital_card.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_due_singin.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_home.xml" value="0.24003623188405798" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_location.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_otp.xml" value="0.22447916666666667" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_payment__reciept.xml" value="0.22447916666666667" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_sign.xml" value="0.22447916666666667" />
@@ -22,6 +24,9 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/card_history_list_item.xml" value="0.4" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/due_list_items.xml" value="0.22447916666666667" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/paymentlist_adapter.xml" value="0.4" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/menu/map.xml" value="0.22447916666666667" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/menu/profile_page.xml" value="0.22447916666666667" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/menu/search_menu.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

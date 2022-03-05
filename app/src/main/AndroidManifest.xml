@@ -132,6 +132,10 @@
             android:name=".WelcomeScreen"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".LocationActivity"
+            android:screenOrientation="portrait" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -225,6 +229,10 @@
                 <action android:name="rzp.device_token.share" />
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

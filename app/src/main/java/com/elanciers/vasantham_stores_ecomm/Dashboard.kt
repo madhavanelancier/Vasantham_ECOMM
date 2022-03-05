@@ -36,6 +36,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
     var receipt = "";
     var due = "";
     var branch = "";
+    var lat = "";
+    var lng = "";
 
     private val mRecyclerListitems = ArrayList<Any>()
     private var productItems: MutableList<Rewardpointsbo>? = null
@@ -84,9 +86,12 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             st.putExtra("cardno",cardno)
             startActivity(st)
         }
-
-
-
+        track.setOnClickListener {
+            val st = Intent(activity, LocationActivity::class.java)
+            st.putExtra("lat",lat)
+            st.putExtra("lng",lng)
+            startActivity(st)
+        }
 
     }
 
@@ -345,6 +350,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
                         val jobject=jobj.getJSONObject(0).getJSONArray("Response")
                         val qrimage=jobj.getJSONObject(0).getString("qrimage")
+                        lat=jobj.getJSONObject(0).getString("lat")
+                        lng=jobj.getJSONObject(0).getString("lng")
                         println("qrimage : "+qrimage)
 
                         for(i in 0 until jobject.length()){
@@ -409,9 +416,15 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                             val decodedString = String(decodedBytes)
                             println("image : "+decodedString)
                             Glide.with(this@Dashboard).load(decodedString).into(imageView35)
+                            if (lat.isNotEmpty()&& lng.isNotEmpty()){
+                                track.visibility=View.VISIBLE
+                            }else{
+                                track.visibility=View.GONE
+                            }
                         }else{
                             scroll.visibility=View.VISIBLE
                             imageView35.visibility=View.GONE
+                            track.visibility=View.GONE
                         }
 
                     } else {

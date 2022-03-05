@@ -21,6 +21,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.elanciers.vasantham_stores_ecomm.BuildConfig
 import com.elanciers.vasantham_stores_ecomm.R
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
 import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
@@ -39,8 +40,8 @@ object Appconstands {
     lateinit var alert : AlertDialog
 
     val Domin ="http://teamdev.co.in/vasantham/api/"
-    val Domin_due ="http://vasanthamstore.in/chit/app/"
-    //val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
+    //val Domin_due ="http://vasanthamstore.in/chit/app/"
+    val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
     val ImageDomain ="http://teamdev.co.in/vasantham/"
     val rupees ="₹ "
     val new_reg = "customers/register"
@@ -128,7 +129,11 @@ object Appconstands {
         }
         return connected
     }
-
+    fun forlog(tag : String,msg : Any){
+        if (BuildConfig.DEBUG){
+            Log.d(tag,msg.toString())
+        }
+    }
 
     fun maintenance(activity: Activity){
         val call2 = ApproveUtils.Get.getMaintenance()
