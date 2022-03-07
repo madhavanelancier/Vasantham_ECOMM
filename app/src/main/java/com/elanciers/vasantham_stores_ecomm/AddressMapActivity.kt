@@ -590,7 +590,7 @@ class AddressMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCli
                 jobj.put("s_latitude", mCenterLatLong!!.latitude)
                 jobj.put("s_longitude",  mCenterLatLong!!.longitude)
                 Log.i("rewardinput", Appconstands.loc + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.loc, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.loc, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

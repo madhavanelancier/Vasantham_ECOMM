@@ -109,8 +109,9 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
             try {
                 val jobj = JSONObject()
                 jobj.put("username", mobile.text.toString().trim())
+                jobj.put("version", BuildConfig.VERSION_CODE)
                 Log.i("rewardinput", Appconstands.duelogin + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.duelogin, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.duelogin, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -121,6 +122,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
 //            swipeToRefresh!!.visibility = View.VISIBLE
             //  progress_lay!!.visibility = View.GONE
             // productItems1 = java.util.ArrayList()
+            Log.e("resp",resp.toString())
             try {
                 if (resp != null) {
 
@@ -132,6 +134,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
                         val name = jobject.getString("name")
                         val phone = jobject.getString("phone")
                         val cardno = jobject.getString("cardno")
+                        val btn=jobject.getString("paybtn")
 
                         utils.setLogin(true)
                         utils.setUser_due(id,name, phone,cardno)
@@ -151,6 +154,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
                         }
                         val st = Intent(this@Signin_Due_Activity,Dashboard::class.java)
                         st.putExtra("cardno",cardno)
+                        st.putExtra("btn",btn)
                         startActivity(st)
 
                     } else {
@@ -159,7 +163,9 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
 
                     }
                 }
-            }catch (e: JSONException) {
+
+            }
+            catch (e:JSONException) {
                 e.printStackTrace()
             }
         }

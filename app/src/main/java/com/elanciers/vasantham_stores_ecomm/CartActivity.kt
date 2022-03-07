@@ -1003,7 +1003,7 @@ class CartActivity : AppCompatActivity() , PaymentResultListener {
                 jobj.put("payment_status", param[2].toString())
 
                 Log.i("payment Input", Appconstands.order + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.order, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.order, jobj)
 
 
             } catch (e: Exception) {

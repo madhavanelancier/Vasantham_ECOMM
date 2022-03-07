@@ -515,7 +515,7 @@ class OptionSelect_Activity : AppCompatActivity() {
                 jobj.put("s_latitude", latistr)
                 jobj.put("s_longitude", longstr)
                 Log.i("rewardinput", Appconstands.loc + "    " + jobj.toString())
-                result = con.sendHttpPostjson2(Appconstands.loc, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.loc, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

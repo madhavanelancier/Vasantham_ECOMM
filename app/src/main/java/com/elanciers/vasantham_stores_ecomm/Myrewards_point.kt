@@ -67,7 +67,7 @@ class Myrewards_point : AppCompatActivity() {
                     "check Input",
                     Appconstands.userReward + "    " + jobj.toString()
                 )
-                result = con.sendHttpPostjson2(Appconstands.userReward, jobj, "")
+                result = con.sendHttpPostjson(Appconstands.userReward, jobj)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
