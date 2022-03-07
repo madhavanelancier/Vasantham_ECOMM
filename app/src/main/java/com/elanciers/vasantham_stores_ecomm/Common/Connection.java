@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
@@ -37,7 +38,52 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class Connection {
 
+    public InputStream getConnection(String stringUrl, String sess){
+        InputStream respStream = null;
+        try {
+            HttpParams httpParameters = new BasicHttpParams();
+            int timeoutConnection = 15000;
+            HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+            int timeoutSocket = 15000;
+            HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 
+            HostnameVerifier hostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
+
+            //DefaultHttpClient client = new DefaultHttpClient();
+            HttpClient client = new DefaultHttpClient(httpParameters);
+            SchemeRegistry registry = new SchemeRegistry();
+            SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+            socketFactory.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier);
+            registry.register(new Scheme("https", socketFactory, 443));
+            SingleClientConnManager mgr = new SingleClientConnManager(client.getParams(), registry);
+            DefaultHttpClient httpClient = new DefaultHttpClient(mgr, client.getParams());
+
+// Set verifier
+            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
+            HttpGet request = new HttpGet(stringUrl);
+            request.setHeader("X-Requested-With", "XMLHttpRequest");
+            request.setHeader("SWF-AuthToken", sess);
+            request.setHeader("Cache-Control", "max-age=0, no-cache, no-store");
+            HttpResponse con = client.execute(request);
+            con.setHeader("Cache-Control", "max-age=0, no-cache, no-store");
+            //logger2.info(stringUrl+" status code "+ con.getStatusLine().getStatusCode());
+            if(con.getStatusLine().getStatusCode() == 401){
+                respStream = CommonFunction.createfalseJson();
+            }else{
+                respStream = con.getEntity().getContent();
+            }
+            //logger2.info(stringUrl+" conn resp "+ respStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //logger2.info(stringUrl+"errorgetconnection "+ e.getMessage());
+            StringWriter stackTrace = new StringWriter();
+            e.printStackTrace(new PrintWriter(stackTrace));
+            //logger2.error("connec Exception:"+stackTrace);
+            Log.i("Connection", "error :"+e.getMessage());
+        }
+        return respStream;
+
+    }
 
     public String readIt(InputStream stream) throws IOException, UnsupportedEncodingException {
         InputStreamReader is = new InputStreamReader(stream);
@@ -52,7 +98,7 @@ public class Connection {
         return sb.toString();
     }
 
-   /* public String connStringResponse(String stringUrl, String session, Context context) {
+    public String connStringResponse(String stringUrl, String session, Context context) {
         //AndroidLogger logger = AndroidLogger.getLogger(context, "08760429-7068-49f9-b15a-2cdce9e6b977", false);
         //logger.info("connStringResponse entered "+stringUrl);
         InputStream stream;
@@ -97,11 +143,49 @@ public class Connection {
             throw new RemoteException();
         }
         return respString;
-    }*/
+    }
 
+    @SuppressLint("NewApi")
+    public InputStream getConnection(String stringUrl) throws RemoteException {
+        InputStream respStream = null;
+        try {
+            HttpParams httpParameters = new BasicHttpParams();
+            int timeoutConnection = 15000;
+            HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+            int timeoutSocket = 15000;
+            HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+            HostnameVerifier hostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
 
+            //DefaultHttpClient client = new DefaultHttpClient();
+            HttpClient client = new DefaultHttpClient(httpParameters);
+            SchemeRegistry registry = new SchemeRegistry();
+            SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+            socketFactory.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier);
+            registry.register(new Scheme("https", socketFactory, 443));
+            SingleClientConnManager mgr = new SingleClientConnManager(client.getParams(), registry);
+            DefaultHttpClient httpClient = new DefaultHttpClient(mgr, client.getParams());
 
-  /*  public String sendHttpPostjson(String url, String nameValuePairs, String session) throws IOException {
+// Set verifier
+            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
+            HttpGet request = new HttpGet(stringUrl);
+            request.setHeader("X-Requested-With", "XMLHttpRequest");/*
+	        request.setHeader("X-AuthToken", AppConstants.sessionData);*/
+            HttpResponse con = client.execute(request);
+            if(con.getStatusLine().getStatusCode() == 401){
+                respStream = CommonFunction.createfalseJson();
+            }else{
+                respStream = con.getEntity().getContent();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("Connection", "error :"+e.getMessage());
+            throw new RemoteException();
+        }
+        return respStream;
+
+    }
+
+    public String sendHttpPostjson(String url, String nameValuePairs, String session) throws IOException {
         HttpParams httpParameters = new BasicHttpParams();
         int timeoutConnection = 15000;
         HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
@@ -125,7 +209,7 @@ public class Connection {
             throw e;
         }
         return result;
-    }*/
+    }
 
 
     public String sendHttpPostjson(String url, JSONObject jsonvalue) throws IOException {
@@ -153,7 +237,45 @@ public class Connection {
         return result;
     }
 
+    public String sendHttpPostjson2(String url, JSONObject jsonvalue, String session) throws IOException {
+        HttpParams httpParameters = new BasicHttpParams();
+        int timeoutConnection = 60000;
+        HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+        int timeoutSocket = 60000;
+        HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+        HostnameVerifier hostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
 
+        //DefaultHttpClient client = new DefaultHttpClient();
+        HttpClient client = new DefaultHttpClient(httpParameters);
+        SchemeRegistry registry = new SchemeRegistry();
+        SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+        socketFactory.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier);
+        registry.register(new Scheme("https", socketFactory, 443));
+        SingleClientConnManager mgr = new SingleClientConnManager(client.getParams(), registry);
+        DefaultHttpClient httpClient = new DefaultHttpClient(mgr, client.getParams());
+        // Set verifier
+        HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
+        HttpPost post = new HttpPost(url);
+        //post.setHeader("SWF-AuthToken", session);
+        //post.setHeader("X-Requested-With", "XMLHttpRequest");
+        post.setHeader("Accept", "application/json");
+        post.setHeader("Content-Type", "application/json");
+
+        //  post.setHeader("Cache-Control", "max-age=0, no-cache, no-store");
+        String result = null;
+        try {
+            post.setEntity(new StringEntity(jsonvalue.toString(), "UTF-8"));
+            HttpResponse response = client.execute(post);
+            if(response.getStatusLine().getStatusCode() == 401){
+                result =readIt(CommonFunction.createfalseJson());
+            }else{
+                result = readIt(response.getEntity().getContent());
+            }
+        } catch (IOException e) {
+            throw e;
+        }
+        return result;
+    }
 
     public static StringBuffer sendJsonHttpPost(String url, JSONObject nameValuePairs) throws IOException {
         StringBuffer result = null;
@@ -273,7 +395,7 @@ public class Connection {
         }
         return code;
     }
-    /*public String connStringResponse(String stringUrl)throws RemoteException {
+    public String connStringResponse(String stringUrl)throws RemoteException {
         InputStream stream;
         String respString = null;
         try {
@@ -284,7 +406,7 @@ public class Connection {
             throw new RemoteException();
         }
         return respString;
-    }*/
+    }
 
 }
 
