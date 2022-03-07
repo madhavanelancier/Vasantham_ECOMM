@@ -333,11 +333,11 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
             /*bitmapDescriptorFromVector(this,R.drawable.ic_single_motorbike)*/
             BitmapDescriptorFactory.fromResource(R.mipmap.bicycle)
         ))
-        /*mapObject.moveCamera(CameraUpdateFactory.newLatLng(location))
+        //mapObject.moveCamera(CameraUpdateFactory.newLatLng(location))
         val cameraPosition = CameraPosition.Builder()
             .target(location)
             .zoom(16f)
-            .build()*/
+            .build()
         mMap!!.moveCamera(
             CameraUpdateFactory.newLatLngZoom(
                 LatLng(
@@ -346,7 +346,7 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
                 ), DEFAULT_ZOOM.toFloat()
             )
         )
-        //mMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        mMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
     private fun markEndingLocationOnMap(mapObject: GoogleMap?, location: LatLng?) {
@@ -355,7 +355,7 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
             MarkerOptions().position(LatLng(
                 custlatitude,
                 custlongitude
-            )).title("Customer location").icon(
+            )).title("Delivery boy is here").icon(
                 /*bitmapDescriptorFromVector(this,R.drawable.ic_single_motorbike)*/
                 BitmapDescriptorFactory.fromResource(R.mipmap.bicycle)
             ))
@@ -378,6 +378,21 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
             )
             //mapObject.moveCamera(CameraUpdateFactory.newLatLng(location))
         }*/
+        val cameraPosition = CameraPosition.Builder()
+            .target(LatLng(
+                custlatitude,
+                custlongitude
+            ))
+            .zoom(16f)
+            .build()
+        mMap!!.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng( custlatitude,
+                    custlongitude
+                ), DEFAULT_ZOOM.toFloat()
+            )
+        )
+        mMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
     fun bitmapDescriptorFromVector(context: Context, vectorDrawableResourceId :/* @DrawableRes*/ Int) : BitmapDescriptor {
@@ -552,6 +567,7 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
     inner class Deliveriboyloaction : AsyncTask<String?, String?, String?>() {
         lateinit var pDialog: Dialog
         override fun onPreExecute() {
+            pDialog = Dialog(this@LocationActivity)
             Appconstands.loading_show(this@LocationActivity,pDialog).show()
         }
 
@@ -582,6 +598,7 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
                         if (lat.isNotEmpty()&&lng.isNotEmpty()){
                             custlatitude = lat.toString().toDouble()
                             custlongitude = lng.toString().toDouble()
+                            markEndingLocationOnMap(null,null)
                         }
                     }
                 }

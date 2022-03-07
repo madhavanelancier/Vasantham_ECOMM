@@ -134,7 +134,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
                         val name = jobject.getString("name")
                         val phone = jobject.getString("phone")
                         val cardno = jobject.getString("cardno")
-                        val btn=jobject.getString("paybtn")
+                        val btn=if (jobject.has("paybtn"))jobject.getString("paybtn") else "0"
 
                         utils.setLogin(true)
                         utils.setUser_due(id,name, phone,cardno)
