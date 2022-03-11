@@ -40,8 +40,8 @@ object Appconstands {
     lateinit var alert : AlertDialog
 
     val Domin ="http://teamdev.co.in/vasantham/api/"
-    //val Domin_due ="http://vasanthamstore.in/chit/app/"
-    val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
+    val Domin_due ="http://vasanthamstore.in/chit/app/"
+    //val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
     val ImageDomain ="http://teamdev.co.in/vasantham/"
     val rupees ="₹ "
     val new_reg = "customers/register"
