@@ -41,7 +41,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var utils : Utils
     lateinit var db : DBController
     lateinit var pDialog: Dialog
-    var packagenm = "com.elanciers.vasantham_ecomm"
+    //var packagenm = "com.elanciers.vasantham_ecomm"
     lateinit var ab : ActionBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,14 +83,14 @@ class ProfileActivity : AppCompatActivity() {
 
         rate_us.setOnClickListener {
             val i = Intent(android.content.Intent.ACTION_VIEW)
-            i.data = Uri.parse("https://play.google.com/store/apps/details?id=$packagenm")
+            i.data = Uri.parse("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}")
             startActivity(i)
         }
 
         referral.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=$packagenm");
+            intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}");
             intent.setType("text/plain");
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(Intent.createChooser(intent, "Share"));

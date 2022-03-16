@@ -11,8 +11,8 @@ android {
         applicationId "com.elanciers.vasantham_stores_ecomm"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 15
-        versionName "1.15"
+        versionCode 16
+        versionName "1.16"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
