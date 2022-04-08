@@ -1,6 +1,7 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.Manifest
+import android.R.attr.button
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -14,10 +15,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
@@ -49,7 +47,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeActivity : AppCompatActivity()/*, LocationListener*/ {
@@ -172,6 +169,9 @@ var locationManager: LocationManager? = null;
         utils = Utils(activity)
         pDialog = Dialog(activity)
         mContext=this
+
+        name.setText(utils.name().toString())
+        mob.setText(utils.mobile().toString())
         //DBController(activity).dropHoleCart()
         //DBController(activity).dropLocation()
         mFragmentTitleList1.add("Home")
@@ -219,7 +219,7 @@ var locationManager: LocationManager? = null;
 
 
 
-        val handler = Handler()
+        /*val handler = Handler()
         val Update = Runnable {
             if (currentPage == fList.size - 1) {
                 currentPage = 0
@@ -234,7 +234,7 @@ var locationManager: LocationManager? = null;
             override fun run() {
                 handler.post(Update)
             }
-        }, DELAY_MS, PERIOD_MS)
+        }, DELAY_MS, PERIOD_MS)*/
 
         //getLocation()
         highLightCurrentTab()
@@ -308,11 +308,24 @@ var locationManager: LocationManager? = null;
 
 
         profile.setOnClickListener {
-            val uri = Uri.parse("smsto:6374934371")
+            /*val uri = Uri.parse("smsto:6374934371")
             val i = Intent(Intent.ACTION_SENDTO, uri)
             i.putExtra("sms_body", "Any Queries: ")
             i.setPackage("com.whatsapp")
-            startActivity(i)
+            startActivity(i)*/
+            val popupMenu = PopupMenu(this, it)
+            popupMenu.menuInflater.inflate(R.menu.language_menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+                override fun onMenuItemClick(menuItem: MenuItem): Boolean {
+                    // Toast message on menu item clicked
+                    popupMenu.dismiss()
+                    profile.setText(if (menuItem.getTitle()=="Tamil") "Ta" else "En")
+                    return true
+                }
+            })
+            // Showing the popup menu
+            // Showing the popup menu
+            popupMenu.show()
         }
 
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -1071,10 +1084,10 @@ var locationManager: LocationManager? = null;
                                     pop.dismiss()
                                 }
 
-                                try {
+                                /*try {
                                     viewPager.setCurrentItem(1)
                                 } catch (e: Exception) {
-                                }
+                                }*/
                             } else {
 
                             }

@@ -107,6 +107,8 @@ class OrderActivity : AppCompatActivity(),OrderListAdapter.OnItemClickListener,O
             if (Appconstands.net_status(activity)) {
                 connection.visibility=View.GONE
                 //start = start + Oders.size
+                start =0
+                Oders.clear()
                 getOrders()
             }else{
                 connection.visibility=View.VISIBLE
@@ -119,6 +121,8 @@ class OrderActivity : AppCompatActivity(),OrderListAdapter.OnItemClickListener,O
         if (Appconstands.net_status(activity)) {
             connection.visibility=View.GONE
             //start = start + Oders.size
+            start =0
+            Oders.clear()
             getOrders()
         }else{
             connection.visibility=View.VISIBLE

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:shimmer="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <FrameLayout
@@ -105,7 +105,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="horizontal">
@@ -128,7 +128,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
                             android:gravity="center_vertical"
@@ -161,16 +161,20 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:visibility="visible">
 
-                        <ImageView
+                        <TextView
                             android:id="@+id/profile"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:src="@drawable/ic_whatsapp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/brandon_bold"
+                            android:gravity="center"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:text="En"
+                            android:textSize="16sp"
                             android:visibility="visible" />
                     </LinearLayout>
                 </LinearLayout>
@@ -260,7 +264,6 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/white"
                                             android:clipToPadding="false"
-
                                             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                                         <alirezat775.lib.carouselview.CarouselView
@@ -281,6 +284,176 @@
                                     </LinearLayout>
 
                                 </LinearLayout>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="5dp"
+                                    app:cardUseCompatPadding="true"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:layout_editor_absoluteX="16dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/points_card_bg"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="8dp"
+                                            android:paddingRight="8dp"
+                                            android:singleLine="true"
+                                            android:text="Loyalty Points"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:padding="10dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    android:id="@+id/name"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:singleLine="true"
+                                                    android:text="Customer Name"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="16sp"
+                                                    android:textStyle="bold" />
+
+                                                <TextView
+                                                    android:id="@+id/mob"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingTop="4dp"
+                                                    android:paddingBottom="4dp"
+                                                    android:singleLine="true"
+                                                    android:text="9999999999"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="16sp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:fontFamily="@font/brandon_bold"
+                                                    android:singleLine="true"
+                                                    android:text="Points"
+                                                    android:textColor="#E4FFFFFF" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:singleLine="true"
+                                                    android:text="444"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="20sp"
+                                                    android:textStyle="bold" />
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:orientation="horizontal"
+                                            android:paddingStart="10dp"
+                                            android:paddingEnd="10dp"
+                                            android:paddingBottom="10dp">
+
+                                            <androidx.cardview.widget.CardView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                app:cardCornerRadius="4dp"
+                                                app:cardUseCompatPadding="true">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="center_vertical"
+                                                    android:orientation="horizontal"
+                                                    android:paddingStart="4dp"
+                                                    android:paddingTop="2dp"
+                                                    android:paddingEnd="4dp"
+                                                    android:paddingBottom="2dp">
+
+                                                    <ImageView
+                                                        android:id="@+id/imageView37"
+                                                        android:layout_width="12dp"
+                                                        android:layout_height="wrap_content"
+                                                        app:srcCompat="@mipmap/medal" />
+
+                                                    <TextView
+                                                        android:id="@+id/textView61"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginStart="2dp"
+                                                        android:layout_weight="1"
+                                                        android:fontFamily="@font/brandon_bold"
+                                                        android:text="Basic"
+                                                        android:textColor="#E64A19"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold" />
+                                                </LinearLayout>
+                                            </androidx.cardview.widget.CardView>
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <ProgressBar
+                                                    android:id="@+id/progressBar2"
+                                                    style="?android:attr/progressBarStyleHorizontal"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="5dp"
+                                                    android:layout_marginStart="10dp"
+                                                    android:layout_weight="1"
+                                                    android:indeterminate="false"
+                                                    android:progress="80"
+                                                    android:progressDrawable="@drawable/custom_progressbar"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                                <TextView
+                                                    android:id="@+id/textView62"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="4dp"
+                                                    android:fontFamily="@font/brandon_bold"
+                                                    android:text="444/500"
+                                                    android:textColor="#E4FFFFFF"
+                                                    android:textSize="12sp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintStart_toStartOf="@+id/progressBar2"
+                                                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
 
                                 <com.facebook.shimmer.ShimmerFrameLayout
                                     android:id="@+id/category_shimmer"
@@ -718,7 +891,6 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="16dp"
                                         android:orientation="horizontal"
                                         android:visibility="visible">
 
@@ -760,9 +932,8 @@
                                             android:horizontalSpacing="8dp"
                                             android:numColumns="3"
                                             android:stretchMode="columnWidth"
+                                            shimmer:listitem="@layout/category_list_adapter"
                                             android:verticalSpacing="8dp" />
-
-
 
 
                                     <view
