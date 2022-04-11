@@ -71,8 +71,8 @@ class RouteService : Service(), ConnectionCallbacks,
         val result: PendingResult<LocationSettingsResult> =
             LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build())
         result.setResultCallback(object : ResultCallback<LocationSettingsResult?> {
-            override fun onResult(result: LocationSettingsResult) {
-                val status: Status = result.status
+            override fun onResult(result: LocationSettingsResult?) {
+                val status: Status = result!!.status
                 when (status.getStatusCode()) {
                     LocationSettingsStatusCodes.SUCCESS -> if (ActivityCompat.checkSelfPermission(
                             applicationContext,

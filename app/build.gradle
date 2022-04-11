@@ -118,7 +118,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
 
     //razorpay
-    implementation 'com.razorpay:checkout:1.4.9'
+    implementation 'com.razorpay:checkout:1.6.19'
 
     //room
     //def room_version = "1.1.1"

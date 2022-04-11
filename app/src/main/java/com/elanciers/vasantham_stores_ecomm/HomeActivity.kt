@@ -279,14 +279,14 @@ var locationManager: LocationManager? = null;
         val adap = TabAdapter(getSupportFragmentManager(), activity)
         val imgs = arrayListOf<Int>()
 
-        swipeToRefresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+        /*swipeToRefresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
                 //shuffle()
                 finish()
                 startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
                 swipeToRefresh.setRefreshing(false)
             }
-        })
+        })*/
 
         viewPager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -851,7 +851,7 @@ var locationManager: LocationManager? = null;
                 println("subLocality : " + listAddresses.get(0).subLocality)
                 println("area : " + area)
                 println("city : " + city)
-                location.setText(city)
+                //location.setText(city)
                 /*ab!!.title=city.trimStart()
                 ab!!.subtitle =area.trimStart()*/
             }
@@ -909,6 +909,7 @@ var locationManager: LocationManager? = null;
         permissions: Array<String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
 
             RequestPermissionCode ->
