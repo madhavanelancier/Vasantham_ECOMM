@@ -249,7 +249,7 @@
                                 <LinearLayout
                                     android:id="@+id/slider_layout"
                                     android:layout_width="match_parent"
-                                    android:layout_height="180dp"
+                                    android:layout_height="220dp"
                                     android:orientation="vertical">
 
                                     <LinearLayout
@@ -1085,7 +1085,7 @@
                             <com.google.android.material.tabs.TabLayout
                                 android:id="@+id/tabs"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="60dp"
                                 android:layout_gravity="bottom"
                                 android:layout_weight="1"
                                 android:background="@color/white"

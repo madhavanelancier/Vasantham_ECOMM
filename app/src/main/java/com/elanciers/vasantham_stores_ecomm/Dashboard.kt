@@ -36,8 +36,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
     var receipt = "";
     var due = "";
     var branch = "";
-    var lat = "";
-    var lng = "";
+    var lat :String?=null;
+    var lng :String?=null;
 
     private val mRecyclerListitems = ArrayList<Any>()
     private var productItems: MutableList<Rewardpointsbo>? = null
@@ -357,11 +357,11 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
                     val jobj = JSONArray(resp)
                     if (jobj.getJSONObject(0).getString("Status") == "Success") {
-
+                        val ob= jobj.getJSONObject(0)
                         val jobject=jobj.getJSONObject(0).getJSONArray("Response")
                         val qrimage=jobj.getJSONObject(0).getString("qrimage")
-                        lat=jobj.getJSONObject(0).getString("lat")
-                        lng=jobj.getJSONObject(0).getString("lng")
+                        lat= if (ob.getString("lat")!="null") ob.getString("lat") else ""
+                        lng= if (ob.getString("lng")!="null") ob.getString("lng") else ""
                         println("qrimage : "+qrimage)
 
                         for(i in 0 until jobject.length()){
@@ -426,7 +426,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                             val decodedString = String(decodedBytes)
                             println("image : "+decodedString)
                             Glide.with(this@Dashboard).load(decodedString).into(imageView35)
-                            if (lat.isNotEmpty()&& lng.isNotEmpty()){
+                            if (!lat.isNullOrEmpty()&& !lng.isNullOrEmpty()){
                                 track.visibility=View.VISIBLE
                             }else{
                                 track.visibility=View.GONE

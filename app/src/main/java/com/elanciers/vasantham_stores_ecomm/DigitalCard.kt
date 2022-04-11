@@ -98,14 +98,14 @@ class DigitalCard : AppCompatActivity() {
 
                     val jobj = JSONObject(resp)
                     if (jobj.getString("Status") == "Success") {
-
                         val jobject=jobj.getJSONArray("Response")
+                        val ob = jobject.getJSONObject(0)
                         val card_year=jobject.getJSONObject(0).getString("card_year")
                         val name=jobject.getJSONObject(0).getString("name")
                         val chit_name=jobject.getJSONObject(0).getString("chit_name")
-                        val fund_1=jobject.getJSONObject(0).getString("fund1")
-                        val fund_2=jobject.getJSONObject(0).getString("fund2")
-                        val amount=jobject.getJSONObject(0).getString("amount")
+                        val fund_1=if (ob.getString("fund1")!="null")ob.getString("fund1") else ""
+                        val fund_2=if (ob.getString("fund2")!="null")ob.getString("fund2") else ""
+                        val amount=ob.getString("amount")
                         val qrimage=jobject.getJSONObject(0).getString("qrimage")
                         println("qrimage : "+qrimage)
                         ab.title = name
