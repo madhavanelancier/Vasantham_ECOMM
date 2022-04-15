@@ -143,7 +143,7 @@ class ManageAddressActivity : AppCompatActivity(),ManageAddressAdapter.OnBottomR
 
     fun getAddress(){
         store_shimmer.visibility = View.VISIBLE
-        store_shimmer.startShimmerAnimation()
+        store_shimmer.startShimmer()
         /*val pDialo = ProgressDialog(this);
         pDialo.setMessage("Loading....");
         pDialo.setIndeterminate(false);
@@ -209,7 +209,7 @@ class ManageAddressActivity : AppCompatActivity(),ManageAddressAdapter.OnBottomR
                 //pDialog.dismiss()
                 //loading_show(activity).dismiss()
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -222,7 +222,7 @@ class ManageAddressActivity : AppCompatActivity(),ManageAddressAdapter.OnBottomR
                     ).show()
                 }
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 //pDialog.dismiss()
                 //loading_show(activity).dismiss()
             }

@@ -373,7 +373,7 @@ class CartActivity : AppCompatActivity() , PaymentResultListener {
                 //loading_show(activity).dismiss()
                 //product_layout.visibility = View.VISIBLE
                 //product_shimmer.visibility = View.GONE
-                //product_shimmer.stopShimmerAnimation()
+                //product_shimmer.stopShimmer()
                 pDialog.dismiss()
             }
         })

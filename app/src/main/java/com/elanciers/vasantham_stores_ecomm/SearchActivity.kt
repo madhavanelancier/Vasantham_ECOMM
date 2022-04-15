@@ -49,7 +49,7 @@ class SearchActivity : AppCompatActivity(){
                     //stores.clear()
                     //storesadp.notifyDataSetChanged()
                     store_shimmer.visibility = View.VISIBLE
-                    store_shimmer.startShimmerAnimation()
+                    store_shimmer.startShimmer()
                     getStores(start, src)
                 }else {
                     getStores(start, src)
@@ -100,7 +100,7 @@ class SearchActivity : AppCompatActivity(){
                 //pDialog.dismiss()
                 //store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 adp()
             }
 
@@ -118,7 +118,7 @@ class SearchActivity : AppCompatActivity(){
                 //loading_show(activity).dismiss()
                 //store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 connection.visibility=View.VISIBLE
             }
         })

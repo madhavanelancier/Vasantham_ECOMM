@@ -51,7 +51,7 @@ class OffersActivity : AppCompatActivity() , OfferListAdapter.OnBottomReachedLis
                 stores.clear()
                 storesadp.notifyDataSetChanged()
                 store_shimmer.visibility = View.VISIBLE
-                store_shimmer.startShimmerAnimation()
+                store_shimmer.startShimmer()
                 getStores(start, src)
             }else {
                 start = start + stores.size
@@ -98,13 +98,13 @@ class OffersActivity : AppCompatActivity() , OfferListAdapter.OnBottomReachedLis
                 if (Appconstands.net_status(activity)) {
                     //vendorlist.visibility = View.GONE
                     //store_shimmer.visibility = View.VISIBLE
-                    //store_shimmer.startShimmerAnimation()
+                    //store_shimmer.startShimmer()
                     println("p0!!.trim().toString() : " + src)
                     if (src.length > 2) {
                         stores.clear()
                         storesadp.notifyDataSetChanged()
                         store_shimmer.visibility = View.VISIBLE
-                        store_shimmer.startShimmerAnimation()
+                        store_shimmer.startShimmer()
                         getStores(0, searchedit.text.trim().toString())
                     }
                 } else {
@@ -120,7 +120,7 @@ class OffersActivity : AppCompatActivity() , OfferListAdapter.OnBottomReachedLis
                 stores.clear()
                 storesadp.notifyDataSetChanged()
                 store_shimmer.visibility = View.VISIBLE
-                store_shimmer.startShimmerAnimation()
+                store_shimmer.startShimmer()
                 getStores(start, src)
             } else {
                 getStores(start, src)
@@ -132,7 +132,7 @@ class OffersActivity : AppCompatActivity() , OfferListAdapter.OnBottomReachedLis
                     stores.clear()
                     storesadp.notifyDataSetChanged()
                     store_shimmer.visibility = View.VISIBLE
-                    store_shimmer.startShimmerAnimation()
+                    store_shimmer.startShimmer()
                     getStores(start, src)
                 } else {
                     getStores(start, src)
@@ -211,7 +211,7 @@ class OffersActivity : AppCompatActivity() , OfferListAdapter.OnBottomReachedLis
                 //pDialog.dismiss()
                 //store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 adp()
             }
 
@@ -229,7 +229,7 @@ class OffersActivity : AppCompatActivity() , OfferListAdapter.OnBottomReachedLis
                 //loading_show(activity).dismiss()
                 //store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 //connection.visibility = View.VISIBLE
             }
         })

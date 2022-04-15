@@ -67,7 +67,7 @@ class OptionSelect_Activity : AppCompatActivity() {
                         } else {
                             // val toast=Toast(applicationContext,"Unable to get location")
                         }
-                        //location_shimmer.stopShimmerAnimation()
+                        //location_shimmer.stopShimmer()
                         // location_shimmer.visibility = View.GONE
                         // location_layout.visibility = View.VISIBLE
                         //getCompleteAddressString(location)
@@ -400,7 +400,7 @@ class OptionSelect_Activity : AppCompatActivity() {
             latistr=location.latitude.toString()
             longstr=location.longitude.toString()
             //Toast.makeText(this@HomeActivity, msg, Toast.LENGTH_LONG).show()
-            //location_shimmer.stopShimmerAnimation()
+            //location_shimmer.stopShimmer()
             //location_shimmer.visibility=View.GONE
             // location_layout.visibility=View.VISIBLE
             // getCompleteAddressString(location)

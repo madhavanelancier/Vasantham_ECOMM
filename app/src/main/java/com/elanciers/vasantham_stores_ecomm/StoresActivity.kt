@@ -117,7 +117,7 @@ class StoresActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
         if (Appconstands.net_status(activity)){
             store_layout.visibility = View.GONE
             store_shimmer.visibility = View.VISIBLE
-            store_shimmer.startShimmerAnimation()
+            store_shimmer.startShimmer()
             getStores(0)
         }
     }
@@ -162,7 +162,7 @@ class StoresActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
                 //pDialog.dismiss()
                 store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -178,7 +178,7 @@ class StoresActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
                 //loading_show(activity).dismiss()
                 store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
             }
         })
     }

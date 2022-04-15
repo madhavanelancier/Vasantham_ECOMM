@@ -54,11 +54,11 @@ class MainSearchActivity : AppCompatActivity(){
                 if (Appconstands.net_status(activity)) {
                     //vendorlist.visibility = View.GONE
                     //store_shimmer.visibility = View.VISIBLE
-                    //store_shimmer.startShimmerAnimation()
+                    //store_shimmer.startShimmer()
                     println("p0!!.trim().toString() : " + src)
                     if (src.length > 2) {
                         store_shimmer.visibility = View.VISIBLE
-                        store_shimmer.startShimmerAnimation()
+                        store_shimmer.startShimmer()
                         getStores(0, searchedit.text.trim().toString())
                     }
                 } else {
@@ -79,14 +79,14 @@ class MainSearchActivity : AppCompatActivity(){
         if (Appconstands.net_status(activity)) {
             //vendorlist.visibility = View.GONE
             //store_shimmer.visibility = View.VISIBLE
-            //store_shimmer.startShimmerAnimation()
+            //store_shimmer.startShimmer()
             //getStores(0)
         }
         conbtn.setOnClickListener {
             if (Appconstands.net_status(activity)) {
                 if (start == 0) {
                     store_shimmer.visibility = View.VISIBLE
-                    store_shimmer.startShimmerAnimation()
+                    store_shimmer.startShimmer()
                     getStores(start, src)
                 } else {
                     getStores(start, src)
@@ -141,7 +141,7 @@ class MainSearchActivity : AppCompatActivity(){
                 //pDialog.dismiss()
                 //store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 adp()
             }
 
@@ -159,7 +159,7 @@ class MainSearchActivity : AppCompatActivity(){
                 //loading_show(activity).dismiss()
                 //store_layout.visibility = View.VISIBLE
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
                 //connection.visibility = View.VISIBLE
             }
         })

@@ -234,7 +234,7 @@ class ProductActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListene
         if (Appconstands.net_status(activity)){
             product_layout.visibility = View.GONE
             product_shimmer.visibility = View.VISIBLE
-            product_shimmer.startShimmerAnimation()
+            product_shimmer.startShimmer()
             getProducts()
         }
         tabs!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -564,7 +564,7 @@ class ProductActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListene
                 //pDialog.dismiss()
                 product_layout.visibility = View.VISIBLE
                 product_shimmer.visibility = View.GONE
-                product_shimmer.stopShimmerAnimation()
+                product_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -580,7 +580,7 @@ class ProductActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListene
                 //loading_show(activity).dismiss()
                 product_layout.visibility = View.VISIBLE
                 product_shimmer.visibility = View.GONE
-                product_shimmer.stopShimmerAnimation()
+                product_shimmer.stopShimmer()
             }
         })
     }

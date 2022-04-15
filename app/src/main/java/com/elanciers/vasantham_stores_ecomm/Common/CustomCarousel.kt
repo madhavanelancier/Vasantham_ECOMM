@@ -1,8 +1,8 @@
 package com.elanciers.vasantham_stores_ecomm.Common
 
-import alirezat775.lib.carouselview.*
+/*import alirezat775.lib.carouselview.*
 import alirezat775.lib.carouselview.helper.EndlessListener
-import alirezat775.lib.carouselview.helper.ViewHelper
+import alirezat775.lib.carouselview.helper.ViewHelper*/
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Email:   alirezat775@gmail.com
  */
 
+/*
 class CustomCarousel constructor(
         private var appCompatActivity: AppCompatActivity,
         @NonNull private var carouselView: CarouselView,
@@ -28,10 +29,12 @@ class CustomCarousel constructor(
         carouselView.isAutoScroll = false
     }
 
-    /**
+    */
+/**
      * @param orientation set VERTICAL/HORIZONTAL
      * @param reverseLayout set RTL layout
-     */
+     *//*
+
     fun setOrientation(
             @CarouselView.CarouselOrientation orientation: Int, reverseLayout: Boolean,
             enablePadding: Boolean = true
@@ -60,7 +63,8 @@ class CustomCarousel constructor(
         carouselView.listener = null
     }
 
-    /**
+    */
+/**
      * lazyLoad load more item with infinity scroll.
      * for enable this feature should be pass true value in first parameter
      * and pass child of CarouselLazyLoadListener for second parameter
@@ -69,7 +73,8 @@ class CustomCarousel constructor(
      *
      * @param lazy this flag enable or disable lazy loading view
      * @param carouselLazyLoadListener listener when need call load more item
-     */
+     *//*
+
     fun lazyLoad(lazy: Boolean, carouselLazyLoadListener: CarouselLazyLoadListener?) {
         this.carouselLazyLoadListener = carouselLazyLoadListener
 
@@ -83,84 +88,106 @@ class CustomCarousel constructor(
             carouselView.clearOnScrollListeners()
     }
 
-    /**
+    */
+/**
      * @param scaleView enable scaleView item
-     */
+     *//*
+
     fun scaleView(scaleView: Boolean) {
         getManager()?.scaleView(scaleView)
     }
 
-    /**
+    */
+/**
      * @return CarouselLayoutManager
-     */
+     *//*
+
     private fun getManager(): CarouselLayoutManager? {
         if (manager == null) setOrientation(CarouselView.VERTICAL, false)
         return manager
     }
 
-    /**
+    */
+/**
      * @param items list items should be add to carousel
-     */
+     *//*
+
     fun addAll(items: MutableList<CarouselModel>) {
         adapter.addAll(items)
     }
 
-    /**
+    */
+/**
      * @param item one item should be add to carousel
-     */
+     *//*
+
     fun add(item: CarouselModel) {
         adapter.operation(item, CarouselAdapter.ADD)
     }
 
-    /**
+    */
+/**
      * @param item list items should be remove to carousel
-     */
+     *//*
+
     fun remove(item: CarouselModel) {
         adapter.operation(item, CarouselAdapter.REMOVE)
     }
 
-    /**
+    */
+/**
      * @param currentPosition
-     */
+     *//*
+
     fun setCurrentPosition(currentPosition: Int) {
         carouselView.scrollToPosition(currentPosition)
     }
 
-    /**
+    */
+/**
      * @return current item position
-     */
+     *//*
+
     fun getCurrentPosition(): Int {
         return carouselView.currentPosition
     }
 
-    /**
+    */
+/**
      * pause auto scrolling
-     */
+     *//*
+
     fun pauseAutoScroll() {
         carouselView.pauseAutoScroll()
     }
 
-    /**
+    */
+/**
      * resume auto scrolling
-     */
+     *//*
+
     fun resumeAutoScroll() {
         carouselView.resumeAutoScroll()
     }
 
-    /**
+    */
+/**
      * @param autoScroll
      * @param delayMillis
      * @param loopMode
-     */
+     *//*
+
     fun autoScroll(autoScroll: Boolean, delayMillis: Long, loopMode: Boolean) {
         carouselView.isAutoScroll = autoScroll
         carouselView.delayMillis = delayMillis
         carouselView.isLoopMode = loopMode
     }
 
-    /**
+    */
+/**
      * @param enableSlider enable slider mode
-     */
+     *//*
+
     fun enableSlider(enableSlider: Boolean) {
         if (getManager()?.orientation == CarouselView.VERTICAL)
             throw IllegalStateException("for using slider mode, orientation must be is HORIZONTAL")
@@ -168,11 +195,13 @@ class CustomCarousel constructor(
             adapter.enableSlider(enableSlider)
     }
 
-    /**
+    */
+/**
      * @param scrollSpeed change speed scrolling item
-     */
+     *//*
+
     fun scrollSpeed(scrollSpeed: Float) {
         getManager()?.setScrollSpeed(scrollSpeed)
     }
 
-}
+}*/

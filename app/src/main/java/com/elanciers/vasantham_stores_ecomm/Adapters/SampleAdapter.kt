@@ -1,5 +1,6 @@
 package com.elanciers.vasantham_stores_ecomm.Adapters
 
+/*
 import alirezat775.lib.carouselview.CarouselAdapter
 import alirezat775.lib.carouselview.CarouselModel
 import android.view.LayoutInflater
@@ -82,4 +83,4 @@ class SampleAdapter : CarouselAdapter() {
             return text
         }
     }
-}
+}*/

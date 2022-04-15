@@ -95,7 +95,7 @@ class CategoriesActivity : AppCompatActivity() {
         //loading_show(activity, pDialog).show()
         category_layout.visibility = View.GONE
         category_shimmer.visibility = View.VISIBLE
-        category_shimmer.startShimmerAnimation()
+        category_shimmer.startShimmer()
         val call = ApproveUtils.Get.getCategory("1")
         call.enqueue(object : Callback<Resp> {
             override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
@@ -130,7 +130,7 @@ class CategoriesActivity : AppCompatActivity() {
                 //pDialog.dismiss()
                 category_layout.visibility = View.VISIBLE
                 category_shimmer.visibility = View.GONE
-                category_shimmer.stopShimmerAnimation()
+                category_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -146,7 +146,7 @@ class CategoriesActivity : AppCompatActivity() {
                 //loading_show(activity).dismiss()
                 category_layout.visibility = View.VISIBLE
                 category_shimmer.visibility = View.GONE
-                category_shimmer.stopShimmerAnimation()
+                category_shimmer.stopShimmer()
             }
         })
     }

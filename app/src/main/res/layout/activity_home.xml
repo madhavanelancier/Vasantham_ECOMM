@@ -286,7 +286,7 @@
                                 <LinearLayout
                                     android:id="@+id/slider_layout"
                                     android:layout_width="match_parent"
-                                    android:layout_height="220dp"
+                                    android:layout_height="wrap_content"
                                     android:orientation="vertical">
 
                                     <LinearLayout
@@ -301,14 +301,26 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/white"
                                             android:clipToPadding="false"
+                                            android:visibility="gone"
                                             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-                                        <alirezat775.lib.carouselview.CarouselView
+                                        <!--<alirezat775.lib.carouselview.CarouselView
                                             android:id="@+id/carousel_view"
                                             android:layout_width="match_parent"
                                             android:layout_height="180dp"
                                             android:background="@color/white"
-                                            android:visibility="gone" />
+                                            android:visibility="gone" />-->
+
+                                        <com.daimajia.slider.library.SliderLayout
+                                            android:id="@+id/scroll2_slider"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="210dp"
+                                            android:background="@color/white"
+                                            android:visibility="visible"
+                                            app:auto_cycle="true"
+                                            app:indicator_visibility="visible"
+                                            app:pager_animation="Default"
+                                            app:pager_animation_span="1100" />
 
                                         <!--<com.daimajia.slider.library.Indicators.PagerIndicator
                                                             android:id="@+id/custom_indicator"

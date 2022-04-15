@@ -130,7 +130,7 @@ class CouponActivity : AppCompatActivity(), CouponsAdapter.OnBottomReachedListen
     fun getCoupon(){
         connection.visibility=View.GONE
         store_shimmer.visibility = View.VISIBLE
-        store_shimmer.startShimmerAnimation()
+        store_shimmer.startShimmer()
         Couponslist.clear()
         //Appconstands.loading_show(activity, pDialog).show()
         val call = ApproveUtils.Get.Coupon("1")
@@ -171,7 +171,7 @@ class CouponActivity : AppCompatActivity(), CouponsAdapter.OnBottomReachedListen
                 //pDialog.dismiss()
                 //loading_show(activity).dismiss()
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -188,7 +188,7 @@ class CouponActivity : AppCompatActivity(), CouponsAdapter.OnBottomReachedListen
                 //pDialog.dismiss()
                 //loading_show(activity).dismiss()
                 store_shimmer.visibility = View.GONE
-                store_shimmer.stopShimmerAnimation()
+                store_shimmer.stopShimmer()
             }
         })
     }
@@ -243,7 +243,7 @@ class CouponActivity : AppCompatActivity(), CouponsAdapter.OnBottomReachedListen
                 pDialog.dismiss()
                 //loading_show(activity).dismiss()
                 //store_shimmer.visibility = View.GONE
-                //store_shimmer.stopShimmerAnimation()
+                //store_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -260,7 +260,7 @@ class CouponActivity : AppCompatActivity(), CouponsAdapter.OnBottomReachedListen
                 pDialog.dismiss()
                 //loading_show(activity).dismiss()
                 //store_shimmer.visibility = View.GONE
-                //store_shimmer.stopShimmerAnimation()
+                //store_shimmer.stopShimmer()
             }
         })
     }

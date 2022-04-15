@@ -134,7 +134,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
         println("vendor_id : "+vendor_id)
         if (start==0){
             product_shimmer.visibility = View.VISIBLE
-            product_shimmer.startShimmerAnimation()
+            product_shimmer.startShimmer()
         }
         val call = ApproveUtils.Get.getSearchProducts(vendor_id.toString(),src,start.toString())
         call.enqueue(object : Callback<Resp> {
@@ -187,7 +187,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
                             }
                             if (start==0) {
                                 product_shimmer.visibility = View.GONE
-                                product_shimmer.stopShimmerAnimation()
+                                product_shimmer.stopShimmer()
                             }
                             fr.pros = AllPro
                             Products.add(fr)
@@ -200,7 +200,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
                 //product_layout.visibility = View.VISIBLE
                 if (start==0) {
                     product_shimmer.visibility = View.GONE
-                    product_shimmer.stopShimmerAnimation()
+                    product_shimmer.stopShimmer()
                 }
             }
 
@@ -218,7 +218,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
                 //product_layout.visibility = View.VISIBLE
                 if (start==0) {
                     product_shimmer.visibility = View.GONE
-                    product_shimmer.stopShimmerAnimation()
+                    product_shimmer.stopShimmer()
                 }
             }
         })
@@ -232,7 +232,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
         println("vendor_id : "+vendor_id)
         if (start==0){
             product_shimmer.visibility = View.VISIBLE
-            product_shimmer.startShimmerAnimation()
+            product_shimmer.startShimmer()
         }
         val call = ApproveUtils.Get.getSearchProducts("",src,start.toString())
         call.enqueue(object : Callback<Resp> {
@@ -285,7 +285,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
                             }
                             if (start==0) {
                                 product_shimmer.visibility = View.GONE
-                                product_shimmer.stopShimmerAnimation()
+                                product_shimmer.stopShimmer()
                             }
                             fr.pros = AllPro
                             Products.add(fr)
@@ -296,7 +296,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
                 }
                 if (start==0) {
                     product_shimmer.visibility = View.GONE
-                    product_shimmer.stopShimmerAnimation()
+                    product_shimmer.stopShimmer()
                 }
                 //pDialog.dismiss()
                 //product_layout.visibility = View.VISIBLE
@@ -317,7 +317,7 @@ class ProductSearchActivity : AppCompatActivity(),TitledRecyclerAdapter.OnItemCl
                 //product_layout.visibility = View.VISIBLE
                 if (start==0) {
                     product_shimmer.visibility = View.GONE
-                    product_shimmer.stopShimmerAnimation()
+                    product_shimmer.stopShimmer()
                 }
             }
         })

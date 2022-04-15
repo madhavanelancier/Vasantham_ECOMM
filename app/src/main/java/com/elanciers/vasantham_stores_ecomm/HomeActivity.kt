@@ -27,14 +27,13 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.daimajia.slider.library.SliderLayout
+import com.daimajia.slider.library.SliderTypes.BaseSliderView
 import com.elanciers.adport.Adapter.CategoriesAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapter.TabAdapter
-import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
+import com.elanciers.vasantham_stores_ecomm.Common.*
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.RequestPermissionCode
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.net_status
-import com.elanciers.vasantham_stores_ecomm.Common.DBController
-import com.elanciers.vasantham_stores_ecomm.Common.GpsUtils
-import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.ImageScroll
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
 import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
@@ -104,7 +103,7 @@ var permissionCode = 1000;
                 object : LocationListener {
                     override fun onLocationChanged(location: Location) {
                         println("singlelocation : " + location.latitude + " , " + location.longitude)
-                        location_shimmer.stopShimmerAnimation()
+                        location_shimmer.stopShimmer()
                         location_shimmer.visibility = View.GONE
                         location_layout.visibility = View.VISIBLE
                         getCompleteAddressString(location)
@@ -128,7 +127,7 @@ var permissionCode = 1000;
                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                 if (location != null) {
                     println("lastknown : " + location.latitude + " , " + location.longitude)
-                    location_shimmer.stopShimmerAnimation()
+                    location_shimmer.stopShimmer()
                     location_shimmer.visibility=View.GONE
                     location_layout.visibility=View.VISIBLE
                     getCompleteAddressString(location)
@@ -141,7 +140,7 @@ var permissionCode = 1000;
         /*SingleShotLocationProvider.requestSingleUpdate(activity,object : SingleShotLocationProvider.LocationCallback {
              override fun onNewLocationAvailable(location: Location?) {
                Log.d("Location", "my location is " + location.toString());
-                 location_shimmer.stopShimmerAnimation()
+                 location_shimmer.stopShimmer()
                  location_shimmer.visibility=View.GONE
                  location_layout.visibility=View.VISIBLE
                  getCompleteAddressString(location!!)
@@ -187,7 +186,7 @@ var locationManager: LocationManager? = null;
 
         location_shimmer.visibility=View.GONE
         location_layout.visibility=View.VISIBLE
-        location_shimmer.stopShimmerAnimation()
+        location_shimmer.stopShimmer()
 
         /*if (CheckingPermissionIsEnabledOrNot()){
             if (ContextCompat.checkSelfPermission(
@@ -272,7 +271,7 @@ var locationManager: LocationManager? = null;
         //catgs.add(data1)
         data1 = ImageScroll()
         data1.id ="3"
-        data1.img = "https://media.gq-magazine.co.uk/photos/5d13a96b7fcc8e403c821131/16:9/w_1920,c_limit/02-gq-19mar19_b.jpg"
+        data1.img = "https://media.gq-magazine.co.uk/photos/5d13a96b7fcc8e403c821131/16:9/w_1920,c_limit/02-gq-19   mar19_b.jpg"
         data1.content = "London British GQ"
 
 
@@ -561,7 +560,7 @@ var locationManager: LocationManager? = null;
             val longitude = location.longitude
             val msg = "New Latitude: " + latitude + "New Longitude: " + longitude
             //Toast.makeText(this@HomeActivity, msg, Toast.LENGTH_LONG).show()
-            location_shimmer.stopShimmerAnimation()
+            location_shimmer.stopShimmer()
             location_shimmer.visibility=View.GONE
             location_layout.visibility=View.VISIBLE
             getCompleteAddressString(location)
@@ -946,9 +945,10 @@ var locationManager: LocationManager? = null;
 
     fun getSlider(){
         //loading_show(activity, pDialog).show()
+        //scroll2_slider.removeAllSliders()
         slider_layout.visibility = View.GONE
         slider_shimmer.visibility = View.VISIBLE
-        slider_shimmer.startShimmerAnimation()
+        slider_shimmer.startShimmer()
         val call = ApproveUtils.Get.getSlider("1")
         call.enqueue(object : Callback<Resp> {
             override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
@@ -964,21 +964,52 @@ var locationManager: LocationManager? = null;
                             data.id = res[h].id
                             data.img = res[h].image
                             data.content = res[h].name
-                            fList.add(MyFragment.newInstance("", data))
+                            /*fList.add(MyFragment.newInstance("", data))
                             sliderAdp.notifyDataSetChanged()
 
                             try {
                                 viewPager.setCurrentItem(0)
                             } catch (e: Exception) {
-                            }
+                            }*/
+
+                            val textSliderView = CustomCardView(activity,
+                                object : CustomCardView.onSliderClick {
+                                    override fun OnSliderClick(view: View) {
+                                        println("banners[nam].id : " + res[h].id)
+                                        if (!res[h].id.isNullOrEmpty()) {
+                                           /* val z =
+                                                Intent(activity, ProductDetailActivity::class.java)
+                                            z.putExtra("id", banners[nam].id)
+                                            z.putExtra("edit", "")
+                                            startActivity(z)*/
+                                        }
+                                    }
+                                })
+                            // initialize a SliderLayout
+                            textSliderView
+                                .description(res[h].name)
+                                .image(Appconstands.ImageDomain + res[h].image)
+                                .setScaleType(BaseSliderView.ScaleType.Fit)
+                                .setOnSliderClickListener(object: BaseSliderView.OnSliderClickListener{
+                                    override fun onSliderClick(slider: BaseSliderView?) {
+
+                                    }
+                                })
+                            //add your extra information
+                            textSliderView.bundle(Bundle())
+                            textSliderView.getBundle()
+                                .putString("id", res[h].id)
+
+                            scroll2_slider.addSlider(textSliderView)
                         }
+                        scroll2_slider.setPresetTransformer(SliderLayout.Transformer.Default)
                     }
                 }
                 //pDialog.dismiss()
                 //Handler().postDelayed(Runnable{
                 slider_layout.visibility = View.VISIBLE
                 slider_shimmer.visibility = View.GONE
-                slider_shimmer.stopShimmerAnimation()
+                slider_shimmer.stopShimmer()
                 /*  val update = Dialog(this@HomeActivity)
                 update.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 update.window.setBackgroundDrawable(
@@ -1022,7 +1053,7 @@ var locationManager: LocationManager? = null;
                 //loading_show(activity).dismiss()
                 slider_layout.visibility = View.VISIBLE
                 slider_shimmer.visibility = View.GONE
-                slider_shimmer.stopShimmerAnimation()
+                slider_shimmer.stopShimmer()
             }
         })
     }
@@ -1032,7 +1063,7 @@ var locationManager: LocationManager? = null;
         //loading_show(activity, pDialog).show()
         slider_layout.visibility = View.GONE
         slider_shimmer.visibility = View.VISIBLE
-        slider_shimmer.startShimmerAnimation()
+        slider_shimmer.startShimmer()
         val call = ApproveUtils.Get.getpop("1")
         call.enqueue(object : Callback<Respval> {
             override fun onResponse(call: Call<Respval>, response: Response<Respval>) {
@@ -1101,7 +1132,7 @@ var locationManager: LocationManager? = null;
                 //Handler().postDelayed(Runnable{
                 slider_layout.visibility = View.VISIBLE
                 slider_shimmer.visibility = View.GONE
-                slider_shimmer.stopShimmerAnimation()
+                slider_shimmer.stopShimmer()
 
                 //},5000)
             }
@@ -1119,7 +1150,7 @@ var locationManager: LocationManager? = null;
                 //loading_show(activity).dismiss()
                 slider_layout.visibility = View.VISIBLE
                 slider_shimmer.visibility = View.GONE
-                slider_shimmer.stopShimmerAnimation()
+                slider_shimmer.stopShimmer()
             }
         })
     }
@@ -1128,7 +1159,7 @@ var locationManager: LocationManager? = null;
         //loading_show(activity, pDialog).show()
         category_layout.visibility = View.GONE
         category_shimmer.visibility = View.VISIBLE
-        category_shimmer.startShimmerAnimation()
+        category_shimmer.startShimmer()
         val call = ApproveUtils.Get.getCategory("1")
         call.enqueue(object : Callback<Resp> {
             override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
@@ -1163,7 +1194,7 @@ var locationManager: LocationManager? = null;
                 //pDialog.dismiss()
                 category_layout.visibility = View.VISIBLE
                 category_shimmer.visibility = View.GONE
-                category_shimmer.stopShimmerAnimation()
+                category_shimmer.stopShimmer()
             }
 
             override fun onFailure(call: Call<Resp>, t: Throwable) {
@@ -1179,7 +1210,7 @@ var locationManager: LocationManager? = null;
                 //loading_show(activity).dismiss()
                 category_layout.visibility = View.VISIBLE
                 category_shimmer.visibility = View.GONE
-                category_shimmer.stopShimmerAnimation()
+                category_shimmer.stopShimmer()
             }
         })
     }
