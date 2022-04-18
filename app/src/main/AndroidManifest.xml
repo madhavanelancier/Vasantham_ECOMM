@@ -28,7 +28,7 @@
         android:required="false" />
 
     <application
-        android:name=".AppClass"
+        android:name=".AppController"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_logo"

@@ -1,6 +1,7 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -9,12 +10,24 @@ import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.volley.toolbox.Volley
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
+import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin
+import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.languagefile
+import com.elanciers.vasantham_stores_ecomm.Common.DownLoadFile
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
+import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils.BASE_URL
 import com.google.firebase.messaging.FirebaseMessaging
+import org.json.JSONObject
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
+import java.nio.charset.Charset
 
 class Splashscreen : AppCompatActivity() {
     val tag = "Welcome"
@@ -143,5 +156,90 @@ class Splashscreen : AppCompatActivity() {
                 }
 
         }
+    }
+
+    fun download() {
+        val url = Domin + languagefile//"languages/english.js"
+        val downloadRequest = DownLoadFile(1, url,
+            { response ->
+                val languageFile: File
+                var count: Int
+                try {
+                    if (response != null) {
+                        //Log.d(TAG," directory name " + mActivity.getCacheDir());
+                        languageFile = File(this.getCacheDir(), "language.txt")
+                        val output: OutputStream = FileOutputStream(languageFile)
+                        output.write(response)
+                        val data = ByteArray(1024)
+                        val total: Long = 0
+                        // flushing output
+                        output.flush()
+                        // closing streams
+                        output.close()
+                        val languageString: String = ApiCall().readFromFile(languageFile,utils.language)!!
+                        println("languageString : " + AppUtil.languageString("app_name"))
+                        if (utils.login()) {
+                            startActivity(Intent(this, HomeActivity::class.java))
+                            finish()
+                        } else {
+                            startActivity(Intent(this, WelcomeScreen::class.java))
+                            finish()
+                        }
+                    }
+                    //volleyCallback.setDataResponse(null)
+                    //Utils.cancelProgressBar()
+                } catch (e: Exception) {
+                    //Utils.cancelProgressBar()
+                    //Log.d("KEY_ERROR","UNABLE TO DOWNLOAD FILE");
+                    e.printStackTrace()
+                    //Utils.showCyouAlert(mActivity,mActivity.getString(R.string.app_name),Utils.languageString("networkerror"));
+                }
+            }, { error ->
+                //Utils.cancelProgressBar()
+                var errorCode: Int
+                val errorMessage = ""
+                try {
+                    val responseBody = String(error.networkResponse.data, Charset.forName("utf-8"))
+                    val data = JSONObject(responseBody)
+                    println("error data : " + data)
+                    if (data.has("msg")) {
+                        /*Utils.showCyouAlert(
+                            mActivity,
+                            mActivity.getString(R.string.app_name),
+                            Utils.languageString(data.getString("msg"))
+                        )*/
+                    } else if (data.has("message")) {
+                        /*Utils.showCyouAlert(
+                            mActivity,
+                            mActivity.getString(R.string.app_name),
+                            Utils.languageString(data.getString("message"))
+                        )*/
+                    } else {
+                        //Utils.showCyouAlert(mActivity,mActivity.getString(R.string.app_name),Utils.languageString("networkerror"));
+                    }
+                } catch (e: Exception) {
+                    println("exception : " + e.toString())
+                    e.printStackTrace()
+                    //Utils.showCyouAlert(mActivity,mActivity.getString(R.string.app_name),Utils.languageString("networkerror"));
+                }
+                val alert = AlertDialog.Builder(this)
+                alert.setCancelable(false)
+                alert.setTitle(AppUtil.languageString("connection_error_title"))
+                alert.setMessage(AppUtil.languageString("connection_error"))
+                alert.setPositiveButton(
+                    AppUtil.languageString("connection_error_button"),
+                    object : DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+                            if (Appconstands.net_status(this@Splashscreen)) {
+                                dialog!!.dismiss()
+                                download()
+                            }
+                        }
+                    })
+                alert.show()
+            }, null
+        )
+        val mRequestQueue = Volley.newRequestQueue(this)
+        mRequestQueue.add<ByteArray>(downloadRequest)
     }
 }

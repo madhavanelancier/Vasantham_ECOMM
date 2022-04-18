@@ -178,4 +178,6 @@ class Utils(internal var _context: Context) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context)
         return sharedPreferences.getBoolean("service", false)
     }
+
+    val language get() =sharedPreferences.getString("language", "English")!!
 }

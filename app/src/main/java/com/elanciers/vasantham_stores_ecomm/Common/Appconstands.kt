@@ -39,6 +39,7 @@ object Appconstands {
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     lateinit var alert : AlertDialog
 
+    val languagefile = "languages/language.js"
     val Domin ="http://teamdev.co.in/vasantham/api/"
     val Domin_due ="http://vasanthamstore.in/chit/app/"
     //val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
