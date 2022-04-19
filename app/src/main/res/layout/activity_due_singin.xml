@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/brandon_text_med_otf"
-                android:text="Welcome To"
+                android:text="@string/welcometo"
                 android:textColor="@color/colorAccent"
                 android:textSize="30sp"
                 app:fontFamily="@font/brandon_text_med_otf" />
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/brandon_text_med_otf"
-                android:text="Vasantham Stores "
+                android:text="@string/vasanthamstores"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -104,10 +104,11 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/entercard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/brandon_text_reg_otf"
-                            android:text="Enter Your Card No :"
+                            android:text="@string/entercard"
                             android:textColor="@color/colorAccent"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -138,7 +139,7 @@
                         android:background="@drawable/background_whiteborder"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:text="Submit"
+                        android:text="@string/submit"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -153,7 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:padding="8dp"
-            android:text="Recently Used : "
+            android:text="@string/recentlyused"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView

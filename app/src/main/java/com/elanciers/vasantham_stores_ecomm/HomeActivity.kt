@@ -169,6 +169,7 @@ var locationManager: LocationManager? = null;
         pDialog = Dialog(activity)
         mContext=this
 
+        lang()
         name.setText(utils.name().toString())
         mob.setText(utils.mobile().toString())
         //DBController(activity).dropHoleCart()
@@ -319,6 +320,14 @@ var locationManager: LocationManager? = null;
                     // Toast message on menu item clicked
                     popupMenu.dismiss()
                     profile.setText(if (menuItem.getTitle()=="Tamil") "Ta" else "En")
+                    if (menuItem.getTitle()=="Tamil") {
+                        AppController.setLanguageobj( AppController.getTaLanguageobj())
+                        utils.savePreferences("language","Tamil")
+                    } else {
+                        AppController.setLanguageobj( AppController.getEnLanguageobj())
+                        utils.savePreferences("language","English")
+                    }
+                    recreate()
                     return true
                 }
             })
@@ -1468,5 +1477,12 @@ var locationManager: LocationManager? = null;
             }
         })
     }
-
+    fun lang(){
+        profile.setText(if (utils.language=="Tamil") "Ta" else "En")
+        textView9.setText(AppUtil.languageString("home"))
+        loyalty_txt.setText(AppUtil.languageString("loyalty_points"))
+        points_txt.setText(AppUtil.languageString("points"))
+        shopby_txt.setText(AppUtil.languageString("shopbycat"))
+        catall.setText(AppUtil.languageString("see_all"))
+    }
 }

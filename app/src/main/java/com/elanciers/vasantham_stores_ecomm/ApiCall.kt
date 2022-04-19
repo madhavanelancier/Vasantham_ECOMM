@@ -29,8 +29,12 @@ class ApiCall {
                         //println("language : "+language)
                         //println("obj has : "+JSONObject(removed).has(language))
                     val obj = JSONObject(ret.removePrefix("module.exports = ")).getJSONObject(language)
+                    val En = JSONObject(ret.removePrefix("module.exports = ")).getJSONObject("English")
+                    val Ta = JSONObject(ret.removePrefix("module.exports = ")).getJSONObject("Tamil")
                         //println("obj : "+obj)
                     AppController.setLanguageobj(obj)
+                    AppController.setEnLanguageobj(En)
+                    AppController.setTaLanguageobj(Ta)
                     //Log.e("onPostExecute","onPostExecute:" + AppController.languageobj);
                 } catch (e: Exception) {
                     //println("language obj set error : "+e.toString())

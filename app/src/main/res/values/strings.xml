@@ -51,7 +51,37 @@
 
     <string name="chelsea_market">Chelsea Market</string>
     <string name="msg_subscribed">pova</string>
+
     <string name="view_digital_card"><u>View Digital Card</u></string>
+    <string name="home">Home</string>
+    <string name="loyalty_points">Loyalty Points</string>
+    <string name="points">Points</string>
+    <string name="shopbycat">Shop by Category</string>
+    <string name="see_all">See All</string>
+    <string name="payment">Payment</string>
+    <string name="cardnumber">Card Number</string>
+    <string name="name">Name</string>
+    <string name="loantype">Loan Type</string>
+    <string name="pendingamount">Pending Amount</string>
+    <string name="pendingdues">Pending Dues</string>
+    <string name="orderid">Order ID</string>
+    <string name="paynow">PAY NOW</string>
+    <string name="trackonmap">Track on Map</string>
+    <string name="welcometo">Welcome To</string>
+    <string name="vasanthamstores">Vasantham Stores</string>
+    <string name="entercard">Enter Your Card No :</string>
+    <string name="submit">Submit</string>
+    <string name="recentlyused">Recently Used :</string>
+    <string name="chit">Chit</string>
+    <string name="fund1">Fund1</string>
+    <string name="fund2">Fund2</string>
+    <string name="amount">Amount</string>
+    <string name="s_no">S.No</string>
+    <string name="month">Month</string>
+    <string name="date_amp_time"><![CDATA[Date&Time]]></string>
+    <string name="rec_no">Rec.No</string>
+    <string name="previouspaid">* Previous Paid Dues</string>
+    <string name="viewalldues">View All Dues</string>
 
 
 </resources>

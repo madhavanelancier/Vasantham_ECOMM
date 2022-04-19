@@ -130,7 +130,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/brandon_text_med_otf"
                             android:gravity="center"
-                            android:text="Home"
+                            android:text="@string/home"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -352,6 +352,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/loyalty_txt"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/poppins_medium"
@@ -359,7 +360,7 @@
                                             android:paddingTop="8dp"
                                             android:paddingRight="8dp"
                                             android:singleLine="true"
-                                            android:text="Loyalty Points"
+                                            android:text="@string/loyalty_points"
                                             android:textColor="@color/white"
                                             android:textSize="16sp"
                                             android:textStyle="bold" />
@@ -406,11 +407,12 @@
                                                 android:orientation="vertical">
 
                                                 <TextView
+                                                    android:id="@+id/points_txt"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:fontFamily="@font/brandon_bold"
                                                     android:singleLine="true"
-                                                    android:text="Points"
+                                                    android:text="@string/points"
                                                     android:textColor="#E4FFFFFF" />
 
                                                 <TextView
@@ -945,13 +947,14 @@
                                         android:visibility="visible">
 
                                         <TextView
+                                            android:id="@+id/shopby_txt"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:paddingStart="@dimen/commondp"
                                             android:paddingTop="8dp"
                                             android:paddingBottom="8dp"
-                                            android:text="Shop by Category"
+                                            android:text="@string/shopbycat"
                                             android:textColor="#1a1a1a"
                                             android:textSize="18sp"
                                             android:visibility="visible"
@@ -965,7 +968,7 @@
                                             android:background="?selectableItemBackground"
                                             android:gravity="right"
                                             android:padding="8dp"
-                                            android:text="See All"
+                                            android:text="@string/see_all"
                                             android:textColor="@color/colorPrimaryDark"
                                             android:visibility="visible" />
                                     </LinearLayout>

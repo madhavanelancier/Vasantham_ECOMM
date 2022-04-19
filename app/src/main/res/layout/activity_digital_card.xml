@@ -39,6 +39,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/chit_"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -50,7 +51,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:hint="Chit"
+                            android:hint="@string/chit"
                             android:inputType="none"
                             android:singleLine="true"
                             android:textIsSelectable="false"
@@ -60,6 +61,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/fund1_"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -71,7 +73,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:hint="Fund1"
+                            android:hint="@string/fund1"
                             android:inputType="none"
                             android:singleLine="true"
                             android:textSize="14sp" />
@@ -80,6 +82,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/fund2_"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -91,7 +94,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:hint="Fund2"
+                            android:hint="@string/fund2"
                             android:inputType="none"
                             android:singleLine="true"
                             android:textSize="14sp" />
@@ -100,6 +103,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/amnt_"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -111,7 +115,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:hint="Amount"
+                            android:hint="@string/amount"
                             android:inputType="none"
                             android:singleLine="false"
                             android:textSize="14sp" />
@@ -136,7 +140,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:singleLine="true"
-                        android:text="S.No"
+                        android:text="@string/s_no"
                         android:textStyle="bold" />
 
                     <TextView
@@ -146,7 +150,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:singleLine="true"
-                        android:text="Month"
+                        android:text="@string/month"
                         android:textStyle="bold" />
 
                     <TextView
@@ -156,7 +160,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="Date&amp;Time"
+                        android:text="@string/date_amp_time"
                         android:textStyle="bold" />
 
                     <TextView
@@ -166,7 +170,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:singleLine="true"
-                        android:text="Rec.No"
+                        android:text="@string/rec_no"
                         android:textStyle="bold" />
 
                     <TextView
@@ -177,7 +181,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:singleLine="true"
-                        android:text="Amount"
+                        android:text="@string/amount"
                         android:textStyle="bold" />
 
 

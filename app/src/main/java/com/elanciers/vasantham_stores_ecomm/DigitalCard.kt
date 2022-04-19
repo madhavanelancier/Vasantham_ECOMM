@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.elanciers.vasantham_stores_ecomm.Adapters.PaymentsListAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Connection
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
@@ -37,6 +38,7 @@ class DigitalCard : AppCompatActivity() {
         ab!!.setDisplayShowHomeEnabled(true)
         ab!!.setDisplayHomeAsUpEnabled(true)
         ab.setHomeAsUpIndicator(R.drawable.back_arrow)
+        lang()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -142,4 +144,20 @@ class DigitalCard : AppCompatActivity() {
         toast.show()
     }
 
+    fun lang(){
+        chit_.setHint(AppUtil.languageString("chit"))
+        chit.setHint(AppUtil.languageString("chit"))
+        fund1_.setHint(AppUtil.languageString("fund1"))
+        fund1.setHint(AppUtil.languageString("fund1"))
+        fund2_.setHint(AppUtil.languageString("fund2"))
+        fund2.setHint(AppUtil.languageString("fund2"))
+        amnt_.setHint(AppUtil.languageString("amount"))
+        amnt.setHint(AppUtil.languageString("amount"))
+
+        textView50.setText(AppUtil.languageString("s_no"))
+        textView55.setText(AppUtil.languageString("month"))
+        textView56.setText(AppUtil.languageString("date_amp_time"))
+        textView57.setText(AppUtil.languageString("rec_no"))
+        textView58.setText(AppUtil.languageString("amount"))
+    }
 }

@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin
+import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin_due
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.languagefile
 import com.elanciers.vasantham_stores_ecomm.Common.DownLoadFile
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
@@ -76,13 +77,14 @@ class Splashscreen : AppCompatActivity() {
 
         Handler().postDelayed(Runnable {
             if (CheckingPermissionIsEnabledOrNot()) {
-                if (utils.login()) {
+                /*if (utils.login()) {
                     startActivity(Intent(activity, HomeActivity::class.java))
                     finish()
                 } else {
                     startActivity(Intent(activity, WelcomeScreen::class.java))
                     finish()
-                }
+                }*/
+                download()
             }else{
                 RequestMultiplePermission()
             }
@@ -159,7 +161,7 @@ class Splashscreen : AppCompatActivity() {
     }
 
     fun download() {
-        val url = Domin + languagefile//"languages/english.js"
+        val url = Domin_due + languagefile//"languages/english.js"
         val downloadRequest = DownLoadFile(1, url,
             { response ->
                 val languageFile: File

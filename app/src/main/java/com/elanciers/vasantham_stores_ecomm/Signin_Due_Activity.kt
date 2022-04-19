@@ -14,6 +14,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardHistoyRecyclerAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.loading_show
 import com.elanciers.vasantham_stores_ecomm.Common.Connection
@@ -21,7 +22,6 @@ import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
 import kotlinx.android.synthetic.main.activity_due_singin.*
-import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.activity_signin.mobile
 import kotlinx.android.synthetic.main.activity_signin.signinbtn
 import org.json.JSONArray
@@ -48,7 +48,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         utils = Utils(activity)
         pDialog = Dialog(activity)
         db = CardHistoryDatabase.getDatabase(activity)!!
-
+        lang()
 
 
         signinbtn.setOnClickListener {
@@ -195,5 +195,13 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         println("clicked")
         mobile.setText(history!![position]!!.username)
         SendLogin(mobile.text.toString().trim())
+    }
+
+    fun lang(){
+        textView7.setText(AppUtil.languageString("welcometo"))
+        textView8.setText(AppUtil.languageString("vasanthamstores"))
+        textView48.setText(AppUtil.languageString("recentlyused"))
+        entercard.setText(AppUtil.languageString("entercard"))
+        signinbtn.setText(AppUtil.languageString("submit"))
     }
 }

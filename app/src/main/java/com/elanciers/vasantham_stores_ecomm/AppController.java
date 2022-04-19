@@ -39,6 +39,8 @@ public class AppController extends MultiDexApplication implements LifecycleObser
     public static String phone;
     public static String imageurl;
     public static JSONObject languageobj;
+    public static JSONObject Enlanguageobj;
+    public static JSONObject Talanguageobj;
     //public static searchListiner searchlistiner;
     public static PopupWindow categoryPopWindow;
     //public static  LatLng currentLatlang;
@@ -275,8 +277,24 @@ public class AppController extends MultiDexApplication implements LifecycleObser
         return languageobj;
     }
 
+    public static JSONObject getEnLanguageobj() {
+        return Enlanguageobj;
+    }
+
+    public static JSONObject getTaLanguageobj() {
+        return Talanguageobj;
+    }
+
     public static void setLanguageobj(JSONObject languageobj) {
         AppController.languageobj = languageobj;
+    }
+
+    public static void setEnLanguageobj(JSONObject languageobj) {
+        AppController.Enlanguageobj = languageobj;
+    }
+
+    public static void setTaLanguageobj(JSONObject languageobj) {
+        AppController.Talanguageobj = languageobj;
     }
 
     /*public static searchListiner getSearchlistiner() {

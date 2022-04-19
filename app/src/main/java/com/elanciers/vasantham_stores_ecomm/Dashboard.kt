@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elancier.vasantham_stores.Adapters.Due_list
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Connection
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
@@ -47,7 +48,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-
+        lang()
         productItems = ArrayList()
         utils = Utils(activity)
         val cardno = intent.getStringExtra("cardno")
@@ -555,5 +556,26 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         mRecyclerListitems.clear()
         mRecyclerListitems.addAll(productItems!!)
         itemsAdapter.notifyDataSetChanged()*/
+    }
+
+    fun lang(){
+        textView9.setText(AppUtil.languageString("payment"))
+        textView11.setText(AppUtil.languageString("viewalldues"))
+        textView12.setText(AppUtil.languageString("previouspaid"))
+        textView49.setText(AppUtil.languageString("view_digital_card"))
+        pay_txt.setText(AppUtil.languageString("paynow"))
+        track.setText(AppUtil.languageString("trackonmap"))
+
+        payamt.setHint(AppUtil.languageString("cardnumber"))
+        cardnum.setHint(AppUtil.languageString("cardnumber"))
+        println("cardnum : "+AppUtil.languageString("cardnumber"))
+        name.setHint(AppUtil.languageString("name"))
+        nm.setHint(AppUtil.languageString("name"))
+        dues.setHint(AppUtil.languageString("loantype"))
+        ltype.setHint(AppUtil.languageString("loantype"))
+        amt.setHint(AppUtil.languageString("pendingamount"))
+        pending_amt.setHint(AppUtil.languageString("pendingamount"))
+        p_due.setHint(AppUtil.languageString("pendingdues"))
+        p_dues.setHint(AppUtil.languageString("pendingdues"))
     }
 }
