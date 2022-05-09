@@ -78,6 +78,10 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
             }
 
         })
+        cardcreate.setOnClickListener {
+            val st = Intent(this@Signin_Due_Activity,CardListActivity::class.java)
+            startActivity(st)
+        }
     }
 
     override fun onResume() {

@@ -84,4 +84,19 @@
     <string name="viewalldues">View All Dues</string>
 
 
+    <string name="creat_card">Create Card</string>
+    <string name="select_year">Select Year</string>
+    <string name="selecte_chit_group">Select Chit Group</string>
+    <string name="number">Number</string>
+    <string name="card_number">Card Number</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="address">Address</string>
+    <string name="select_group">Select Group</string>
+    <string name="select_area">Select Area</string>
+    <string name="agent">Agent</string>
+    <string name="select_fund1">Select Fund1</string>
+    <string name="selec_fund2">Select Fund2</string>
+    <string name="cards">Cards</string>
+
+
 </resources>

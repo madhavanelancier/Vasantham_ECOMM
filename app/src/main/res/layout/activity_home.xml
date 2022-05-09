@@ -1116,7 +1116,9 @@
                                 app:backgroundTint="@color/white"
                                 app:elevation="2dp"
                                 app:fabCustomSize="30dp"
-                                app:fabSize="mini" />
+                                app:fabSize="mini"
+                                android:contentDescription="cancel cart"
+                                app:useCompatPadding="false" />
                         </LinearLayout>
 
                     </LinearLayout>

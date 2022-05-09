@@ -40,6 +40,12 @@
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.facebook.shimmer">
         <activity
+            android:name=".CreateCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CardListActivity"
+            android:exported="false" />
+        <activity
             android:name=".DigitalCard"
             android:exported="true" />
         <activity
@@ -131,7 +137,6 @@
         <activity
             android:name=".WelcomeScreen"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".LocationActivity"
             android:screenOrientation="portrait" />
@@ -170,11 +175,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_KZgc6B2cbRuJWW" /> <!-- "rzp_live_763CV0upXALkzF" -->
-
         <service
             android:name=".pushnotification.MyFirebaseMessagingService"
             android:exported="false">
@@ -213,8 +216,8 @@
         <activity
             android:name="com.razorpay.CheckoutActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:theme="@style/CheckoutTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/CheckoutTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -223,18 +226,19 @@
                     android:scheme="io.rzp" />
             </intent-filter>
         </activity>
-
-        <!--<receiver android:name="com.razorpay.RzpTokenReceiver"
+        <!--
+<receiver android:name="com.razorpay.RzpTokenReceiver"
             android:exported="true"
             android:permission="android.permission.INTERNET">
             <intent-filter>
                 <action android:name="rzp.device_token.share" />
             </intent-filter>
-        </receiver>-->
+        </receiver>
+        -->
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-            tools:replace="android:launchMode"
-            android:launchMode="standard" />
+            android:launchMode="standard"
+            tools:replace="android:launchMode" />
     </application>
 
 </manifest>

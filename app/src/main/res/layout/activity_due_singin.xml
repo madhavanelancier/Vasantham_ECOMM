@@ -172,4 +172,16 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/cardcreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:text="Create Card"
+        android:drawableTint="@color/white"
+        android:background="@drawable/background_whiteborder"
+        android:drawableEnd="@drawable/ic_add_24px" />
+
 </FrameLayout>
