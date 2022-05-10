@@ -408,8 +408,9 @@
                     android:paddingEnd="30dp"
                     android:text="reorder"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:visibility="gone" />
 
             </LinearLayout>

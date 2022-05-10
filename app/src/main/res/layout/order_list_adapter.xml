@@ -109,7 +109,7 @@
                 android:paddingEnd="16dp"
                 android:text="rate product"
                 android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="14sp" />
 
             <TextView

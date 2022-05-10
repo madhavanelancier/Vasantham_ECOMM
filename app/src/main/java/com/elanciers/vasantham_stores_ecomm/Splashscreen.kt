@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin
@@ -24,6 +25,7 @@ import com.elanciers.vasantham_stores_ecomm.Common.DownLoadFile
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils.BASE_URL
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.android.synthetic.main.activity_splashscreen.*
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
@@ -49,6 +51,7 @@ class Splashscreen : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splashscreen)
         utils = Utils(activity)
+        Glide.with(this).load(R.drawable.logogif).into(imageView2);
 
         FirebaseMessaging.getInstance()
             .subscribeToTopic(("vasantham"))

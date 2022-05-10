@@ -17,7 +17,7 @@
             android:adjustViewBounds="true"
             android:alpha="0.1"
             android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/bgvasantham" />
+            app:srcCompat="@mipmap/crackers" />
 
         <LinearLayout
             android:layout_width="match_parent"

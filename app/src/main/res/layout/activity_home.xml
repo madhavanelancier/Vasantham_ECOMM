@@ -98,7 +98,7 @@
                 <LinearLayout
                     android:id="@+id/location_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -195,6 +195,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
                         android:background="@color/white"
                         android:orientation="vertical"
                         android:visibility="visible">
@@ -1127,6 +1128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
+                        android:background="@android:color/transparent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -1235,9 +1237,8 @@
 
                                 <com.elanciers.vasantham_stores_ecomm.Common.CircleImageView
                                     android:id="@+id/tabImageViews"
-                                    android:layout_width="64dp"
-                                    android:layout_height="64dp"
-                                    android:tint="@color/colorPrimary"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
                                     app:civ_border_color="@color/white"
                                     app:civ_border_width="5dp"
                                     app:srcCompat="@mipmap/ic_logo"

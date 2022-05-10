@@ -71,7 +71,7 @@ class PaymentActivity : Activity(), PaymentResultListener {
             options.put("name", "Dofirst")
             options.put("description", mobile)
             //You can omit the image option to fetch the image from dashboard
-            options.put("image", R.mipmap.ic_launcher)
+            options.put("image", R.mipmap.ic_logo)
             options.put("currency", "INR")
             amountint = Integer.valueOf(amount)
             options.put("amount", amountint * 100)

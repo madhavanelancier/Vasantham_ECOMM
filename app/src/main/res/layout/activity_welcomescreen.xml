@@ -78,6 +78,8 @@
         android:layout_marginBottom="45dp"
         android:clickable="true"
         android:src="@drawable/ic_fast_forward"
+        app:backgroundTint="@color/colorAccent"
         app:fabSize="normal"
+        app:tint="@color/black"
         app:useCompatPadding="false" />
 </RelativeLayout>

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -177,7 +178,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
-                            android:src="@drawable/minus_small" />
+                            android:src="@drawable/minus_small"
+                            app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:id="@+id/qty"
@@ -194,7 +196,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
-                            android:src="@drawable/plus_small" />
+                            android:src="@drawable/plus_small"
+                            app:tint="@color/colorPrimary" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -216,8 +219,9 @@
                             android:gravity="center"
                             android:paddingStart="10dp"
                             android:text="ADD"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="16sp" />
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            card_view:drawableTint="@color/colorPrimary" />
                     </LinearLayout>
 
                 </FrameLayout>

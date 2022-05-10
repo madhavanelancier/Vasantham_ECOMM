@@ -171,7 +171,7 @@ class CartActivity : AppCompatActivity() , PaymentResultListener {
                 update.show()
 
                 Glide.with(this).load("https://teamdev.co.in/vasantham/public/images/delivery.png")
-                    .placeholder(R.mipmap.bringssplash).into(laterbut)
+                    .placeholder(R.mipmap.ic_logo).into(laterbut)
 
 
                 updatebut.setOnClickListener { // clickupdate="true";

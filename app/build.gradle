@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.shreyaspatil:EasyUpiPayment:2.0'
     implementation 'com.airbnb.android:lottie:3.7.0'
     implementation 'com.google.firebase:firebase-auth:19.4.0'
-    implementation 'androidx.work:work-runtime-ktx:2.8.0-alpha02'
+    implementation 'androidx.work:work-runtime-ktx:2.7.0-beta01'
 
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -79,7 +79,7 @@ dependencies {
 
     //carousel view
     //implementation 'com.github.alirezat775:carousel-view:1.1.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
     //implementation 'com.android.support:appcompat-v7:28.0.0'

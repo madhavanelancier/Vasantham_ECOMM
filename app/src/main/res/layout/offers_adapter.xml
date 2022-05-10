@@ -267,7 +267,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:src="@drawable/minus_small" />
+                                android:src="@drawable/minus_small"
+                                android:tint="@color/black" />
 
                             <TextView
                                 android:id="@+id/qty"
@@ -284,7 +285,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:src="@drawable/plus_small" />
+                                android:src="@drawable/plus_small"
+                                android:tint="@color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -306,8 +308,9 @@
                                 android:gravity="center"
                                 android:paddingStart="10dp"
                                 android:text="ADD"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="16sp" />
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp"
+                                card_view:drawableTint="@color/black" />
                         </LinearLayout>
 
                     </FrameLayout>

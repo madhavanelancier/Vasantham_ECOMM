@@ -115,7 +115,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#faccfc"
+                android:background="@color/colorAccent"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 app:layout_collapseMode="pin"

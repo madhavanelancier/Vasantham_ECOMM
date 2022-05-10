@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/bgvasantham" />
+        app:srcCompat="@mipmap/crackers" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
@@ -333,7 +333,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/floatingActionButtons"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView15"
-                    app:srcCompat="@mipmap/home_banner_bringszo" />
+                    app:srcCompat="@mipmap/ic_logo" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/floatingActionButtons"

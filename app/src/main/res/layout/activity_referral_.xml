@@ -213,7 +213,8 @@
         android:drawableLeft="@drawable/ic_share_24px"
         android:paddingStart="20dp"
         android:text="Refer Now"
-        android:textColor="@color/white"
+        android:drawableTint="@color/black"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/textView23ss"
         app:layout_constraintStart_toStartOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/textView23s" />

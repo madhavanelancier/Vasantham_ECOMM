@@ -75,7 +75,7 @@ class StoreListAdapter(public val context: Context, private val items: ArrayList
     override fun onBindViewHolder(holder: DataObjectHolder, position: Int) {
 
         if (!items[position].img.isNullOrEmpty()) {
-            Glide.with(context).load(items[position].img).error(R.mipmap.ic_bringszo_logo).into(holder.image)
+            Glide.with(context).load(items[position].img).error(R.mipmap.ic_logo).into(holder.image)
         }
         holder.title.setText(items[position].name)
         val loc = items[position].distance+" " + items[position].loc

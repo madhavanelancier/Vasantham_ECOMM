@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Vasantham Stores</string>
-    <string name="Next">Next</string>
-    <string name="Skip">Skip</string>
-    <string name="start">GOT IT</string>
     <string name="splash1_1">Just Order and Relax !</string><!--Send Packages with \nQuality-->
     <string name="sample1">Our riders will picks up your order and brings it to you.</string>
     <string name="sample2">We are providing home services at your door steps.</string>
@@ -14,7 +11,6 @@
     <string name="home_u">Home</string>
     <string name="other_u">Other</string>
 
-    <string name="selectable">?attr/selectableItemBackground</string>
     <string name="htmls">
 
         <u>*  View Estimate Delivery Charges </u>
@@ -35,22 +31,13 @@
     <string name="add_address_des">You don\'t have any address saved. so kindly add address that hepls you checkout faster.</string>
     <string name="add_an_address">add an address</string>
 
-    <string name="add_order_title">we always waiting for you order</string>
-    <string name="add_order_des">Your cart is empty. Add something for purchase..</string>
-    <string name="browse_shop">browse shop</string>
-
     <string name="connection_error">Connection Error</string>
     <string name="connection_des">Please check your Network connectivity and try again.</string>
     <string name="retry">retry</string>
     <string name="contact_us">https://vasanthamstore.com/</string>
 
-    <string name="title_activity_maps">Map</string>
-
     <string name="time_square">Time square</string>
     <string name="i_am_snippet">I am snippet</string>
-
-    <string name="chelsea_market">Chelsea Market</string>
-    <string name="msg_subscribed">pova</string>
 
     <string name="view_digital_card"><u>View Digital Card</u></string>
     <string name="home">Home</string>

@@ -1016,7 +1016,7 @@
                     android:background="@drawable/select_address_dup"
                     android:padding="8dp"
                     android:text="Continue"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>

@@ -141,7 +141,7 @@ class TitledRecyclerAdapter(val name: String,public val mActivity: Activity, pub
         }
 
         if (!items[position].img.isNullOrEmpty()){
-            Glide.with(mActivity).load(ImageDomain+items[position].img).error(R.mipmap.ic_bringszo_logo).into(holder.image1!!)
+            Glide.with(mActivity).load(ImageDomain+items[position].img).error(R.mipmap.ic_logo).into(holder.image1!!)
         }
         //SetText
         holder.nm!!.setText(items[position].name)

@@ -52,7 +52,8 @@
                 android:paddingBottom="8dp"
                 android:text="Edit"
                 android:textAllCaps="true"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/delete"
@@ -63,7 +64,8 @@
                 android:paddingBottom="8dp"
                 android:text="delete"
                 android:textAllCaps="true"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <view

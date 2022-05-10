@@ -42,7 +42,7 @@
                 app:fabSize="mini" />
         </LinearLayout>
 
-        <include layout="@layout/address_lay"/>
+        <include layout="@layout/address_lay" />
 
     </RelativeLayout>
 

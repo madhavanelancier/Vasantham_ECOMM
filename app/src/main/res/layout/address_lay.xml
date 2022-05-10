@@ -374,7 +374,7 @@
         android:paddingBottom="8dp"
         android:text="enter HOUSE / FLAT / BLOCK NO"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
 </LinearLayout>

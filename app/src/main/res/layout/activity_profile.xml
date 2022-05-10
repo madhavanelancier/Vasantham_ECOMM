@@ -31,7 +31,7 @@
                 android:background="?android:attr/colorForegroundInverse"
                 android:text="riutoeyrotu"
                 android:textAllCaps="true"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 app:layout_collapseMode="parallax" />
 
@@ -77,8 +77,8 @@
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 app:layout_collapseMode="pin"
-                app:subtitleTextColor="#1a1a1a"
-                app:titleTextColor="#1a1a1a" />
+                app:subtitleTextColor="@color/colorPrimary"
+                app:titleTextColor="@color/colorPrimary" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

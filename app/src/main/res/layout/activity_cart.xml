@@ -150,8 +150,9 @@
                                 android:fontFamily="@font/brandon_text_reg_otf"
                                 android:text="Apply Coupon"
                                 android:textAllCaps="true"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="14sp" />
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/apl"
@@ -655,11 +656,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
+                        android:fontFamily="@font/brandon_text_med_otf"
                         android:gravity="center"
                         android:onClick="ProceedToPay"
                         android:text="proceed to pay"
                         android:textAllCaps="true"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

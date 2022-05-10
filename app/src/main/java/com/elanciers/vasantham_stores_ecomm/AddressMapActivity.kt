@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import kotlinx.android.synthetic.main.coordinate_lay_map.*
+import kotlinx.android.synthetic.main.activity_address_map.*
 import kotlinx.android.synthetic.main.address_lay.*
 import android.content.pm.PackageManager
 import android.animation.Animator

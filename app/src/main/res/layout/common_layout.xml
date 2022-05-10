@@ -95,11 +95,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text=""
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="15sp"
-            android:layout_marginTop="20dp"/>
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/errortext"
@@ -107,8 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:paddingLeft="15sp"
             android:paddingRight="15sp"
@@ -118,12 +118,15 @@
 
         <TextView
             android:id="@+id/retry"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:background="@drawable/select_address"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -169,8 +169,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/brandon_text_med_otf"
                         android:text="₹ 90"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
@@ -182,8 +183,9 @@
                     android:fontFamily="@font/brandon_text_med_otf"
                     android:padding="8dp"
                     android:text="Add item"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

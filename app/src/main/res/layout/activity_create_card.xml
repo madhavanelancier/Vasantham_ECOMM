@@ -9,14 +9,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/Widget.AppCompat.Toolbar">
+        android:layout_height="56dp"
+        android:background="@drawable/border"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/view8"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
             android:background="@android:color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -395,7 +396,9 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="@string/submit"
-                android:textSize="16sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 

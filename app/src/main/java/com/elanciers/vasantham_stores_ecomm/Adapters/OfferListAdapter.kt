@@ -183,7 +183,7 @@ class OfferListAdapter(public val mActivity: Activity, private val items: ArrayL
         }
 
         if (!items[position].pimg.isNullOrEmpty()){
-            Glide.with(mActivity).load(items[position].pimg).error(R.mipmap.ic_bringszo_logo).into(holder.image1!!)
+            Glide.with(mActivity).load(items[position].pimg).error(R.mipmap.ic_logo).into(holder.image1!!)
         }
         //SetText
         holder.nm!!.setText(items[position].pname)

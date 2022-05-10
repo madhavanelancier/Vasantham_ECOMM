@@ -87,11 +87,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/add_address"
+                    android:fontFamily="@font/brandon_text_med_otf"
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="add new address"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
