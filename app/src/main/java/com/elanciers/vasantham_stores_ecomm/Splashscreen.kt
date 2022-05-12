@@ -20,6 +20,7 @@ import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin_due
+import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin_lng
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.languagefile
 import com.elanciers.vasantham_stores_ecomm.Common.DownLoadFile
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
@@ -164,7 +165,8 @@ class Splashscreen : AppCompatActivity() {
     }
 
     fun download() {
-        val url = Domin_due + languagefile//"languages/english.js"
+        //https://elancier.xyz/vasantham_stores/chit/app/VS_ecom_language_file.js
+        val url = Domin_lng + languagefile//"languages/english.js"
         val downloadRequest = DownLoadFile(1, url,
             { response ->
                 val languageFile: File
