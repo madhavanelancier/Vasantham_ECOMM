@@ -1,10 +1,10 @@
 package com.elanciers.vasantham_stores_ecomm.retrofit
 
-import com.elanciers.vasantham_stores_ecomm.DataClass.ChitGroupResponse
-import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
+import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface usr2 {
@@ -13,5 +13,25 @@ interface usr2 {
     fun getYears(@Body()obj : JsonObject): Call<YearsData>
 
     @POST("collection_common.php")
-    fun getChitGroup(@Body()obj : JsonObject): Call<ChitGroupResponse>
+    fun getChitGroup(@Body()obj : JsonObject): Call<ChitGroupData>
+
+    @POST("collection_common.php")
+    fun getFunds(@Body()obj : JsonObject): Call<FundsData>
+
+    @POST("collection_common.php")
+    fun getAreas(@Body()obj : JsonObject): Call<AreaData>
+
+    @POST("collection_common.php")
+    fun CheckCard(@Body()obj : JsonObject): Call<CheckCardData>
+
+    @POST("card_create.php")
+    fun CreatCard(@Body()obj : JsonObject): Call<CreateCardData>
+
+    @POST("collection_common.php")
+    fun getCards(@Body()obj : JsonObject): Call<CardsData>
+
+    @GET("branch_list.php")
+    fun getBranchs(): Call<BranchData>
+
+
 }

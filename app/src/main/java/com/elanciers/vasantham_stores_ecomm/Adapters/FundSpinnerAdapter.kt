@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.elanciers.vasantham_stores_ecomm.DataClass.Chit
+import com.elanciers.vasantham_stores_ecomm.DataClass.Fund1
 import com.elanciers.vasantham_stores_ecomm.DataClass.YearsResponse
 import com.elanciers.vasantham_stores_ecomm.R
 
-class YearSpinnerAdapter(val activity: Activity, internal var items: ArrayList<YearsResponse>) :
-    ArrayAdapter<YearsResponse>(activity,0, items) {
+class FundSpinnerAdapter(val activity: Activity, internal var items: ArrayList<Fund1>) :
+    ArrayAdapter<Fund1>(activity,0, items) {
 
     internal var inflater: LayoutInflater
 
@@ -28,7 +30,7 @@ class YearSpinnerAdapter(val activity: Activity, internal var items: ArrayList<Y
 
         holder.text = itemView.findViewById(android.R.id.text1) as TextView
 
-        holder.text!!.setText(items[position].from+" - "+items[position].to)
+        holder.text!!.setText(items[position].fundName)
 
         return itemView
     }

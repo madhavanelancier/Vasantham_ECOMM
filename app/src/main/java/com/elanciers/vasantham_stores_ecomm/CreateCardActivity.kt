@@ -1,19 +1,20 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.app.Activity
-import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.EditText
 import android.widget.Toast
+import com.elanciers.vasantham_stores_ecomm.Adapters.AreaSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Adapters.ChitGroupSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Adapters.FundSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
-import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
-import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
-import com.elanciers.vasantham_stores_ecomm.DataClass.YearsResponse
-import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
-import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
+import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
+import com.elanciers.vasantham_stores_ecomm.Common.Utils
+import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -25,15 +26,28 @@ import retrofit2.Response
 class CreateCardActivity : AppCompatActivity() {
     var tag = "card"
     lateinit var activity : Activity
-    lateinit var pDialog: Dialog
+    lateinit var pDialog: CustomLoadingDialog
     var years = ArrayList<YearsResponse>()
+    var chitgroup = ChitGroupResponse()
+    var Funds = FundResponse()
+    var Areas = ArrayList<AreaResponse>()
     var selectedYear = YearsResponse()
+    var selectedChit = Chit()
+    var selectedFund1 = Fund1()
+    var selectedFund2 = Fund1()
+    var selectedArea = AreaResponse()
+    var who = "11"
+    lateinit var utils: Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_card)
         activity = this
-        pDialog = Dialog(this)
+        utils = Utils(this)
+        pDialog = CustomLoadingDialog(this)
+        pDialog.setHandler(false)
+        pDialog.setCancelable(false)
 
+        mob.setText(utils.mobile_due())
         imageView5.setOnClickListener {
             finish()
         }
@@ -43,14 +57,88 @@ class CreateCardActivity : AppCompatActivity() {
                 selectedYear = years[p2]
                 select_year.setText(years[p2].from+" - "+years[p2].to)
                 select_year.setAdapter(YearSpinnerAdapter(activity,years))
+                select_year.error=null
+                getChitGroup()
             }
-
         }
+        select_chitGroup.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedChit = chitgroup.chit[p2]
+                select_chitGroup.setText(chitgroup.chit[p2].chiteName)
+                select_chitGroup.setAdapter(ChitGroupSpinnerAdapter(activity,chitgroup.chit))
+                select_chitGroup.error=null
+            }
+        }
+        select_fund1.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedFund1 = Funds.fund1[p2]
+                select_fund1.setText(Funds.fund1[p2].fundName)
+                select_fund1.setAdapter(FundSpinnerAdapter(activity,Funds.fund1))
+                select_fund1.error=null
+            }
+        }
+        select_fund2.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedFund2 = Funds.fund2[p2]
+                select_fund2.setText(Funds.fund2[p2].fundName)
+                select_fund2.setAdapter(FundSpinnerAdapter(activity,Funds.fund2))
+                select_fund2.error=null
+            }
+        }
+        select_area.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedArea = Areas[p2]
+                select_area.setText(Areas[p2].areaname)
+                select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                select_area.error=null
+            }
+        }
+
+        submit.setOnClickListener {
+            validatename(name)
+            /*validatename(adrs)*/
+            validatePhoneNo(mob)
+            if ( validatename(name) /*&& validatename(adrs)*/ && validatePhoneNo(mob) &&
+                !selectedYear.id.isNullOrEmpty()&&
+                !selectedChit.id.isNullOrEmpty()&&
+                !selectedFund1.id.isNullOrEmpty()&&
+                !selectedFund2.id.isNullOrEmpty()&&
+                !selectedArea.id.isNullOrEmpty())
+            {
+                println("Ready to Submit")
+                getCardCheck()
+            }else{
+                println("Error")
+                if (selectedYear.id.isNullOrEmpty()){
+                    select_year.setError("Required Field")
+                }
+                if (selectedChit.id.isNullOrEmpty()){
+                    select_chitGroup.setError("Required Field")
+                }
+                if (selectedFund1.id.isNullOrEmpty()){
+                    select_fund1.setError("Required Field")
+                }
+                if (selectedFund2.id.isNullOrEmpty()){
+                    select_fund2.setError("Required Field")
+                }
+                if (selectedArea.id.isNullOrEmpty()){
+                    select_area.setError("Required Field")
+                }
+            }
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getBranch()
         getyear()
+        getFunds()
+        getAreas()
     }
 
     fun getyear(){
-        Appconstands.loading_show(activity, pDialog).show()
+        pDialog.show()
         val obj = JsonObject()
         obj.addProperty("type", "yeardrop")
         Log.d(tag, obj.toString())
@@ -83,4 +171,280 @@ class CreateCardActivity : AppCompatActivity() {
             }
         })
     }
+
+    fun getChitGroup(){
+        pDialog.show()
+        val obj = JsonObject()
+        obj.addProperty("type", "onlineselectyear")
+        obj.addProperty("cardyear", selectedYear.id.toString())
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.getChitGroup(obj)
+        call.enqueue(object : Callback<ChitGroupData> {
+            override fun onResponse(call: Call<ChitGroupData>, response: Response<ChitGroupData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as ChitGroupData
+                    if (example.Status == "Success") {
+                        chitgroup = example.Response!!
+                        val data = Gson().toJson(example, ChitGroupData::class.java).toString()
+                        println("data : "+data)
+                        select_chitGroup.setAdapter(ChitGroupSpinnerAdapter(activity,chitgroup.chit))
+                        number.setText(chitgroup.regno.toString())
+                        card_number.setText(chitgroup.cardNo.toString())
+                    }
+                }
+                pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<ChitGroupData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+            }
+        })
+    }
+
+    fun getFunds(){
+        pDialog.show()
+        val obj = JsonObject()
+        obj.addProperty("type", "funds")
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.getFunds(obj)
+        call.enqueue(object : Callback<FundsData> {
+            override fun onResponse(call: Call<FundsData>, response: Response<FundsData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as FundsData
+                    if (example.Status == "Success") {
+                        Funds = example.Response!!
+                        val data = Gson().toJson(example, FundsData::class.java).toString()
+                        println("data : "+data)
+                        select_fund1.setAdapter(FundSpinnerAdapter(activity,Funds.fund1))
+                        select_fund2.setAdapter(FundSpinnerAdapter(activity,Funds.fund2))
+                    }
+                }
+                pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<FundsData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+            }
+        })
+    }
+
+    fun getAreas(){
+        pDialog.show()
+        val obj = JsonObject()
+        obj.addProperty("type", "areas")
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.getAreas(obj)
+        call.enqueue(object : Callback<AreaData> {
+            override fun onResponse(call: Call<AreaData>, response: Response<AreaData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as AreaData
+                    if (example.Status == "Success") {
+                        Areas = example.Response!!
+                        val data = Gson().toJson(example, AreaData::class.java).toString()
+                        println("data : "+data)
+                        select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                    }
+                }
+                pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<AreaData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+            }
+        })
+    }
+
+    fun getBranch(){
+        pDialog.show()
+        val call = RetrofitClient2.Get.getBranchs()
+        call.enqueue(object : Callback<BranchData> {
+            override fun onResponse(call: Call<BranchData>, response: Response<BranchData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as BranchData
+                    if (example.Status == "Success") {
+                        val res = example.Response
+                        val data = Gson().toJson(example, BranchData::class.java).toString()
+                        println("data : "+data)
+                        res.forEach {
+                            if (it.branch=="Online Cust"){
+                                who = it.id.toString()
+                            }
+                        }
+                    }
+                }
+                pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<BranchData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+            }
+        })
+    }
+
+    fun getCardCheck(){
+        pDialog.show()
+        val obj = JsonObject()
+        obj.addProperty("type", "onlineCard")
+        obj.addProperty("cardyear", selectedYear.id.toString())
+        obj.addProperty("card_no", chitgroup.cardNo.toString())
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.CheckCard(obj)
+        call.enqueue(object : Callback<CheckCardData> {
+            override fun onResponse(call: Call<CheckCardData>, response: Response<CheckCardData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as CheckCardData
+                    if (example.Status == "Success") {
+                        val res = example.Response!!
+                        val data = Gson().toJson(example, CheckCardData::class.java).toString()
+                        println("data : "+data)
+                        chitgroup.cardNo = res.cardNo
+                        getCardCreate()
+                    }
+                }
+                pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<CheckCardData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+            }
+        })
+    }
+
+    fun getCardCreate(){
+        pDialog.show()
+        /*{
+    "reg_no":"1025",
+    "cid":"4",
+    "card_year":"2",
+    "name":"Test1",
+    "card_no":"20221240",
+    "phone":"9786039322",
+    "area":"Adalai",
+    "who":"7",
+    "fund1":"",
+    "fund2":"",
+    "gid":"",
+    "collect_id":"1"
+}*/
+        val obj = JsonObject()
+        obj.addProperty("reg_no", chitgroup.regno.toString())
+        obj.addProperty("cid", selectedChit.id.toString())
+        obj.addProperty("card_year", selectedYear.id.toString())
+        obj.addProperty("name", name.text.toString())
+        obj.addProperty("card_no", chitgroup.cardNo.toString())
+        obj.addProperty("phone", mob.text.toString())
+        obj.addProperty("area", selectedArea.areaname.toString())
+        obj.addProperty("address", adrs.text.toString())
+        obj.addProperty("who", who)
+        obj.addProperty("fund1", selectedFund1.id)
+        obj.addProperty("fund2", selectedFund2.id)
+        obj.addProperty("gid", "")
+        obj.addProperty("collect_id", "")
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.CreatCard(obj)
+        call.enqueue(object : Callback<CreateCardData> {
+            override fun onResponse(call: Call<CreateCardData>, response: Response<CreateCardData>) {
+                Log.e("$tag response", response.toString())
+                pDialog.dismiss()
+                if (response.isSuccessful()) {
+                    val example = response.body() as CreateCardData
+                    if (example.Status == "Success") {
+                        val data = Gson().toJson(example, CreateCardData::class.java).toString()
+                        println("data : "+data)
+                        finish()
+                    }else{
+                        Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<CreateCardData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                pDialog.dismiss()
+            }
+        })
+    }
+
+    private fun validatePhoneNo(regPhoneNo: EditText): Boolean {
+        val `val`: String = regPhoneNo.text.toString()
+        try {
+            //`val`.toBigInteger()
+            return if (`val`.isEmpty()) {
+                regPhoneNo.setError("Field cannot be empty")
+                false
+            } else if (`val`.length != 10) {
+                regPhoneNo.setError("Enter Valid Mobile Number")
+                false
+            } else {
+                regPhoneNo.setError(null)
+                true
+            }
+        } catch (e: NumberFormatException) {
+            return false
+        }
+    }
+
+    fun validatename(regEmail: EditText, showError: Boolean = true): Boolean {
+        val `val`: String = regEmail.text.toString().trim()
+        return if (`val`.isEmpty()) {
+            if (showError) regEmail.setError("Field cannot be empty")
+            false
+        } else {
+            if (showError) regEmail.setError(null)
+            true
+        }
+    }
+
 }

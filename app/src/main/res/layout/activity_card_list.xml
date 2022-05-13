@@ -65,8 +65,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <include layout="@layout/card_list_items"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
