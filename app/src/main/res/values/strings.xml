@@ -84,6 +84,16 @@
     <string name="select_fund1">Select Fund1</string>
     <string name="selec_fund2">Select Fund2</string>
     <string name="cards">Cards</string>
+    <string name="date">Date</string>
+    <string name="custmer_name">Customer Name</string>
+    <string name="customer_phone">Customer Phone</string>
+    <string name="delivery_amount">Delivery Amount</string>
+    <string name="address_line1">Address Line 1</string>
+    <string name="address_line2">Address Line 2</string>
+    <string name="landmark">Landmark</string>
+    <string name="pincode">Pincode</string>
+    <string name="door_delivery">Door Delivery</string>
+    <string name="alt_mobile_number">Alternate Mobile Number</string>
 
 
 </resources>

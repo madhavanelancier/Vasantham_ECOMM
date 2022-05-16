@@ -173,7 +173,7 @@
 
     </LinearLayout>
 
-    <Button
+    <!--<Button
         android:id="@+id/cardcreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -187,6 +187,42 @@
         android:paddingEnd="10dp"
         android:text="@string/creat_card"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/multiple_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonPlusIconColor="@color/black"
+        app:fab_addButtonColorPressed="@color/colorAccent"
+        app:fab_labelStyle="@style/menu_labels_style">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/cardcreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_icon="@drawable/ic_address_card_solid"
+            app:fab_colorPressed="@color/colorAccent"
+            app:fab_title="@string/creat_card" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/doordelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_icon="@drawable/ic_door_closed_solid"
+            app:fab_colorPressed="@color/colorAccent"
+            app:fab_title="@string/door_delivery" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </FrameLayout>

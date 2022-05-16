@@ -40,6 +40,12 @@
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.facebook.shimmer">
         <activity
+            android:name=".DoorDeliveryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoorDeliveryActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateCardActivity"
             android:exported="false" />
         <activity

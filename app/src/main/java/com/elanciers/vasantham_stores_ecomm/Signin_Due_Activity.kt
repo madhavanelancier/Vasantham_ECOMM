@@ -82,6 +82,10 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
             val st = Intent(this@Signin_Due_Activity,CardListActivity::class.java)
             startActivity(st)
         }
+        doordelivery.setOnClickListener {
+            val st = Intent(this@Signin_Due_Activity,DoorDeliveryListActivity::class.java)
+            startActivity(st)
+        }
     }
 
     override fun onResume() {

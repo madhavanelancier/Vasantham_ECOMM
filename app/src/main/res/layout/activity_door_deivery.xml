@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CreateCardActivity">
+    tools:context=".DoorDeliveryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/brandon_text_med_otf"
                 android:gravity="center"
-                android:text="@string/creat_card"
+                android:text="@string/door_delivery"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
@@ -70,71 +70,13 @@
             android:paddingEnd="8dp">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/year"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:hint="@string/select_year"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@android:color/transparent"
-                    app:errorEnabled="true"
-                    app:helperText=""
-                    app:helperTextEnabled="true">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/select_year"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:padding="16dp"
-                        android:singleLine="true"
-                        android:text="Select" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/group"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:hint="@string/selecte_chit_group"
-                    android:importantForAutofill="no"
-                    app:boxBackgroundColor="@android:color/transparent"
-                    app:errorEnabled="true"
-                    app:helperText=""
-                    app:helperTextEnabled="true">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/select_chitGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:padding="16dp"
-                        android:singleLine="true"
-                        android:text="Select" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/num"
+                android:id="@+id/dat"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="@string/number"
+                android:hint="@string/date"
                 android:importantForAutofill="no"
                 app:boxBackgroundColor="#ebebeb"
                 app:errorEnabled="true"
@@ -142,7 +84,7 @@
                 app:helperTextEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/number"
+                    android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
@@ -158,26 +100,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:boxBackgroundColor="@android:color/transparent"
-                    app:errorEnabled="true"
-                    app:helperText=""
-                    app:helperTextEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/name"
-                        android:singleLine="true" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -192,10 +114,84 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="0123456789"
-                        android:enabled="false"
                         android:hint="@string/card_number"
                         android:importantForAutofill="no"
                         android:inputType="number"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ltype"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/loantype"
+                    android:importantForAutofill="no"
+                    app:boxBackgroundColor="#ebebeb"
+                    app:errorEnabled="true"
+                    app:helperText=""
+                    app:helperTextEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/loantype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="16dp"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/custnm"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/custmer_name"
+                    android:importantForAutofill="no"
+                    app:boxBackgroundColor="#ebebeb"
+                    app:errorEnabled="true"
+                    app:helperText=""
+                    app:helperTextEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cust_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="16dp"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/custph"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/customer_phone"
+                    android:importantForAutofill="no"
+                    app:boxBackgroundColor="#ebebeb"
+                    app:errorEnabled="true"
+                    app:helperText=""
+                    app:helperTextEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cust_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="16dp"
                         android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -205,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="@string/mobile_number"
+                    android:hint="@string/alt_mobile_number"
                     android:importantForAutofill="no"
                     app:errorEnabled="true"
                     app:helperText="">
@@ -223,50 +219,113 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/delamount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:gravity="start"
-                    android:hint="@string/address"
-                    app:boxBackgroundColor="@android:color/transparent"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="150"
+                    android:hint="@string/delivery_amount"
+                    android:importantForAutofill="no"
+                    app:boxBackgroundColor="#ebebeb"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/adrs"
+                        android:id="@+id/del_amount"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:gravity="start"
-                        android:inputType="textMultiLine" />
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="16dp"
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/group"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:hint="@string/select_group"
-                    android:importantForAutofill="no"
-                    android:visibility="gone"
+                    android:gravity="start"
+                    android:hint="@string/address_line1"
                     app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/select_group"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/adrs1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
+                        android:gravity="start"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"
+                    android:hint="@string/address_line2"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:errorEnabled="true"
+                    app:helperText=""
+                    app:helperTextEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/adrs2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"
+                    android:hint="@string/landmark"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:errorEnabled="true"
+                    app:helperText=""
+                    app:helperTextEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/landmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pin"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/pincode"
+                    android:importantForAutofill="no"
+                    app:errorEnabled="true"
+                    app:helperText=""
+                    app:helperTextEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pincode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789"
+                        android:inputType="phone"
                         android:padding="16dp"
-                        android:singleLine="true"
-                        android:text="Select" />
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -301,89 +360,9 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/agent"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="1"
-                        android:hint="@string/agent"
-                        android:importantForAutofill="no"
-                        android:visibility="gone"
-                        app:boxBackgroundColor="@android:color/transparent"
-                        app:errorEnabled="true"
-                        app:helperText=""
-                        app:helperTextEnabled="true">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/select_agentr"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"
-                            android:padding="16dp"
-                            android:singleLine="true"
-                            android:text="Select" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/fund1"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:hint="@string/select_fund1"
-                        android:importantForAutofill="no"
-                        app:boxBackgroundColor="@android:color/transparent"
-                        app:errorEnabled="true"
-                        app:helperText=""
-                        app:helperTextEnabled="true">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/select_fund1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"
-                            android:padding="16dp"
-                            android:singleLine="true"
-                            android:text="Select" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/fund2"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="1"
-                        android:hint="@string/selec_fund2"
-                        android:importantForAutofill="no"
-                        app:boxBackgroundColor="@android:color/transparent"
-                        app:errorEnabled="true"
-                        app:helperText=""
-                        app:helperTextEnabled="true">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/select_fund2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"
-                            android:padding="16dp"
-                            android:singleLine="true"
-                            android:text="Select" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
             </LinearLayout>
 
             <Button
