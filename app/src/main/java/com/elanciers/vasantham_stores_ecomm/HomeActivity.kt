@@ -1,19 +1,20 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.Manifest
-import android.R.attr.button
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.location.*
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -24,7 +25,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.daimajia.slider.library.SliderLayout
@@ -315,6 +315,13 @@ var locationManager: LocationManager? = null;
             startActivity(i)*/
             val popupMenu = PopupMenu(this, it)
             popupMenu.menuInflater.inflate(R.menu.language_menu, popupMenu.menu)
+            val menu: Menu = popupMenu.getMenu()
+            for (i in 0 until menu.size()) {
+                val item = menu.getItem(i)
+                val s = SpannableString(item.title)
+                s.setSpan(ForegroundColorSpan(Color.BLACK), 0, s.length, 0)
+                item.title = s
+            }
             popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
                 override fun onMenuItemClick(menuItem: MenuItem): Boolean {
                     // Toast message on menu item clicked

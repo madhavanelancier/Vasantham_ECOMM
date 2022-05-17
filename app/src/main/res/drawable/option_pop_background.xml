@@ -29,7 +29,7 @@
         <shape android:shape="rectangle">
             <corners android:topLeftRadius="20dp" android:topRightRadius="20dp"
                 android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp"/>
-            <solid android:color="#fff" /><!--FFF-->
+            <solid android:color="#000" /><!--FFF-->
         </shape>
     </item>
 </layer-list>

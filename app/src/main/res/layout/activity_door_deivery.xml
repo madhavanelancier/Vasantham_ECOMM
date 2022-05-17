@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@drawable/border"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
-            android:background="@android:color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -30,6 +28,7 @@
                 android:layout_marginLeft="8dp"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/back_arrow" />
 
             <TextView
@@ -40,7 +39,7 @@
                 android:fontFamily="@font/brandon_text_med_otf"
                 android:gravity="center"
                 android:text="@string/door_delivery"
-                android:textColor="@android:color/black"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <ImageView
@@ -72,13 +71,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dat"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:theme="@style/textinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/date"
                 android:importantForAutofill="no"
-                app:boxBackgroundColor="#ebebeb"
                 app:errorEnabled="true"
                 app:helperText=""
                 app:helperTextEnabled="true">
@@ -101,12 +99,11 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:importantForAutofill="no"
-                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -123,13 +120,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ltype"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/loantype"
                     android:importantForAutofill="no"
-                    app:boxBackgroundColor="#ebebeb"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -142,19 +138,19 @@
                         android:focusable="false"
                         android:inputType="none"
                         android:padding="16dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@android:color/primary_text_dark" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/custnm"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/custmer_name"
                     android:importantForAutofill="no"
-                    app:boxBackgroundColor="#ebebeb"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -167,19 +163,19 @@
                         android:focusable="false"
                         android:inputType="none"
                         android:padding="16dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@android:color/primary_text_dark" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/custph"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/customer_phone"
                     android:importantForAutofill="no"
-                    app:boxBackgroundColor="#ebebeb"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -192,12 +188,13 @@
                         android:focusable="false"
                         android:inputType="none"
                         android:padding="16dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@android:color/primary_text_dark" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -220,13 +217,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/delamount"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/delivery_amount"
                     android:importantForAutofill="no"
-                    app:boxBackgroundColor="#ebebeb"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -239,18 +235,18 @@
                         android:focusable="false"
                         android:inputType="none"
                         android:padding="16dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@android:color/primary_text_dark" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="start"
                     android:hint="@string/address_line1"
-                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -265,13 +261,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="start"
                     android:hint="@string/address_line2"
-                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -286,13 +281,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="start"
                     android:hint="@string/landmark"
-                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:helperText=""
                     app:helperTextEnabled="true">
@@ -308,7 +302,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pin"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -336,7 +330,6 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/area"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -344,7 +337,7 @@
                         android:layout_weight="1"
                         android:hint="@string/select_area"
                         android:importantForAutofill="no"
-                        app:boxBackgroundColor="@android:color/transparent"
+                        android:theme="@style/textinputauto"
                         app:errorEnabled="true"
                         app:helperText=""
                         app:helperTextEnabled="true">
@@ -356,6 +349,7 @@
                             android:inputType="none"
                             android:padding="16dp"
                             android:singleLine="true"
+                            android:textColor="@color/colorAccent"
                             android:text="Select" />
 
                     </com.google.android.material.textfield.TextInputLayout>

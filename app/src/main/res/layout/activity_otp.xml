@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:alpha="0.7"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <ImageView
@@ -64,6 +63,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="8dp"
                 android:padding="16dp"
+                app:tint="@color/white"
                 android:src="@drawable/ic_left_arrow" />
         </RelativeLayout>
 
@@ -91,7 +91,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/brandon_text_reg_otf"
                         android:text="Enter OTP"
-                        android:textColor="@color/colorPrimary"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:fontFamily="@font/brandon_text_reg_otf" />

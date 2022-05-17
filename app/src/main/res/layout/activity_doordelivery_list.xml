@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ebebeb"
     android:orientation="vertical"
     tools:context=".DoorDeliveryListActivity">
 
@@ -20,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="@drawable/border"
             android:orientation="vertical">
 
             <LinearLayout
@@ -28,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="1dp"
-                android:background="@android:color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -40,6 +37,7 @@
                     android:layout_marginLeft="8dp"
                     android:adjustViewBounds="true"
                     android:padding="4dp"
+                    app:tint="@color/white"
                     app:srcCompat="@drawable/back_arrow" />
 
                 <TextView
@@ -50,7 +48,7 @@
                     android:fontFamily="@font/brandon_text_med_otf"
                     android:gravity="center"
                     android:text="@string/door_delivery"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <ImageView
@@ -64,7 +62,8 @@
                     android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/delivery_list_items"/>
+
+        <include layout="@layout/delivery_list_items" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

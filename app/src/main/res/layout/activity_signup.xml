@@ -13,12 +13,12 @@
         android:alpha="0.1"
         android:scaleType="centerCrop"
         app:srcCompat="@mipmap/crackers" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:alpha="0.7"
-        android:background="@color/white"
         android:gravity="end"
         android:orientation="vertical">
 
@@ -28,8 +28,8 @@
             android:layout_height="250dp"
             android:adjustViewBounds="true"
             android:alpha="0.3"
-            android:background="@drawable/logo"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/logo" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -68,6 +68,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:padding="16dp"
+                    app:tint="@color/white"
                     android:src="@drawable/ic_left_arrow" />
             </RelativeLayout>
 
@@ -84,7 +85,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/brandon_text_med_otf"
                     android:text="Welcome"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="30sp"
                     app:fontFamily="@font/brandon_text_med_otf" />
 
@@ -94,7 +94,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/brandon_text_med_otf"
                     android:text="Sign Up to Continue"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:fontFamily="@font/brandon_text_med_otf" />
@@ -117,7 +116,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/brandon_text_reg_otf"
                             android:text="Name"
-                            android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             app:fontFamily="@font/brandon_text_reg_otf" />
 
@@ -147,7 +145,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/brandon_text_reg_otf"
                             android:text="Mobile No"
-                            android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             app:fontFamily="@font/brandon_text_reg_otf" />
 
@@ -179,7 +176,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/brandon_text_reg_otf"
                             android:text="Email"
-                            android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             app:fontFamily="@font/brandon_text_reg_otf" />
 
@@ -209,7 +205,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/brandon_text_reg_otf"
                             android:text="Referral Mobile Number"
-                            android:textColor="@color/colorAccent"
                             android:textSize="16sp"
                             app:fontFamily="@font/brandon_text_reg_otf" />
 
@@ -282,7 +277,7 @@
                             android:longClickable="false"
                             android:paddingStart="20dp"
                             android:text="I accept all terms and conditions"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/white"
                             android:textSize="16sp"
                             app:fontFamily="@font/brandon_text_reg_otf" />
 

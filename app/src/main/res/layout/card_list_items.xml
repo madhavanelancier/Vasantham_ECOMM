@@ -34,13 +34,15 @@
                     android:paddingBottom="4dp"
                     android:singleLine="true"
                     android:text="Name , Mobile Number"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Year" />
+                    android:text="Year"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <TextView
@@ -49,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:singleLine="true"
-                android:text="Branch : Madurai,  Area : Kalavasal" />
+                android:text="Branch : Madurai,  Area : Kalavasal"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/cardno"
@@ -59,6 +62,7 @@
                 android:paddingBottom="4dp"
                 android:singleLine="true"
                 android:text="Card Number"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -72,7 +76,8 @@
                     android:id="@+id/textView65"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Paid : " />
+                    android:text="Paid : "
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/amount"

@@ -8,6 +8,7 @@
         android:orderInCategory="200"
         android:title="Edit"
         app:showAsAction="ifRoom"
+        app:iconTint="@color/white"
         android:icon="@drawable/ic_edit"/>
 
 </menu>

@@ -35,7 +35,6 @@
             android:drawableEnd="@drawable/ic_arrow_forward_ios_24px"
             android:fontFamily="@font/brandon_text_reg_otf"
             android:text="Manage Address"
-            android:textColor="#1a1a1a"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -94,7 +93,6 @@
             android:drawableEnd="@drawable/ic_arrow_forward_ios_24px"
             android:fontFamily="@font/brandon_text_reg_otf"
             android:text="Contact Us"
-            android:textColor="#1a1a1a"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -124,7 +122,6 @@
             android:drawableEnd="@drawable/ic_arrow_forward_ios_24px"
             android:fontFamily="@font/brandon_text_reg_otf"
             android:text="Terms &amp; Conditions"
-            android:textColor="#1a1a1a"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -155,7 +152,6 @@
             android:drawableEnd="@drawable/ic_arrow_forward_ios_24px"
             android:fontFamily="@font/brandon_text_reg_otf"
             android:text="Refer and Earn"
-            android:textColor="#1a1a1a"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -185,7 +181,6 @@
             android:drawableEnd="@drawable/ic_arrow_forward_ios_24px"
             android:fontFamily="@font/brandon_text_reg_otf"
             android:text="Rate Us"
-            android:textColor="#1a1a1a"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -233,8 +228,8 @@
         android:fontFamily="@font/brandon_text_reg_otf"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
+        app:drawableTint="@color/white"
         android:text="Logout"
-        android:textColor="#1a1a1a"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -245,6 +240,6 @@
         android:layout_marginLeft="@dimen/commondp"
         android:fontFamily="@font/brandon_text_reg_otf"
         android:text="Version 2.0.0"
-        android:textColor="#767676" />
+        android:textColor="#BCFFFFFF" />
 
 </LinearLayout>

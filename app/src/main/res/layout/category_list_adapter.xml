@@ -82,7 +82,6 @@
         android:maxLines="2"
         android:singleLine="false"
         android:text="TextView\n"
-        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold" />
 

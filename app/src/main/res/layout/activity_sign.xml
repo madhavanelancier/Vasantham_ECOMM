@@ -14,7 +14,7 @@
             android:id="@+id/imageView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.1"
+            android:alpha="0.3"
             android:scaleType="centerCrop"
             android:visibility="visible"
             app:srcCompat="@mipmap/crackers" />
@@ -111,6 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
+                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="@dimen/commondp"
                     app:cardElevation="5dp">
 
@@ -150,6 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:visibility="visible"
+                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="@dimen/commondp"
                     app:cardElevation="5dp">
 
