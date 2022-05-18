@@ -3,6 +3,8 @@ package com.elanciers.vasantham_stores_ecomm
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -19,6 +21,9 @@ import kotlinx.android.synthetic.main.activity_door_deivery.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DoorDeliveryActivity : AppCompatActivity() {
     var tag = "door"
@@ -28,6 +33,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
     var Areas = ArrayList<AreaResponse>()
     var selectedArea = AreaResponse()
     lateinit var utils: Utils
+    var customer = CustomerResponse()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_door_deivery)
@@ -37,7 +43,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
         pDialog.setHandler(false)
         pDialog.setCancelable(false)
 
-        //mob.setText(utils.mobile_due())
+        date.setText(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString())
         imageView5.setOnClickListener {
             finish()
         }
@@ -52,10 +58,39 @@ class DoorDeliveryActivity : AppCompatActivity() {
             }
         }
 
+        card_number.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (card_number.text.toString().length==8){
+                    getCustomer()
+                }else{
+                    customer = CustomerResponse()
+                    setCustomerdata()
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
         submit.setOnClickListener {
             /*validatename(adrs)*/
+            validatename(adrs1)
+            validatename(pincode)
+            validatename(card_number)
             validatePhoneNo(mob)
-
+            if (validatename(adrs1)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)){
+                if (select_area.text.toString()!="Select") {
+                    saveDelivery()
+                }else{
+                    select_area.setError("Select Area")
+                }
+            }
         }
 
     }
@@ -101,27 +136,39 @@ class DoorDeliveryActivity : AppCompatActivity() {
         })
     }
 
-    fun getCardCheck(){
+    fun getCustomer(){
         pDialog.show()
         val obj = JsonObject()
-        obj.addProperty("type", "onlineCard")
+        obj.addProperty("type", "customerDetails")
+        obj.addProperty("card_no", card_number.text.toString())
+        /*{
+    "type":"customerDetails",
+    "card_no":"20220003"
+}*/
         Log.d(tag, obj.toString())
-        val call = RetrofitClient2.Get.CheckCard(obj)
-        call.enqueue(object : Callback<CheckCardData> {
-            override fun onResponse(call: Call<CheckCardData>, response: Response<CheckCardData>) {
+        val call = RetrofitClient2.Get.getCustomer(obj)
+        call.enqueue(object : Callback<CustomerData> {
+            override fun onResponse(call: Call<CustomerData>, response: Response<CustomerData>) {
                 Log.e("$tag response", response.toString())
                 if (response.isSuccessful()) {
-                    val example = response.body() as CheckCardData
+                    val example = response.body() as CustomerData
                     if (example.Status == "Success") {
-                        val res = example.Response!!
-                        val data = Gson().toJson(example, CheckCardData::class.java).toString()
+                        customer = example.Response!!
+                        val data = Gson().toJson(example, CustomerData::class.java).toString()
                         println("data : "+data)
+                        setCustomerdata()
+                    }else{
+                        customer = CustomerResponse()
+                        setCustomerdata()
                     }
+                }else{
+                    customer = CustomerResponse()
+                    setCustomerdata()
                 }
                 pDialog.dismiss()
             }
 
-            override fun onFailure(call: Call<CheckCardData>, t: Throwable) {
+            override fun onFailure(call: Call<CustomerData>, t: Throwable) {
                 Log.e("$tag Fail response", t.toString())
                 if (t.toString().contains("time")) {
                     Toast.makeText(
@@ -131,42 +178,58 @@ class DoorDeliveryActivity : AppCompatActivity() {
                     ).show()
                 }
                 pDialog.dismiss()
+                customer = CustomerResponse()
+                setCustomerdata()
             }
         })
     }
 
-    fun getCardCreate(){
+    fun setCustomerdata(){
+        cust_name.setText(customer.name)
+        cust_phone.setText(customer.phone)
+        del_amount.setText(customer.deliveryAmt)
+        select_area.setText(customer.area)
+        loantype.setText(customer.loanType)
+        select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+    }
+
+    fun saveDelivery(){
         pDialog.show()
         /*{
-    "reg_no":"1025",
-    "cid":"4",
-    "card_year":"2",
-    "name":"Test1",
-    "card_no":"20221240",
-    "phone":"9786039322",
-    "area":"Adalai",
-    "who":"7",
-    "fund1":"",
-    "fund2":"",
-    "gid":"",
-    "collect_id":"1"
+    "cus_id":"",
+    "card_year":"",
+    "card_no":"",
+    "delivery_amt":"",
+    "address_1":"",
+    "address_2":"",
+    "dpincode":"",
+    "landmark":"",
+    "aphone":"",
+    "area":""
+
 }*/
         val obj = JsonObject()
-        obj.addProperty("phone", mob.text.toString())
-        obj.addProperty("area", selectedArea.areaname.toString())
-        obj.addProperty("gid", "")
-        obj.addProperty("collect_id", "")
+        obj.addProperty("cus_id", customer.id)
+        obj.addProperty("card_year", customer.cardYear)
+        obj.addProperty("card_no", customer.cardNo)
+        obj.addProperty("delivery_amt", customer.deliveryAmt)
+        obj.addProperty("address_1", adrs1.text.toString().trim())
+        obj.addProperty("address_2", adrs2.text.toString().trim())
+        obj.addProperty("dpincode", pincode.text.toString().trim())
+        obj.addProperty("landmark", landmark.text.toString().trim())
+        obj.addProperty("aphone", mob.text.toString().trim())
+        obj.addProperty("area", select_area.text.toString().trim())
         Log.d(tag, obj.toString())
-        val call = RetrofitClient2.Get.CreatCard(obj)
-        call.enqueue(object : Callback<CreateCardData> {
-            override fun onResponse(call: Call<CreateCardData>, response: Response<CreateCardData>) {
+        val call = RetrofitClient2.Get.CreateDelivery(obj)
+        call.enqueue(object : Callback<CreateDeliveryData> {
+            override fun onResponse(call: Call<CreateDeliveryData>, response: Response<CreateDeliveryData>) {
                 Log.e("$tag response", response.toString())
                 pDialog.dismiss()
                 if (response.isSuccessful()) {
-                    val example = response.body() as CreateCardData
+                    val example = response.body() as CreateDeliveryData
                     if (example.Status == "Success") {
-                        val data = Gson().toJson(example, CreateCardData::class.java).toString()
-                        println("data : "+data)
+                        /*val data = Gson().toJson(example, CreateDeliveryData::class.java).toString()
+                        println("data : "+data)*/
                         finish()
                     }else{
                         Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
@@ -174,7 +237,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<CreateCardData>, t: Throwable) {
+            override fun onFailure(call: Call<CreateDeliveryData>, t: Throwable) {
                 Log.e("$tag Fail response", t.toString())
                 if (t.toString().contains("time")) {
                     Toast.makeText(

@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
+import com.elanciers.vasantham_stores_ecomm.Adapters.DoorDeliveryListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardsData
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardsResponse
+import com.elanciers.vasantham_stores_ecomm.DataClass.DoorDeliveryList
 import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
@@ -25,7 +27,7 @@ class DoorDeliveryListActivity : AppCompatActivity() {
     var tag = "deliverylist"
     lateinit var activity : Activity
     lateinit var pDialog: CustomLoadingDialog
-    var cards = ArrayList<CardsResponse>()
+    var doordelivery = ArrayList<DoorDeliveryList>()
     lateinit var utils:Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,7 @@ class DoorDeliveryListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        //getCards()
+        getCards()
     }
 
     fun getCards(){
@@ -63,10 +65,10 @@ class DoorDeliveryListActivity : AppCompatActivity() {
                 if (response.isSuccessful()) {
                     val example = response.body() as CardsData
                     if (example.Status == "Success") {
-                        cards = example.Response
+                        doordelivery = example.Response.doorDeliveryList
                         val data = Gson().toJson(example, CardsData::class.java).toString()
                         println("data : "+data)
-                        recyclerView.adapter=CardListRecyclerAdapter(activity,cards)
+                        recyclerView.adapter=DoorDeliveryListRecyclerAdapter(activity,doordelivery)
                     }
                 }
                 pDialog.dismiss()

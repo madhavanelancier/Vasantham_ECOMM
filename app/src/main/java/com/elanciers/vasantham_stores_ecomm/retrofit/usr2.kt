@@ -33,5 +33,11 @@ interface usr2 {
     @GET("branch_list.php")
     fun getBranchs(): Call<BranchData>
 
+    @POST("collection_common.php")
+    fun getCustomer(@Body()obj : JsonObject): Call<CustomerData>
+
+    @POST("door_delivery.php")
+    fun CreateDelivery(@Body()obj : JsonObject): Call<CreateDeliveryData>
+
 
 }

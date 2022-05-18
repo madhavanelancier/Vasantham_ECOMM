@@ -10,6 +10,7 @@ import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
+import com.elanciers.vasantham_stores_ecomm.DataClass.CardList
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardsData
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardsResponse
 import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
@@ -25,7 +26,7 @@ class CardListActivity : AppCompatActivity() {
     var tag = "cardlist"
     lateinit var activity : Activity
     lateinit var pDialog: CustomLoadingDialog
-    var cards = ArrayList<CardsResponse>()
+    var cards = ArrayList<CardList>()
     lateinit var utils:Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +64,7 @@ class CardListActivity : AppCompatActivity() {
                 if (response.isSuccessful()) {
                     val example = response.body() as CardsData
                     if (example.Status == "Success") {
-                        cards = example.Response
+                        cards = example.Response.cardList
                         val data = Gson().toJson(example, CardsData::class.java).toString()
                         println("data : "+data)
                         recyclerView.adapter=CardListRecyclerAdapter(activity,cards)

@@ -114,11 +114,17 @@ data class CardsData (
 
     @SerializedName("Status"   ) var Status   : String?             = null,
     @SerializedName("message"  ) var message  : String?             = null,
-    @SerializedName("Response" ) var Response : ArrayList<CardsResponse> = arrayListOf()
+    @SerializedName("Response" ) var Response : CardsResponse = CardsResponse()
 
 )
 
 data class CardsResponse (
+
+    @SerializedName("card_list"          ) var cardList         : ArrayList<CardList> = arrayListOf(),
+    @SerializedName("door_delivery_list" ) var doorDeliveryList : ArrayList<DoorDeliveryList>   = arrayListOf()
+
+)
+data class CardList (
 
     @SerializedName("id"      ) var id      : String? = null,
     @SerializedName("name"    ) var name    : String? = null,
@@ -128,6 +134,17 @@ data class CardsResponse (
     @SerializedName("year"    ) var year    : String? = null,
     @SerializedName("branch"  ) var branch  : String? = null,
     @SerializedName("paidamt" ) var paidamt : String? = null
+
+)
+data class DoorDeliveryList (
+
+    @SerializedName("name"     ) var name     : String? = null,
+    @SerializedName("card_no"  ) var cardNo   : String? = null,
+    @SerializedName("phone"    ) var phone    : String? = null,
+    @SerializedName("area"     ) var area     : String? = null,
+    @SerializedName("aphone"   ) var aphone   : String? = null,
+    @SerializedName("address"  ) var address  : String? = null,
+    @SerializedName("landmark" ) var landmark : String? = null
 
 )
 
@@ -142,5 +159,34 @@ data class BranchResponse (
 
     @SerializedName("id"     ) var id     : String? = null,
     @SerializedName("branch" ) var branch : String? = null
+
+)
+
+data class CustomerData (
+
+    @SerializedName("Status"   ) var Status   : String?   = null,
+    @SerializedName("message"  ) var message  : String?   = null,
+    @SerializedName("Response" ) var Response :  CustomerResponse? =  CustomerResponse()
+
+)
+
+data class  CustomerResponse (
+
+    @SerializedName("id"           ) var id          : String = "",
+    @SerializedName("card_year"    ) var cardYear    : String = "",
+    @SerializedName("name"         ) var name        : String = "",
+    @SerializedName("card_no"      ) var cardNo      : String = "",
+    @SerializedName("phone"        ) var phone       : String = "",
+    @SerializedName("area"         ) var area        : String = "",
+    @SerializedName("loan_type"    ) var loanType    : String = "",
+    @SerializedName("delivery_amt" ) var deliveryAmt : String = ""
+
+)
+
+data class CreateDeliveryData (
+
+    @SerializedName("Status"   ) var Status   : String?           = null,
+    @SerializedName("message"  ) var message  : String?           = null,
+    @SerializedName("Response" ) var Response : ArrayList<String> = arrayListOf()
 
 )

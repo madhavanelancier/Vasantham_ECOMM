@@ -11,20 +11,21 @@ import com.elanciers.booking.DataClass.SpinnerPojo
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardList
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardsResponse
+import com.elanciers.vasantham_stores_ecomm.DataClass.DoorDeliveryList
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
 import com.elanciers.vasantham_stores_ecomm.R
 import java.lang.Exception
 
 
-class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayList<CardList>/*, private val listener: OnItemClickListener,*/ /*ps:Int, private var onBottomReachedListener : OnBottomReachedListener */) : RecyclerView.Adapter<CardListRecyclerAdapter.DataObjectHolder>(),
+class DoorDeliveryListRecyclerAdapter(val activity : Activity, private var items: ArrayList<DoorDeliveryList>/*, private val listener: OnItemClickListener,*/ /*ps:Int, private var onBottomReachedListener : OnBottomReachedListener */) : RecyclerView.Adapter<DoorDeliveryListRecyclerAdapter.DataObjectHolder>(),
     Filterable
 {
-    private var ListFiltered: ArrayList<CardList>?
+    private var ListFiltered: ArrayList<DoorDeliveryList>?
     init {
         ListFiltered = items
     }
-    private var orig: ArrayList<CardList>? = null
+    private var orig: ArrayList<DoorDeliveryList>? = null
     interface OnItemClickListener {
         fun OnItemClick(view: View, position: Int, viewType: Int)
     }
@@ -43,17 +44,17 @@ class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayL
     inner class DataObjectHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         internal var name : TextView
-        internal var year : TextView
-        internal var brancharea : TextView
-        internal var cardno : TextView
-        internal var amount : TextView
+        internal var date : TextView
+        internal var mobileno : TextView
+        internal var adrs : TextView
+        internal var area : TextView
         init {
 
             name = itemView.findViewById(R.id.name) as TextView
-            year = itemView.findViewById(R.id.year) as TextView
-            brancharea = itemView.findViewById(R.id.brancharea) as TextView
-            cardno = itemView.findViewById(R.id.cardno) as TextView
-            amount = itemView.findViewById(R.id.amount) as TextView
+            date = itemView.findViewById(R.id.date) as TextView
+            mobileno = itemView.findViewById(R.id.mobileno) as TextView
+            adrs = itemView.findViewById(R.id.adrs) as TextView
+            area = itemView.findViewById(R.id.area) as TextView
 
             /*opt.setOnClickListener {
                 lastSelectedPosition = getAdapterPosition();
@@ -77,17 +78,16 @@ class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayL
 
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): DataObjectHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_list_items, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.delivery_list_items, parent, false)
 
         return DataObjectHolder(view)
     }
 
     override fun onBindViewHolder(holder: DataObjectHolder, position: Int) {
-        holder.name.setText(items[position].name+" , "+items[position].phone)
-        holder.year.setText(items[position].year)
-        holder.amount.setText(items[position].paidamt)
-        holder.cardno.setText("Card : "+items[position].cardNo)
-        holder.brancharea.setText("Branch : "+items[position].branch+" , Area : "+items[position].area)
+        holder.name.setText(items[position].name+""+items[position].phone)
+        holder.mobileno.setText("Card : "+items[position].cardNo)
+        holder.adrs.setText(items[position].address+","+items[position].landmark)
+        holder.area.setText("Area : "+items[position].area)
     }
 
 
@@ -103,7 +103,7 @@ class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayL
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence): FilterResults {
                 val oReturn = FilterResults()
-                val results: ArrayList<CardList?> = ArrayList<CardList?>()
+                val results: ArrayList<DoorDeliveryList?> = ArrayList<DoorDeliveryList?>()
                 //results = searchList
                 if (orig == null) orig = ListFiltered
                 if (constraint != null) {
@@ -121,7 +121,7 @@ class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayL
             }
 
             override fun publishResults(constraint: CharSequence, results: FilterResults) {
-                ListFiltered = results.values as ArrayList<CardList>?
+                ListFiltered = results.values as ArrayList<DoorDeliveryList>?
                 notifyDataSetChanged()
             }
         }
