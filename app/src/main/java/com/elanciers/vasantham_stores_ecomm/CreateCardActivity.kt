@@ -59,7 +59,7 @@ class CreateCardActivity : AppCompatActivity() {
         pDialog.setHandler(false)
         pDialog.setCancelable(false)
         lang()
-        mob.setText(utils.mobile_due())
+        mob.setText(utils.mobile())
         imageView5.setOnClickListener {
             finish()
         }

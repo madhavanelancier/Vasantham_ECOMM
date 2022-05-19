@@ -65,7 +65,7 @@ class DoorDeliveryListActivity : AppCompatActivity() {
         pDialog.show()
         val obj = JsonObject()
         obj.addProperty("type", "cardLists")
-        obj.addProperty("phone", utils.mobile_due())
+        obj.addProperty("phone", utils.mobile())
         Log.d(tag, obj.toString())
         val call = RetrofitClient2.Get.getCards(obj)
         call.enqueue(object : Callback<CardsData> {
