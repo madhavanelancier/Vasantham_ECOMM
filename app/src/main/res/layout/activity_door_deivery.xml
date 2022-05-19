@@ -99,6 +99,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/card_no"
                     android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -194,6 +195,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/amob"
                     android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -241,6 +243,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/adrs_1"
                     android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -261,6 +264,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/adrs_2"
                     android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -281,6 +285,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/land"
                     android:theme="@style/textinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -362,7 +367,7 @@
             <Button
                 android:id="@+id/submit"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"

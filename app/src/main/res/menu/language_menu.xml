@@ -6,6 +6,6 @@
 
     <item
         android:id="@+id/tamil"
-        android:title="Tamil" />
+        android:title="தமிழ்" />
 
 </menu>

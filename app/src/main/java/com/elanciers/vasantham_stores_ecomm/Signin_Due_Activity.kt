@@ -22,8 +22,6 @@ import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
 import kotlinx.android.synthetic.main.activity_due_singin.*
-import kotlinx.android.synthetic.main.activity_signin.mobile
-import kotlinx.android.synthetic.main.activity_signin.signinbtn
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -211,5 +209,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         textView48.setText(AppUtil.languageString("recentlyused"))
         entercard.setText(AppUtil.languageString("entercard"))
         signinbtn.setText(AppUtil.languageString("submit"))
+        cardcreate.title=(AppUtil.languageString("creat_card")).toString()
+        doordelivery.title=(AppUtil.languageString("door_delivery")).toString()
     }
 }

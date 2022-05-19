@@ -84,8 +84,8 @@ class DoorDeliveryListRecyclerAdapter(val activity : Activity, private var items
     }
 
     override fun onBindViewHolder(holder: DataObjectHolder, position: Int) {
-        holder.name.setText(items[position].name+""+items[position].phone)
-        holder.mobileno.setText("Card : "+items[position].cardNo)
+        holder.name.setText(items[position].name)
+        holder.mobileno.setText(items[position].phone+", "+items[position].aphone)
         holder.adrs.setText(items[position].address+","+items[position].landmark)
         holder.area.setText("Area : "+items[position].area)
     }

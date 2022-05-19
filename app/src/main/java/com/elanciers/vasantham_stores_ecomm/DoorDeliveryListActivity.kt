@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.DoorDeliveryListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardsData
@@ -18,7 +19,11 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_doordelivery_list.*
+import kotlinx.android.synthetic.main.activity_doordelivery_list.imageView5
+import kotlinx.android.synthetic.main.activity_doordelivery_list.recyclerView
+import kotlinx.android.synthetic.main.activity_doordelivery_list.textView9
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +42,7 @@ class DoorDeliveryListActivity : AppCompatActivity() {
         pDialog = CustomLoadingDialog(this)
         pDialog.setHandler(false)
         pDialog.setCancelable(false)
-
+        lang()
         imageView5.setOnClickListener {
             finish()
         }
@@ -86,5 +91,8 @@ class DoorDeliveryListActivity : AppCompatActivity() {
                 pDialog.dismiss()
             }
         })
+    }
+    fun lang() {
+        textView9.setText(AppUtil.languageString("door_delivery"))
     }
 }

@@ -12,6 +12,7 @@ import com.elanciers.vasantham_stores_ecomm.Adapters.AreaSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.ChitGroupSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.FundSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.*
@@ -19,6 +20,9 @@ import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_create_card.*
+import kotlinx.android.synthetic.main.activity_create_card.imageView5
+import kotlinx.android.synthetic.main.activity_create_card.textView9
+import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +50,7 @@ class CreateCardActivity : AppCompatActivity() {
         pDialog = CustomLoadingDialog(this)
         pDialog.setHandler(false)
         pDialog.setCancelable(false)
-
+        lang()
         mob.setText(utils.mobile_due())
         imageView5.setOnClickListener {
             finish()
@@ -446,5 +450,25 @@ class CreateCardActivity : AppCompatActivity() {
             true
         }
     }
-
+    fun lang() {
+        textView9.setText(AppUtil.languageString("creat_card"))
+        year.setHint(AppUtil.languageString("select_year"))
+        group.setHint(AppUtil.languageString("selecte_chit_group"))
+        num.setHint(AppUtil.languageString("number"))
+        //number.setHint(AppUtil.languageString("number"))
+        name_.setHint(AppUtil.languageString("name"))
+        //name.setHint(AppUtil.languageString("name"))
+        card.setHint(AppUtil.languageString("card_number"))
+        //card_number.setHint(AppUtil.languageString("card_number"))
+        mob_.setHint(AppUtil.languageString("mobile_number"))
+        //mob.setHint(AppUtil.languageString("mobile_number"))
+        adrs_.setHint(AppUtil.languageString("address"))
+        //adrs.setHint(AppUtil.languageString("address"))
+        group.setHint(AppUtil.languageString("select_group"))
+        area.setHint(AppUtil.languageString("select_area"))
+        agent.setHint(AppUtil.languageString("agent"))
+        fund1.setHint(AppUtil.languageString("select_fund1"))
+        fund2.setHint(AppUtil.languageString("selec_fund2"))
+        submit.setText(AppUtil.languageString("submit"))
+    }
 }

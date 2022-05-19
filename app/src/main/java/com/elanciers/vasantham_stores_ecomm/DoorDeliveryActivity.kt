@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.AreaSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.*
@@ -18,6 +19,9 @@ import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_door_deivery.*
+import kotlinx.android.synthetic.main.activity_door_deivery.imageView5
+import kotlinx.android.synthetic.main.activity_door_deivery.textView9
+import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +46,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
         pDialog = CustomLoadingDialog(this)
         pDialog.setHandler(false)
         pDialog.setCancelable(false)
-
+        lang()
         date.setText(SimpleDateFormat("dd-MM-yyyy").format(Date()).toString())
         imageView5.setOnClickListener {
             finish()
@@ -81,10 +85,12 @@ class DoorDeliveryActivity : AppCompatActivity() {
         submit.setOnClickListener {
             /*validatename(adrs)*/
             validatename(adrs1)
+            validatename(adrs2)
+            validatename(landmark)
             validatename(pincode)
             validatename(card_number)
             validatePhoneNo(mob)
-            if (validatename(adrs1)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)){
+            if (validatename(adrs1)&&validatename(adrs2)&&validatename(landmark)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)){
                 if (select_area.text.toString()!="Select") {
                     saveDelivery()
                 }else{
@@ -280,5 +286,31 @@ class DoorDeliveryActivity : AppCompatActivity() {
             true
         }
     }
-
+    fun lang() {
+        textView9.setText(AppUtil.languageString("door_delivery"))
+        dat.setHint(AppUtil.languageString("date"))
+        //date.setHint(AppUtil.languageString("date"))
+        card_no.setHint(AppUtil.languageString("card_number"))
+        //card_number.setHint(AppUtil.languageString("card_number"))
+        ltype.setHint(AppUtil.languageString("loantype"))
+        //loantype.setHint(AppUtil.languageString("loantype"))
+        custnm.setHint(AppUtil.languageString("custmer_name"))
+        //cust_name.setHint(AppUtil.languageString("custmer_name"))
+        custph.setHint(AppUtil.languageString("customer_phone"))
+        //cust_phone.setHint(AppUtil.languageString("customer_phone"))
+        amob.setHint(AppUtil.languageString("alt_mobile_number"))
+        //mob.setHint(AppUtil.languageString("alt_mobile_number"))
+        delamount.setHint(AppUtil.languageString("delivery_amount"))
+        //del_amount.setHint(AppUtil.languageString("delivery_amount"))
+        adrs_1.setHint(AppUtil.languageString("address_line1"))
+        //adrs1.setHint(AppUtil.languageString("address_line1"))
+        adrs_2.setHint(AppUtil.languageString("address_line2"))
+        //adrs2.setHint(AppUtil.languageString("address_line2"))
+        land.setHint(AppUtil.languageString("landmark"))
+        //landmark.setHint(AppUtil.languageString("landmark"))
+        pin.setHint(AppUtil.languageString("pincode"))
+        //pincode.setHint(AppUtil.languageString("pincode"))
+        area.setHint(AppUtil.languageString("select_area"))
+        submit.setText(AppUtil.languageString("submit"))
+    }
 }

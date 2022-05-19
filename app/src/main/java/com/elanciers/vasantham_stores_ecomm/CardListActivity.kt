@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.CardList
@@ -18,6 +19,11 @@ import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_card_list.*
+import kotlinx.android.synthetic.main.activity_card_list.create
+import kotlinx.android.synthetic.main.activity_card_list.imageView5
+import kotlinx.android.synthetic.main.activity_card_list.recyclerView
+import kotlinx.android.synthetic.main.activity_card_list.textView9
+import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +42,7 @@ class CardListActivity : AppCompatActivity() {
         pDialog = CustomLoadingDialog(this)
         pDialog.setHandler(false)
         pDialog.setCancelable(false)
-
+        lang()
         imageView5.setOnClickListener {
             finish()
         }
@@ -86,4 +92,6 @@ class CardListActivity : AppCompatActivity() {
             }
         })
     }
-}
+    fun lang() {
+        textView9.setText(AppUtil.languageString("cards"))
+    }}

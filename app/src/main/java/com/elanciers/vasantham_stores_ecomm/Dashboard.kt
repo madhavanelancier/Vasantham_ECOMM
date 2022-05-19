@@ -567,15 +567,15 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         track.setText(AppUtil.languageString("trackonmap"))
 
         payamt.setHint(AppUtil.languageString("cardnumber"))
-        cardnum.setHint(AppUtil.languageString("cardnumber"))
-        println("cardnum : "+AppUtil.languageString("cardnumber"))
+        //cardnum.setHint(AppUtil.languageString("cardnumber"))
+        //println("cardnum : "+AppUtil.languageString("cardnumber"))
         name.setHint(AppUtil.languageString("name"))
-        nm.setHint(AppUtil.languageString("name"))
+        //nm.setHint(AppUtil.languageString("name"))
         dues.setHint(AppUtil.languageString("loantype"))
-        ltype.setHint(AppUtil.languageString("loantype"))
+        //ltype.setHint(AppUtil.languageString("loantype"))
         amt.setHint(AppUtil.languageString("pendingamount"))
-        pending_amt.setHint(AppUtil.languageString("pendingamount"))
+        //pending_amt.setHint(AppUtil.languageString("pendingamount"))
         p_due.setHint(AppUtil.languageString("pendingdues"))
-        p_dues.setHint(AppUtil.languageString("pendingdues"))
+        //p_dues.setHint(AppUtil.languageString("pendingdues"))
     }
 }

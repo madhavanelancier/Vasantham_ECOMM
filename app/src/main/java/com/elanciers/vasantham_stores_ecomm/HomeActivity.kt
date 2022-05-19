@@ -326,13 +326,13 @@ var locationManager: LocationManager? = null;
                 override fun onMenuItemClick(menuItem: MenuItem): Boolean {
                     // Toast message on menu item clicked
                     popupMenu.dismiss()
-                    profile.setText(if (menuItem.getTitle()=="Tamil") "Ta" else "En")
-                    if (menuItem.getTitle()=="Tamil") {
-                        AppController.setLanguageobj( AppController.getTaLanguageobj())
-                        utils.savePreferences("language","Tamil")
-                    } else {
+                    profile.setText(if (menuItem.title.toString().equals("English")) "En" else "த")
+                    if (menuItem.title.toString().equals("English")) {
                         AppController.setLanguageobj( AppController.getEnLanguageobj())
                         utils.savePreferences("language","English")
+                    } else {
+                        AppController.setLanguageobj( AppController.getTaLanguageobj())
+                        utils.savePreferences("language","Tamil")
                     }
                     recreate()
                     return true
@@ -1485,7 +1485,7 @@ var locationManager: LocationManager? = null;
         })
     }
     fun lang(){
-        profile.setText(if (utils.language=="Tamil") "Ta" else "En")
+        profile.setText(if (utils.language=="Tamil") "த" else "En")
         textView9.setText(AppUtil.languageString("home"))
         loyalty_txt.setText(AppUtil.languageString("loyalty_points"))
         points_txt.setText(AppUtil.languageString("points"))

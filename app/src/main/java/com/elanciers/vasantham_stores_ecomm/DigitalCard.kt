@@ -146,13 +146,13 @@ class DigitalCard : AppCompatActivity() {
 
     fun lang(){
         chit_.setHint(AppUtil.languageString("chit"))
-        chit.setHint(AppUtil.languageString("chit"))
+        //chit.setHint(AppUtil.languageString("chit"))
         fund1_.setHint(AppUtil.languageString("fund1"))
-        fund1.setHint(AppUtil.languageString("fund1"))
+        //fund1.setHint(AppUtil.languageString("fund1"))
         fund2_.setHint(AppUtil.languageString("fund2"))
-        fund2.setHint(AppUtil.languageString("fund2"))
+        //fund2.setHint(AppUtil.languageString("fund2"))
         amnt_.setHint(AppUtil.languageString("amount"))
-        amnt.setHint(AppUtil.languageString("amount"))
+        //amnt.setHint(AppUtil.languageString("amount"))
 
         textView50.setText(AppUtil.languageString("s_no"))
         textView55.setText(AppUtil.languageString("month"))
