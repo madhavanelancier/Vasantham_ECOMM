@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.DoorDeliveryListRecyclerAdapter
@@ -19,9 +20,12 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.activity_card_list.*
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_doordelivery_list.*
+import kotlinx.android.synthetic.main.activity_doordelivery_list.create
 import kotlinx.android.synthetic.main.activity_doordelivery_list.imageView5
+import kotlinx.android.synthetic.main.activity_doordelivery_list.nodata
 import kotlinx.android.synthetic.main.activity_doordelivery_list.recyclerView
 import kotlinx.android.synthetic.main.activity_doordelivery_list.textView9
 import retrofit2.Call
@@ -74,6 +78,13 @@ class DoorDeliveryListActivity : AppCompatActivity() {
                         val data = Gson().toJson(example, CardsData::class.java).toString()
                         println("data : "+data)
                         recyclerView.adapter=DoorDeliveryListRecyclerAdapter(activity,doordelivery)
+                        if (doordelivery.isNotEmpty()) {
+                            nodata.visibility = View.GONE
+                        }else{
+                            nodata.visibility = View.VISIBLE
+                        }
+                    }else{
+                        nodata.visibility= View.VISIBLE
                     }
                 }
                 pDialog.dismiss()
@@ -89,6 +100,7 @@ class DoorDeliveryListActivity : AppCompatActivity() {
                     ).show()
                 }
                 pDialog.dismiss()
+                nodata.visibility= View.VISIBLE
             }
         })
     }

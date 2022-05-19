@@ -214,7 +214,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                     if (obj1.getJSONObject(0).getString("Status") == "Success") {
                         pDialog.dismiss()
                         val cal=Calendar.getInstance()
-                        val format=SimpleDateFormat("dd-MMM-YY hh:mm aa")
+                        val format=SimpleDateFormat("dd-MMM-yy hh:mm aa")
                         val time=format.format(cal.time)
                         println("time"+time)
 
@@ -306,11 +306,14 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
                         if(p_dues.text.toString()=="0"){
                             pay.visibility=View.INVISIBLE
+                        }else{
+                            pay.visibility=View.VISIBLE
                         }
 
                         textView44.setText(utils.name_due())
                         textView46.setText(jobject.getString("cardno"))
                        // pDialog.dismiss()
+                        scroll.visibility=View.VISIBLE
                         Dues_list().execute()
 
 
@@ -352,7 +355,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         }
 
         override fun onPostExecute(resp: String?) {
-        Log.e("resp",resp.toString())
+        Log.e("resp1",resp.toString())
             try {
                 if (resp != null) {
 
@@ -441,7 +444,6 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                     } else {
                         toast(jobj.getJSONObject(0).getString("Response"))
                         pDialog.dismiss()
-
                     }
                 }
             }catch (e: JSONException) {

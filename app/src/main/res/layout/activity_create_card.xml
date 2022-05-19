@@ -295,11 +295,10 @@
                             android:id="@+id/select_area"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"
+                            android:inputType="text"
                             android:padding="16dp"
                             android:singleLine="true"
-                            android:textColor="@color/colorAccent"
-                            android:text="Select" />
+                            android:textColor="@color/colorAccent"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 

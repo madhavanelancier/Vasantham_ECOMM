@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.AreaSpinnerAdapter
@@ -18,8 +19,14 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.activity_create_card.*
 import kotlinx.android.synthetic.main.activity_door_deivery.*
+import kotlinx.android.synthetic.main.activity_door_deivery.area
+import kotlinx.android.synthetic.main.activity_door_deivery.card_number
 import kotlinx.android.synthetic.main.activity_door_deivery.imageView5
+import kotlinx.android.synthetic.main.activity_door_deivery.mob
+import kotlinx.android.synthetic.main.activity_door_deivery.select_area
+import kotlinx.android.synthetic.main.activity_door_deivery.submit
 import kotlinx.android.synthetic.main.activity_door_deivery.textView9
 import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import retrofit2.Call
@@ -35,6 +42,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
     lateinit var pDialog: CustomLoadingDialog
     var years = ArrayList<YearsResponse>()
     var Areas = ArrayList<AreaResponse>()
+    var areaarrname = ArrayList<String>()
     var selectedArea = AreaResponse()
     lateinit var utils: Utils
     var customer = CustomerResponse()
@@ -56,8 +64,9 @@ class DoorDeliveryActivity : AppCompatActivity() {
         select_area.onItemClickListener = object : AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 selectedArea = Areas[p2]
-                select_area.setText(Areas[p2].areaname)
+                /*select_area.setText(Areas[p2].areaname)
                 select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                select_area.setThreshold(1)*/
                 select_area.error=null
             }
         }
@@ -90,11 +99,12 @@ class DoorDeliveryActivity : AppCompatActivity() {
             validatename(pincode)
             validatename(card_number)
             validatePhoneNo(mob)
-            if (validatename(adrs1)&&validatename(adrs2)&&validatename(landmark)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)){
-                if (select_area.text.toString()!="Select") {
-                    saveDelivery()
-                }else{
-                    select_area.setError("Select Area")
+            if (validatename(adrs1)&&validatename(adrs2)&&validatename(landmark)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)&&findarea()){
+                saveDelivery()
+            }else{
+                if(select_area.text.isEmpty()/*city.selectedItemPosition==0*/||!findarea()){
+                    val errorText = select_area//.getSelectedView() as TextView
+                    errorText.error = "Select Area"
                 }
             }
         }
@@ -120,9 +130,11 @@ class DoorDeliveryActivity : AppCompatActivity() {
                     val example = response.body() as AreaData
                     if (example.Status == "Success") {
                         Areas = example.Response!!
-                        val data = Gson().toJson(example, AreaData::class.java).toString()
-                        println("data : "+data)
-                        select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                        /*val data = Gson().toJson(example, AreaData::class.java).toString()
+                        println("data : "+data)*/
+                        //select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                        Areas.forEach { d->areaarrname.add(d.areaname!!) }
+                        select_area.setAdapter(ArrayAdapter(this@DoorDeliveryActivity,R.layout.spinner_item1,areaarrname))
                     }
                 }
                 pDialog.dismiss()
@@ -141,7 +153,10 @@ class DoorDeliveryActivity : AppCompatActivity() {
             }
         })
     }
-
+    fun findarea() : Boolean{
+        areaarrname.forEach { d->if (select_area.text.toString().trim()==d) return true }
+        return false
+    }
     fun getCustomer(){
         pDialog.show()
         val obj = JsonObject()
@@ -160,8 +175,8 @@ class DoorDeliveryActivity : AppCompatActivity() {
                     val example = response.body() as CustomerData
                     if (example.Status == "Success") {
                         customer = example.Response!!
-                        val data = Gson().toJson(example, CustomerData::class.java).toString()
-                        println("data : "+data)
+                        /*val data = Gson().toJson(example, CustomerData::class.java).toString()
+                        println("data : "+data)*/
                         setCustomerdata()
                     }else{
                         customer = CustomerResponse()
@@ -197,6 +212,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
         select_area.setText(customer.area)
         loantype.setText(customer.loanType)
         select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+        select_area.setThreshold(1)
     }
 
     fun saveDelivery(){
@@ -233,12 +249,11 @@ class DoorDeliveryActivity : AppCompatActivity() {
                 pDialog.dismiss()
                 if (response.isSuccessful()) {
                     val example = response.body() as CreateDeliveryData
+                    Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
                     if (example.Status == "Success") {
-                        /*val data = Gson().toJson(example, CreateDeliveryData::class.java).toString()
-                        println("data : "+data)*/
+                        val data = Gson().toJson(example, CreateDeliveryData::class.java).toString()
+                        println("data : "+data)
                         finish()
-                    }else{
-                        Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

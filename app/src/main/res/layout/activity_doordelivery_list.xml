@@ -37,8 +37,8 @@
                     android:layout_marginLeft="8dp"
                     android:adjustViewBounds="true"
                     android:padding="4dp"
-                    app:tint="@color/white"
-                    app:srcCompat="@drawable/back_arrow" />
+                    app:srcCompat="@drawable/back_arrow"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -62,6 +62,16 @@
                     android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/nodata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="NoData Available"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

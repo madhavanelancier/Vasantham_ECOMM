@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.AreaSpinnerAdapter
@@ -20,8 +21,14 @@ import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_create_card.*
+import kotlinx.android.synthetic.main.activity_create_card.area
+import kotlinx.android.synthetic.main.activity_create_card.card_number
 import kotlinx.android.synthetic.main.activity_create_card.imageView5
+import kotlinx.android.synthetic.main.activity_create_card.mob
+import kotlinx.android.synthetic.main.activity_create_card.select_area
+import kotlinx.android.synthetic.main.activity_create_card.submit
 import kotlinx.android.synthetic.main.activity_create_card.textView9
+import kotlinx.android.synthetic.main.activity_door_deivery.*
 import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,6 +42,7 @@ class CreateCardActivity : AppCompatActivity() {
     var chitgroup = ChitGroupResponse()
     var Funds = FundResponse()
     var Areas = ArrayList<AreaResponse>()
+    var areaarrname = ArrayList<String>()
     var selectedYear = YearsResponse()
     var selectedChit = Chit()
     var selectedFund1 = Fund1()
@@ -92,8 +100,8 @@ class CreateCardActivity : AppCompatActivity() {
         select_area.onItemClickListener = object : AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 selectedArea = Areas[p2]
-                select_area.setText(Areas[p2].areaname)
-                select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                /*select_area.setText(Areas[p2].areaname)
+                select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))*/
                 select_area.error=null
             }
         }
@@ -106,8 +114,7 @@ class CreateCardActivity : AppCompatActivity() {
                 !selectedYear.id.isNullOrEmpty()&&
                 !selectedChit.id.isNullOrEmpty()&&
                 !selectedFund1.id.isNullOrEmpty()&&
-                !selectedFund2.id.isNullOrEmpty()&&
-                !selectedArea.id.isNullOrEmpty())
+                !selectedFund2.id.isNullOrEmpty()&& findarea())
             {
                 println("Ready to Submit")
                 getCardCheck()
@@ -125,12 +132,17 @@ class CreateCardActivity : AppCompatActivity() {
                 if (selectedFund2.id.isNullOrEmpty()){
                     select_fund2.setError("Required Field")
                 }
-                if (selectedArea.id.isNullOrEmpty()){
-                    select_area.setError("Required Field")
+                if(select_area.text.isEmpty()/*city.selectedItemPosition==0*/||!findarea()){
+                    val errorText = select_area//.getSelectedView() as TextView
+                    errorText.error = "Select Area"
                 }
             }
         }
 
+    }
+    fun findarea() : Boolean{
+        areaarrname.forEach { d->if (select_area.text.toString().trim()==d) return true }
+        return false
     }
 
     override fun onResume() {
@@ -154,8 +166,8 @@ class CreateCardActivity : AppCompatActivity() {
                     val example = response.body() as YearsData
                     if (example.Status == "Success") {
                         years = example.Response
-                        val data = Gson().toJson(example, YearsData::class.java).toString()
-                        println("data : "+data)
+                        /*val data = Gson().toJson(example, YearsData::class.java).toString()
+                        println("data : "+data)*/
                         select_year.setAdapter(YearSpinnerAdapter(activity,years))
                     }
                 }
@@ -190,8 +202,8 @@ class CreateCardActivity : AppCompatActivity() {
                     val example = response.body() as ChitGroupData
                     if (example.Status == "Success") {
                         chitgroup = example.Response!!
-                        val data = Gson().toJson(example, ChitGroupData::class.java).toString()
-                        println("data : "+data)
+                        /*val data = Gson().toJson(example, ChitGroupData::class.java).toString()
+                        println("data : "+data)*/
                         select_chitGroup.setAdapter(ChitGroupSpinnerAdapter(activity,chitgroup.chit))
                         number.setText(chitgroup.regno.toString())
                         card_number.setText(chitgroup.cardNo.toString())
@@ -227,8 +239,8 @@ class CreateCardActivity : AppCompatActivity() {
                     val example = response.body() as FundsData
                     if (example.Status == "Success") {
                         Funds = example.Response!!
-                        val data = Gson().toJson(example, FundsData::class.java).toString()
-                        println("data : "+data)
+                       /* val data = Gson().toJson(example, FundsData::class.java).toString()
+                        println("data : "+data)*/
                         select_fund1.setAdapter(FundSpinnerAdapter(activity,Funds.fund1))
                         select_fund2.setAdapter(FundSpinnerAdapter(activity,Funds.fund2))
                     }
@@ -263,9 +275,11 @@ class CreateCardActivity : AppCompatActivity() {
                     val example = response.body() as AreaData
                     if (example.Status == "Success") {
                         Areas = example.Response!!
-                        val data = Gson().toJson(example, AreaData::class.java).toString()
-                        println("data : "+data)
-                        select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                        /*val data = Gson().toJson(example, AreaData::class.java).toString()
+                        println("data : "+data)*/
+                        //select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
+                        Areas.forEach { d->areaarrname.add(d.areaname!!) }
+                        select_area.setAdapter(ArrayAdapter(this@CreateCardActivity,R.layout.spinner_item1,areaarrname))
                     }
                 }
                 pDialog.dismiss()
@@ -295,8 +309,8 @@ class CreateCardActivity : AppCompatActivity() {
                     val example = response.body() as BranchData
                     if (example.Status == "Success") {
                         val res = example.Response
-                        val data = Gson().toJson(example, BranchData::class.java).toString()
-                        println("data : "+data)
+                        /*val data = Gson().toJson(example, BranchData::class.java).toString()
+                        println("data : "+data)*/
                         res.forEach {
                             if (it.branch=="Online Cust"){
                                 who = it.id.toString()
@@ -397,12 +411,11 @@ class CreateCardActivity : AppCompatActivity() {
                 pDialog.dismiss()
                 if (response.isSuccessful()) {
                     val example = response.body() as CreateCardData
+                    Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
                     if (example.Status == "Success") {
                         val data = Gson().toJson(example, CreateCardData::class.java).toString()
                         println("data : "+data)
                         finish()
-                    }else{
-                        Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

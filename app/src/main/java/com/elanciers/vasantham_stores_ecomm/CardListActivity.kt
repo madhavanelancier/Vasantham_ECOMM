@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
@@ -21,6 +22,7 @@ import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_card_list.*
 import kotlinx.android.synthetic.main.activity_card_list.create
 import kotlinx.android.synthetic.main.activity_card_list.imageView5
+import kotlinx.android.synthetic.main.activity_card_list.nodata
 import kotlinx.android.synthetic.main.activity_card_list.recyclerView
 import kotlinx.android.synthetic.main.activity_card_list.textView9
 import kotlinx.android.synthetic.main.activity_doordelivery_list.*
@@ -74,6 +76,13 @@ class CardListActivity : AppCompatActivity() {
                         val data = Gson().toJson(example, CardsData::class.java).toString()
                         println("data : "+data)
                         recyclerView.adapter=CardListRecyclerAdapter(activity,cards)
+                        if (cards.isNotEmpty()) {
+                            nodata.visibility = View.GONE
+                        }else{
+                            nodata.visibility = View.VISIBLE
+                        }
+                    }else{
+                        nodata.visibility= View.VISIBLE
                     }
                 }
                 pDialog.dismiss()
@@ -89,6 +98,7 @@ class CardListActivity : AppCompatActivity() {
                     ).show()
                 }
                 pDialog.dismiss()
+                nodata.visibility= View.VISIBLE
             }
         })
     }
