@@ -211,8 +211,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
         del_amount.setText(customer.deliveryAmt)
         select_area.setText(customer.area)
         loantype.setText(customer.loanType)
-        select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))
-        select_area.setThreshold(1)
+        select_area.setAdapter(ArrayAdapter(this@DoorDeliveryActivity,R.layout.spinner_item1,areaarrname))
     }
 
     fun saveDelivery(){
