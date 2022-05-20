@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.DoorDeliveryListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil

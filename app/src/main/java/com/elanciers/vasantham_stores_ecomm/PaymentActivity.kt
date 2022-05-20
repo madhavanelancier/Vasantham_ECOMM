@@ -17,6 +17,7 @@ import androidx.appcompat.app.ActionBar
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.loading_show
 import com.elanciers.vasantham_stores_ecomm.Common.Connection
+import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import org.json.JSONArray
@@ -66,6 +67,7 @@ class PaymentActivity : Activity(), PaymentResultListener {
          */
         val activity: Activity = this
         val co = Checkout()
+        co.setKeyID(Utils(this).razorpay_key)
         try {
             val options = JSONObject()
             options.put("name", "Dofirst")

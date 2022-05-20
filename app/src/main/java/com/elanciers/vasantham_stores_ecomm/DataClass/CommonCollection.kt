@@ -190,3 +190,32 @@ data class CreateDeliveryData (
     @SerializedName("Response" ) var Response : ArrayList<String> = arrayListOf()
 
 )
+
+data class SettingsData (
+
+    @SerializedName("Status"   ) var Status   : String?   = null,
+    @SerializedName("message"  ) var message  : String?   = null,
+    @SerializedName("Response" ) var Response : SettingsResponse? = SettingsResponse()
+
+)
+
+data class SettingsResponse (
+
+    @SerializedName("delivery_amount" ) var deliveryAmount : String? = null,
+    @SerializedName("razorpay_key"    ) var razorpayKey    : String? = null
+
+)
+
+data class CouponData (
+
+    @SerializedName("Status"   ) var Status   : String?   = null,
+    @SerializedName("message"  ) var message  : String?   = null,
+    @SerializedName("Response" ) var Response : List<CouponResponse>? = arrayListOf()
+
+)
+data class CouponResponse (
+
+    @SerializedName("amount"    ) var amount   : String? = null,
+    @SerializedName("coupon_no" ) var couponNo : String? = null
+
+)

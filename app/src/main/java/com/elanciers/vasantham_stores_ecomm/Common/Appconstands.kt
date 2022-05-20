@@ -67,6 +67,7 @@ object Appconstands {
     val PAYMENTID = Domin + "payid.php"
     const val RADIUS_1000 = "1000"
     const val TYPE_BAR = "bar"
+    val razorpay_key = if (BuildConfig.DEBUG) "rzp_test_gpzrKwVavfIrqC" else "rzp_live_KZgc6B2cbRuJWW"
     const val GOOGLE_API_KEY = "AIzaSyD4Liy8N1PPV-BPYooPpjQGE5Nxl9LAgG8"
     val loc="http://teamdev.co.in/vasantham/api/getvalidzone"
     val duelogin= Domin_due+"login.php"

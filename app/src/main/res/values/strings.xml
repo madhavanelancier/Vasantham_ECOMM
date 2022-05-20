@@ -94,6 +94,9 @@
     <string name="pincode">Pincode</string>
     <string name="door_delivery">Door Delivery</string>
     <string name="alt_mobile_number">Alternate Mobile Number</string>
+    <string name="applycoupon">Apply Coupon</string>
+    <string name="apply">Apply</string>
+    <string name="loanamount">Loan Amount</string>
 
 
 </resources>

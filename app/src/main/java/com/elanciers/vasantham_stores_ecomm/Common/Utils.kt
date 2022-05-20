@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.preference.PreferenceManager
+import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsResponse
 
 class Utils(internal var _context: Context) {
     internal var sharedPreferences: SharedPreferences
@@ -179,5 +180,15 @@ class Utils(internal var _context: Context) {
         return sharedPreferences.getBoolean("service", false)
     }
 
+    fun setSettings(settings: SettingsResponse?) {
+        if (settings!=null) {
+            val editor = sharedPreferences.edit()
+            editor.putString("razorpay_key", settings.razorpayKey)
+            editor.putString("delivery_amount", settings.deliveryAmount)
+            editor.commit()
+        }
+    }
+
+    val razorpay_key get() =sharedPreferences.getString("razorpay_key", Appconstands.razorpay_key)!!
     val language get() =sharedPreferences.getString("language", "English")!!
 }

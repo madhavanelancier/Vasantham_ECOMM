@@ -1084,6 +1084,7 @@ class CartActivity : AppCompatActivity() , PaymentResultListener {
 
     fun startpayment() {
         val checkout = Checkout()
+        checkout.setKeyID(utils.razorpay_key)
         try {
             val total = (db.cartTotal-discount)+delivery
             val options = JSONObject()

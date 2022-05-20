@@ -39,5 +39,10 @@ interface usr2 {
     @POST("door_delivery.php")
     fun CreateDelivery(@Body()obj : JsonObject): Call<CreateDeliveryData>
 
+    @GET("setting.php")
+    fun getSettings(): Call<SettingsData>
+
+    @POST("coupon.php")
+    fun CheckCopon(@Body()obj : JsonObject): Call<CouponData>
 
 }

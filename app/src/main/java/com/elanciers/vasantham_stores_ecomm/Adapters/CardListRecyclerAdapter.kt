@@ -17,7 +17,7 @@ import com.elanciers.vasantham_stores_ecomm.R
 import java.lang.Exception
 
 
-class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayList<CardList>/*, private val listener: OnItemClickListener,*/ /*ps:Int, private var onBottomReachedListener : OnBottomReachedListener */) : RecyclerView.Adapter<CardListRecyclerAdapter.DataObjectHolder>(),
+class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayList<CardList>, private val listener: OnItemClickListener, /*ps:Int, private var onBottomReachedListener : OnBottomReachedListener */) : RecyclerView.Adapter<CardListRecyclerAdapter.DataObjectHolder>(),
     Filterable
 {
     private var ListFiltered: ArrayList<CardList>?
@@ -26,7 +26,7 @@ class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayL
     }
     private var orig: ArrayList<CardList>? = null
     interface OnItemClickListener {
-        fun OnItemClick(view: View, position: Int, viewType: Int)
+        fun OnItemClick(view: View, position: Int, card: CardList)
     }
 
     interface OnBottomReachedListener {
@@ -65,7 +65,7 @@ class CardListRecyclerAdapter(val activity : Activity, private var items: ArrayL
 
         override fun onClick(v: View) {
             //try {
-                //listener.OnItemClick(v, adapterPosition, ITEM_CONTENT_VIEW_TYPE)
+                listener.OnItemClick(v, adapterPosition, items[position])
             /*} catch (e: Exception) {
 
             }*/

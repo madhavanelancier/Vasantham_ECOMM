@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -14,16 +16,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elancier.vasantham_stores.Adapters.Due_list
-import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
-import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
-import com.elanciers.vasantham_stores_ecomm.Common.Connection
-import com.elanciers.vasantham_stores_ecomm.Common.Utils
+import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
+import com.elanciers.vasantham_stores_ecomm.Common.*
+import com.elanciers.vasantham_stores_ecomm.DataClass.CouponData
+import com.elanciers.vasantham_stores_ecomm.DataClass.CouponResponse
+import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsData
+import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
+import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
+import kotlinx.android.synthetic.main.activity_create_card.*
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_dashboard.imageView6
+import kotlinx.android.synthetic.main.activity_dashboard.name
+import kotlinx.android.synthetic.main.activity_dashboard.textView9
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,7 +45,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
     internal lateinit var itemsAdapter: Due_list
     val activity = this
     lateinit var utils : Utils
-    lateinit var pDialog: Dialog
+    //lateinit var pDialog: Dialog
     var tid = "";
     var total = "";
     var receipt = "";
@@ -39,15 +53,19 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
     var branch = "";
     var lat :String?=null;
     var lng :String?=null;
-
+    val tag="payment"
     private val mRecyclerListitems = ArrayList<Any>()
     private var productItems: MutableList<Rewardpointsbo>? = null
-
+    lateinit var pDialog: CustomLoadingDialog
     internal lateinit var mLayoutManager: LinearLayoutManager
 
+    var couponData : CouponResponse? = null
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        pDialog = CustomLoadingDialog(this)
+        pDialog.setHandler(false)
+        pDialog.setCancelable(false)
         lang()
         productItems = ArrayList()
         utils = Utils(activity)
@@ -84,6 +102,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
         pay.setOnClickListener {
             pay.isEnabled=false
+            couponData=null
+            coupon.text!!.clear()
             startpayment()
         }
 
@@ -104,12 +124,39 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             startActivity(st)
         }
 
+        apply.setOnClickListener {
+            if (!coupon.text.isNullOrEmpty()){
+                checkCoupon(cardnum.text.toString().trim(),coupon.text.toString().trim())
+            }else{
+                couponData=null
+            }
+        }
+        coupon.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (couponData!=null){
+                    toast("Coupon Removed")
+                    couponData=null
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
     }
 
     fun startpayment() {
         val checkout = Checkout()
+        checkout.setKeyID(utils.razorpay_key)
+        println("key : "+utils.razorpay_key)
         try {
-            val total = pending_amt.text.toString().toDouble()
+            val total = if (couponData==null)pending_amt.text.toString().toDouble() else (pending_amt.text.toString().toDouble()-Integer.parseInt(couponData!!.amount))
             val options = JSONObject()
             options.put("name", "Vasantham Stores")
             options.put("description", cardnum.text.toString())
@@ -179,8 +226,9 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
     private inner class OrderSend : AsyncTask<String, Void, String>() {
 
         override fun onPreExecute() {
-            pDialog = Dialog(activity)
-            Appconstands.loading_show(activity, pDialog).show()
+            //pDialog = Dialog(activity)
+            //Appconstands.loading_show(activity, pDialog).show()
+            pDialog.show()
         }
 
         override fun doInBackground(vararg param: String): String? {
@@ -193,6 +241,15 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 jobj.put("paytype", "online")
                 jobj.put("branch", branch)
                 jobj.put("tid", tid)
+                if (couponData!=null) {
+                    jobj.put("promoamt", couponData!!.amount)
+                    jobj.put("promocode", couponData!!.couponNo)
+                    jobj.put("pamount", (Integer.parseInt(pending_amt.text.toString().trim())-Integer.parseInt(couponData!!.amount)))
+                }else{
+                    jobj.put("promoamt", "")
+                    jobj.put("promocode", "")
+                    jobj.put("pamount", "")
+                }
 
 
                 Log.i("payment Input", Appconstands.order1 + "    " + jobj.toString())
@@ -231,7 +288,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                             .putExtra("name",nm.text.toString().trim())
                             .putExtra("mobile",utils.mobile_due())
                             .putExtra("card",cardnum.text.toString())
-                            .putExtra("amout",pending_amt.text.toString())
+                            .putExtra("amout",if (couponData==null)pending_amt.text.toString() else (pending_amt.text.toString().toDouble()-Integer.parseInt(couponData!!.amount)).toString())
                             .putExtra("rec",obj1.getJSONObject(0).getString("receptno"))
                             .putExtra("due",due)
                             .putExtra("date",time))
@@ -255,14 +312,16 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
     override fun onResume() {
         super.onResume()
-        pDialog = Dialog(activity)
-
+        //pDialog = Dialog(activity)
+        //Appconstands.loading_show(activity,pDialog).show()
+        pDialog.show()
+        getSetings()
         Dues().execute()
     }
 
     inner class Dues : AsyncTask<String?, String?, String?>() {
         override fun onPreExecute() {
-            Appconstands.loading_show(activity,pDialog).show()
+
         }
 
         protected override fun doInBackground(vararg strings: String?): String? {
@@ -442,7 +501,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                         }
 
                     } else {
-                        toast(jobj.getJSONObject(0).getString("Response"))
+                        //toast(jobj.getJSONObject(0).getString("Response"))
                         pDialog.dismiss()
                     }
                 }
@@ -567,6 +626,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         textView49.setText(AppUtil.languageString("view_digital_card"))
         pay_txt.setText(AppUtil.languageString("paynow"))
         track.setText(AppUtil.languageString("trackonmap"))
+        apply.setText(AppUtil.languageString("apply"))
 
         payamt.setHint(AppUtil.languageString("cardnumber"))
         //cardnum.setHint(AppUtil.languageString("cardnumber"))
@@ -575,9 +635,82 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         //nm.setHint(AppUtil.languageString("name"))
         dues.setHint(AppUtil.languageString("loantype"))
         //ltype.setHint(AppUtil.languageString("loantype"))
-        amt.setHint(AppUtil.languageString("pendingamount"))
+        amt.setHint(AppUtil.languageString("loanamount"))
         //pending_amt.setHint(AppUtil.languageString("pendingamount"))
         p_due.setHint(AppUtil.languageString("pendingdues"))
         //p_dues.setHint(AppUtil.languageString("pendingdues"))
+        coupon_.setHint(AppUtil.languageString("applycoupon"))
+    }
+
+    fun getSetings(){
+        val call = RetrofitClient2.Get.getSettings()
+        call.enqueue(object : Callback<SettingsData> {
+            override fun onResponse(call: Call<SettingsData>, response: Response<SettingsData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as SettingsData
+                    if (example.Status == "Success") {
+                        val settings = example.Response
+                        utils.setSettings(settings)
+                        val data = Gson().toJson(example, SettingsData::class.java).toString()
+                        println("data : "+data)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SettingsData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
+    }
+    fun checkCoupon(card:String,coupontxt:String){
+        pDialog.show()
+        val obj = JsonObject()
+        obj.addProperty("card_no", card)
+        obj.addProperty("coupon_no", coupontxt)
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.CheckCopon(obj)
+        call.enqueue(object : Callback<CouponData> {
+            override fun onResponse(call: Call<CouponData>, response: Response<CouponData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as CouponData
+                    toast(example.message.toString())
+                    if (example.Status == "Success") {
+                        couponData = example.Response!![0]
+                        val data = Gson().toJson(example, CouponData::class.java).toString()
+                        println("data : "+data)
+                    }else{
+                        coupon.text!!.clear()
+                        couponData=null
+                    }
+                }else{
+                    coupon.text!!.clear()
+                    couponData=null
+                }
+                pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<CouponData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                couponData=null
+                coupon.text!!.clear()
+                pDialog.dismiss()
+            }
+        })
     }
 }

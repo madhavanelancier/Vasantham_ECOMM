@@ -30,7 +30,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CardListActivity : AppCompatActivity() {
+class CardListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemClickListener {
     var tag = "cardlist"
     lateinit var activity : Activity
     lateinit var pDialog: CustomLoadingDialog
@@ -75,7 +75,7 @@ class CardListActivity : AppCompatActivity() {
                         cards = example.Response.cardList
                         val data = Gson().toJson(example, CardsData::class.java).toString()
                         println("data : "+data)
-                        recyclerView.adapter=CardListRecyclerAdapter(activity,cards)
+                        recyclerView.adapter=CardListRecyclerAdapter(activity,cards,this@CardListActivity)
                         if (cards.isNotEmpty()) {
                             nodata.visibility = View.GONE
                         }else{
@@ -104,4 +104,14 @@ class CardListActivity : AppCompatActivity() {
     }
     fun lang() {
         textView9.setText(AppUtil.languageString("cards"))
-    }}
+    }
+
+    override fun OnItemClick(view: View, position: Int, card: CardList) {
+        utils.setLogin(true)
+        utils.setUser_due(card.id.toString(),card.name.toString(), card.phone.toString(),card.cardNo.toString())
+        val st = Intent(activity,Dashboard::class.java)
+        st.putExtra("cardno",card.cardNo)
+        st.putExtra("btn","0")
+        startActivity(st)
+    }
+}
