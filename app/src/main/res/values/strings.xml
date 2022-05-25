@@ -98,5 +98,10 @@
     <string name="apply">Apply</string>
     <string name="loanamount">Loan Amount</string>
 
+    <string name="Home">Home</string>
+    <string name="Search">Search</string>
+    <string name="Orders">Orders</string>
+    <string name="Profile">Profile</string>
+
 
 </resources>

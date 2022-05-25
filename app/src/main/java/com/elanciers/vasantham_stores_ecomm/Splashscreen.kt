@@ -52,7 +52,7 @@ class Splashscreen : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splashscreen)
         utils = Utils(activity)
-        Glide.with(this).load(R.drawable.logogif).into(imageView2);
+        Glide.with(this).load(R.drawable.logo_gif).into(imageView2);
 
         FirebaseMessaging.getInstance()
             .subscribeToTopic(("vasantham"))
