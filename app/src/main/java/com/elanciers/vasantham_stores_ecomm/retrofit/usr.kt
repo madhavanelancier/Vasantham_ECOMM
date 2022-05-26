@@ -166,7 +166,9 @@ interface usr {
     fun profile_update(@Field("uid")uid : String,
                  @Field("name")name : String,
                  @Field("mobile")mobile : String,
-                 @Field("email")email : String): Call<Resp>
+                 @Field("email")email : String,
+                 @Field("dob")dob : String,
+                 @Field("gender")gender : String): Call<Resp>
 
     @FormUrlEncoded
     @POST("customers/otp_check")

@@ -135,6 +135,12 @@ class PovaData {
     @SerializedName("mobile")
     @Expose
     var mobile: String? = null
+    @SerializedName("dob")
+    @Expose
+    var dob: String? = null
+    @SerializedName("gender")
+    @Expose
+    var gender: String? = null
     @SerializedName("mail")
     @Expose
     var mail: String? = null

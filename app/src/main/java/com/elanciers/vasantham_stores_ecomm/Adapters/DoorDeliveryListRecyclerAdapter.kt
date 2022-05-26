@@ -2,6 +2,7 @@ package com.elanciers.vasantham_stores_ecomm.Adapters
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.CardsResponse
 import com.elanciers.vasantham_stores_ecomm.DataClass.DoorDeliveryList
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
+import com.elanciers.vasantham_stores_ecomm.LocationActivity
 import com.elanciers.vasantham_stores_ecomm.R
 import java.lang.Exception
 
@@ -65,6 +67,10 @@ class DoorDeliveryListRecyclerAdapter(val activity : Activity, private var items
         }
 
         override fun onClick(v: View) {
+            val st = Intent(activity, LocationActivity::class.java)
+            /*st.putExtra("lat",lat)
+            st.putExtra("lng",lng)*/
+            name.context.startActivity(st)
             //try {
                 //listener.OnItemClick(v, adapterPosition, ITEM_CONTENT_VIEW_TYPE)
             /*} catch (e: Exception) {

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent_new"
     tools:context=".Mpin_Activity">
 
     <TextView
@@ -14,7 +13,7 @@
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="Set M-PIN"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Please set your 4 digit  m-pin "
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

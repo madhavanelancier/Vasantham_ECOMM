@@ -13,6 +13,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardHistoyRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
@@ -43,6 +44,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         )
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         setContentView(R.layout.activity_due_singin)
+        Glide.with(this).load(R.drawable.logo_gif).into(imageView3);
         utils = Utils(activity)
         pDialog = Dialog(activity)
         db = CardHistoryDatabase.getDatabase(activity)!!

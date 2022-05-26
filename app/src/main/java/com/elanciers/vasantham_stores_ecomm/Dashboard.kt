@@ -79,7 +79,6 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             pay.visibility=View.GONE
 
         }
-
         recyclerView.setLayoutManager(
             LinearLayoutManager(
                 this,
@@ -103,7 +102,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         pay.setOnClickListener {
             pay.isEnabled=false
             couponData=null
-            coupon.text!!.clear()
+            coupon()
             startpayment()
         }
 
@@ -129,6 +128,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 checkCoupon(cardnum.text.toString().trim(),coupon.text.toString().trim())
             }else{
                 couponData=null
+                coupon()
             }
         }
         coupon.addTextChangedListener(object :TextWatcher{
@@ -140,6 +140,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 if (couponData!=null){
                     toast("Coupon Removed")
                     couponData=null
+                    coupon()
                 }
             }
 
@@ -166,6 +167,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 StringTokenizer(total.toString().trim({ it <= ' ' }), ".")
             val value1 = st.nextToken()
             val value2 = st.nextToken()
+            println("total : " + total)
             println("st : " + st)
             println("value2 : " + value2)
             val paymentamount = Integer.valueOf(value2)
@@ -288,6 +290,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                             .putExtra("name",nm.text.toString().trim())
                             .putExtra("mobile",utils.mobile_due())
                             .putExtra("card",cardnum.text.toString())
+                            .putExtra("coupon",if (couponData==null)"" else (couponData!!.amount).toString())
                             .putExtra("amout",if (couponData==null)pending_amt.text.toString() else (pending_amt.text.toString().toDouble()-Integer.parseInt(couponData!!.amount)).toString())
                             .putExtra("rec",obj1.getJSONObject(0).getString("receptno"))
                             .putExtra("due",due)
@@ -368,6 +371,7 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                         }else{
                             pay.visibility=View.VISIBLE
                         }
+                        coupon()
 
                         textView44.setText(utils.name_due())
                         textView46.setText(jobject.getString("cardno"))
@@ -627,6 +631,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         pay_txt.setText(AppUtil.languageString("paynow"))
         track.setText(AppUtil.languageString("trackonmap"))
         apply.setText(AppUtil.languageString("apply"))
+        c_txt.setText(AppUtil.languageString("coupon_amount"))
+        p_txt.setText(AppUtil.languageString("payable_amount"))
 
         payamt.setHint(AppUtil.languageString("cardnumber"))
         //cardnum.setHint(AppUtil.languageString("cardnumber"))
@@ -687,13 +693,14 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                         couponData = example.Response!![0]
                         val data = Gson().toJson(example, CouponData::class.java).toString()
                         println("data : "+data)
+                        coupon()
                     }else{
-                        coupon.text!!.clear()
                         couponData=null
+                        coupon()
                     }
                 }else{
-                    coupon.text!!.clear()
                     couponData=null
+                    coupon()
                 }
                 pDialog.dismiss()
             }
@@ -708,9 +715,21 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                     ).show()
                 }
                 couponData=null
-                coupon.text!!.clear()
+                coupon()
                 pDialog.dismiss()
             }
         })
+    }
+
+    fun coupon(){
+            val c = if (couponData==null)pending_amt.text.toString() else (pending_amt.text.toString().toDouble()-couponData!!.amount!!.toDouble()).toString()
+            payableamnt.setText(c)
+        if (couponData!=null) {
+            couponamnt.setText(couponData!!.amount)
+            couponamnt_lay.visibility = View.VISIBLE
+        }else{
+            coupon.text!!.clear()
+            couponamnt_lay.visibility = View.GONE
+        }
     }
 }

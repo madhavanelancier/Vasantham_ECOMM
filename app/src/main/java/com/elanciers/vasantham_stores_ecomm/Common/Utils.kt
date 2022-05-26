@@ -77,8 +77,14 @@ class Utils(internal var _context: Context) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context)
         return sharedPreferences.getString("email", "")
     }
-
-
+    fun dob():String?{
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context)
+        return sharedPreferences.getString("dob", "")
+    }
+    fun gender():String?{
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context)
+        return sharedPreferences.getString("gender", "")
+    }
     fun name_due():String?{
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context)
         return sharedPreferences.getString("due_name", "")
@@ -96,12 +102,14 @@ class Utils(internal var _context: Context) {
         return sharedPreferences.getString("dueid", "")!!
     }
 
-    fun setUser(id:String,name:String,mobile:String,email:String) {
+    fun setUser(id:String,name:String,mobile:String,email:String,dob:String,gender:String) {
         val editor = sharedPreferences.edit()
         editor.putString("id", id)
         editor.putString("name", name)
         editor.putString("mobile", mobile)
         editor.putString("email", email)
+        editor.putString("dob", dob)
+        editor.putString("gender", gender)
         editor.commit()
     }
 

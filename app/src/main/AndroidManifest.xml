@@ -49,6 +49,9 @@
             android:name=".CreateCardActivity"
             android:exported="false" />
         <activity
+            android:name=".PointsListActivity"
+            android:exported="false" />
+        <activity
             android:name=".CardListActivity"
             android:exported="false" />
         <activity

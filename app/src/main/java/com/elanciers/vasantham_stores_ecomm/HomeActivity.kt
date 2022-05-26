@@ -249,7 +249,7 @@ var locationManager: LocationManager? = null;
 
         if (net_status(activity)){
             getSlider()
-            getCategory()
+            //getCategory()
             version()
             getpopup()
         }

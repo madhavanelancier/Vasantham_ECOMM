@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splash_bg"
     tools:context=".SigninActivity">
 
     <ImageView
@@ -12,6 +13,7 @@
         android:layout_height="match_parent"
         android:alpha="0.4"
         android:scaleType="centerCrop"
+        android:visibility="gone"
         app:srcCompat="@mipmap/crackers" />
 
     <LinearLayout
@@ -30,6 +32,7 @@
             android:adjustViewBounds="true"
             android:alpha="0.4"
             android:scaleType="centerInside"
+            android:visibility="gone"
             app:srcCompat="@drawable/logo" />
     </LinearLayout>
 
@@ -43,16 +46,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="@dimen/commondp"
-            android:paddingTop="60dp"
+            android:paddingTop="20dp"
             android:paddingBottom="30dp">
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="80dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:adjustViewBounds="true"
-                android:visibility="gone"
-                app:srcCompat="@mipmap/povalogo" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout
@@ -69,6 +72,7 @@
                 android:text="@string/welcometo"
                 android:textSize="30sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:fontFamily="@font/brandon_text_med_otf" />
 
             <TextView
@@ -79,6 +83,7 @@
                 android:text="@string/vasanthamstores"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:fontFamily="@font/brandon_text_med_otf" />
 
             <LinearLayout
@@ -96,7 +101,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -197,8 +201,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
-        app:fab_addButtonPlusIconColor="@color/black"
         app:fab_addButtonColorPressed="@color/colorAccent"
+        app:fab_addButtonPlusIconColor="@color/black"
         app:fab_labelStyle="@style/menu_labels_style">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -206,8 +210,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/colorAccent"
-            app:fab_icon="@drawable/ic_address_card_solid"
             app:fab_colorPressed="@color/colorAccent"
+            app:fab_icon="@drawable/ic_address_card_solid"
             app:fab_title="@string/creat_card" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -215,8 +219,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/colorAccent"
-            app:fab_icon="@drawable/ic_door_closed_solid"
             app:fab_colorPressed="@color/colorAccent"
+            app:fab_icon="@drawable/ic_door_closed_solid"
             app:fab_title="@string/door_delivery" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

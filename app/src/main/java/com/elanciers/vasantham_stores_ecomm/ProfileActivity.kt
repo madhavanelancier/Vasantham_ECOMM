@@ -1,7 +1,9 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -12,27 +14,31 @@ import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.content_scrolling.*
 import android.net.Uri
+import android.text.format.DateFormat
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBar
+import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.isValidEmail
 import com.elanciers.vasantham_stores_ecomm.Common.DBController
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
 import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.edit_profile_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -255,19 +261,78 @@ class ProfileActivity : AppCompatActivity() {
         val name = popUpView.findViewById(R.id.name) as EditText
         val mobile = popUpView.findViewById(R.id.mobileno) as EditText
         val email = popUpView.findViewById(R.id.email) as EditText
+        val na = popUpView.findViewById<TextInputLayout>(R.id.na) as TextInputLayout
+        val mo = popUpView.findViewById<TextInputLayout>(R.id.mo) as TextInputLayout
+        val em = popUpView.findViewById<TextInputLayout>(R.id.em) as TextInputLayout
+        val ge = popUpView.findViewById<TextInputLayout>(R.id.ge) as TextInputLayout
+        val datetime = popUpView.findViewById<TextInputLayout>(R.id.datetime) as TextInputLayout
+        val status = popUpView.findViewById<AutoCompleteTextView>(R.id.reason) as AutoCompleteTextView
         val animMoveToTop = AnimationUtils.loadAnimation(activity, R.anim.bottom_top)
+        val gen = arrayListOf<String>("Men","Women","Other")
         popUpView.animation =animMoveToTop
+
+        na.setHint(AppUtil.languageString("name").toString())
+        mo.setHint(AppUtil.languageString("mobile_number").toString())
+        em.setHint(AppUtil.languageString("email").toString())
+        datetime.setHint(AppUtil.languageString("dob").toString())
+        ge.setHint(AppUtil.languageString("gender").toString())
         name.setText(utils.name())
         mobile.setText(utils.mobile())
         email.setText(utils.email())
+        datetime.editText!!.setText(utils.dob())
+        status.setText(utils.gender())
+        val adp3 = ArrayAdapter<String>(this, R.layout.spinner_item1,gen)
+        status.setAdapter(adp3)
 
+        datetime.setEndIconOnClickListener {
+            var datetimes =""
+            val calendar: Calendar = Calendar.getInstance()
+            val dyear = calendar.get(Calendar.YEAR)
+            val dmonth = calendar.get(Calendar.MONTH)
+            val dday = calendar.get(Calendar.DAY_OF_MONTH)
+            val datePickerDialog =
+                DatePickerDialog(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK, object : DatePickerDialog.OnDateSetListener {
+                    override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                        val myYear = year
+                        val myday = dayOfMonth
+                        val myMonth = month+1
+                        val c = Calendar.getInstance()
+                        val hour = c[Calendar.HOUR]
+                        val minute = c[Calendar.MINUTE]
+                        val formatter: NumberFormat = DecimalFormat("00")
+                        val fmonth: String = formatter.format(myMonth) // ----> 01
+                        val fday: String = formatter.format(myday) // ----> 01
+                        datetimes = ""+fday+"-"+fmonth+"-"+myYear+" "
+                        println("date : "+datetimes)
+                        datetime.editText!!.setText(datetimes)
+                        /*val timePickerDialog = TimePickerDialog(
+                            this@LeadsDetail,
+                            object : TimePickerDialog.OnTimeSetListener {
+                                override fun onTimeSet(p0: TimePicker?, hourOfDay: Int, minute: Int) {
+                                    val mHour = formatter.format(hourOfDay)
+                                    val myMinute = formatter.format(minute)
+                                    datetimes += mHour+":"+myMinute+":00"
+                                    datetime.editText!!.setText(datetimes)
+                                }
+
+                            },
+                            hour,
+                            minute,
+                            DateFormat.is24HourFormat(this@LeadsDetail)
+                        )
+                        timePickerDialog.show()*/
+                    }
+                }, dyear, dmonth, dday)
+            datePickerDialog.datePicker.setMaxDate(System.currentTimeMillis())
+            datePickerDialog.show()
+        }
         update.setOnClickListener {
             if (name.text.toString().trim().isNotEmpty() && mobile.text.toString().trim().length==10){
                 if (email.text.toString().trim().isNotEmpty()){
                     if (isValidEmail(email)){
                         pDialog = Dialog(activity)
                         Appconstands.loading_show(activity, pDialog).show()
-                        val call = ApproveUtils.Get.profile_update(utils.userid(),name.text.toString().trim(),mobile.text.toString().trim(),email.text.toString().trim())
+                        val call = ApproveUtils.Get.profile_update(utils.userid(),name.text.toString().trim(),mobile.text.toString().trim(),email.text.toString().trim(),datetime.editText!!.text.toString(),status.text.toString())
                         call.enqueue(object : Callback<Resp> {
                             override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
                                 Log.e("$tag response", response.toString())
@@ -281,7 +346,7 @@ class ProfileActivity : AppCompatActivity() {
                                             example.message,
                                             Toast.LENGTH_LONG
                                         ).show()
-                                        utils.setUser(utils.userid(),name.text.toString().trim(), mobile.text.toString().trim(), email.text.toString().trim())
+                                        utils.setUser(utils.userid(),name.text.toString().trim(), mobile.text.toString().trim(), email.text.toString().trim(),datetime.editText!!.text.toString(),status.text.toString())
 
                                         openwith.dismiss()
                                         finish()
@@ -321,7 +386,7 @@ class ProfileActivity : AppCompatActivity() {
                 }else{
                     pDialog = Dialog(activity)
                     Appconstands.loading_show(activity, pDialog).show()
-                    val call = ApproveUtils.Get.profile_update(utils.userid(),name.text.toString().trim(),mobile.text.toString().trim(),email.text.toString().trim())
+                    val call = ApproveUtils.Get.profile_update(utils.userid(),name.text.toString().trim(),mobile.text.toString().trim(),email.text.toString().trim(),datetime.editText!!.text.toString(),status.text.toString())
                     call.enqueue(object : Callback<Resp> {
                         override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
                             Log.e("$tag response", response.toString())
@@ -335,7 +400,7 @@ class ProfileActivity : AppCompatActivity() {
                                         example.message,
                                         Toast.LENGTH_LONG
                                     ).show()
-                                    utils.setUser(utils.userid(),name.text.toString().trim(), mobile.text.toString().trim(), email.text.toString().trim())
+                                    utils.setUser(utils.userid(),name.text.toString().trim(), mobile.text.toString().trim(), email.text.toString().trim(),datetime.editText!!.text.toString(),status.text.toString())
                                     openwith.dismiss()
                                     setTit()
                                     finish()

@@ -8,18 +8,9 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
-import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.loading_show
+import com.bumptech.glide.Glide
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
-import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
-import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_signin.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 class SigninActivity : AppCompatActivity() {
     val tag = "Signin"
     val activity = this
@@ -36,6 +27,8 @@ class SigninActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
         utils = Utils(activity)
         pDialog = Dialog(activity)
+
+        Glide.with(this).load(R.drawable.logo_gif).into(imageView3);
 
         signinbtn.setOnClickListener {
             if (mobile.text.length==10){

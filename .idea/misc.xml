@@ -10,14 +10,18 @@
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_ECOMM_09_FEB_2022/app/src/main/res/layout/activity_signin.xml" value="0.17552083333333332" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_ECOMM_09_FEB_2022/app/src/main/res/layout/imgae_popup.xml" value="0.17552083333333332" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable-xxxhdpi/ic_baseline_local_phone_24.xml" value="0.24479166666666666" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable-xxxhdpi/ic_calendar_alt_regular.xml" value="0.1655" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/add_address.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/add_background.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/back_arrow.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/background_whiteborder.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/circle_drawab_white.xml" value="0.1565" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/comment_sms_solid.xml" value="0.1655" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/copy_solid.xml" value="0.1655" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/custom_progressbar.xml" value="0.1565" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/down_arrow_spinner.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/fab_label_background.xml" value="0.1" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/facebook_messenger_brands.xml" value="0.1655" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_arrow_back_ios_24px.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_arrows_rotate_solid.xml" value="0.24479166666666666" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_assignment_24.xml" value="0.24479166666666666" />
@@ -25,7 +29,9 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_filter_2_24.xml" value="0.24479166666666666" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.24479166666666666" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.24479166666666666" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_calendar_alt_regular.xml" value="0.1655" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/ic_rupee_sign_solid.xml" value="0.24479166666666666" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/instagram_square_brands.xml" value="0.1655" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/option_pop_background.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/otp_drawab.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/points_card_bg.xml" value="0.1565" />
@@ -36,6 +42,7 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/splash_bg.xml" value="0.163" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/teogradient.xml" value="0.1565" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/teogradient_dup.xml" value="0.1565" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable/whatsapp_square_brands.xml" value="0.1655" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_address_map.xml" value="0.19746376811594202" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_card_list.xml" value="0.152" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_cart.xml" value="0.264" />
@@ -47,8 +54,8 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_digital_card.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_door_deivery.xml" value="0.2" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_doordelivery_list.xml" value="0.2245961438249088" />
-        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_due_singin.xml" value="0.176" />
-        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_home.xml" value="0.536" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_due_singin.xml" value="0.2" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_location.xml" value="0.176" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_manage_address.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_map_tracking.xml" value="0.15534420289855072" />
@@ -62,15 +69,16 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_payment.xml" value="0.15534420289855072" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_payment__reciept.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_place_order.xml" value="0.15534420289855072" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_points_list.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_product.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_product_search.xml" value="0.15534420289855072" />
-        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_profile.xml" value="0.15534420289855072" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_referral_.xml" value="0.176" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_search.xml" value="0.15534420289855072" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_sign.xml" value="0.22447916666666667" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_signin.xml" value="0.2" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_signup.xml" value="0.22447916666666667" />
-        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_splashscreen.xml" value="0.536" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_splashscreen.xml" value="0.2" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_stores.xml" value="0.2" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_termsconditions.xml" value="0.15534420289855072" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/activity_welcomescreen.xml" value="0.136" />
@@ -96,7 +104,7 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/delivery_list_items.xml" value="0.4" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/discount_popup.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/due_list_items.xml" value="0.22447916666666667" />
-        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/edit_profile_layout.xml" value="0.2" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/edit_profile_layout.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/extented_recycler_adapter.xml" value="0.536" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/fragment_tab.xml" value="0.536" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/image_scroll_layout.xml" value="0.17889492753623187" />
@@ -115,6 +123,7 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/payment_popup.xml" value="0.15534420289855072" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/paymentlist_adapter.xml" value="0.2" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/pinpode_popup.xml" value="0.264" />
+        <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/point_list_items.xml" value="0.2" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/product_fragment.xml" value="0.15534420289855072" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/remove_ite_adapter.xml" value="0.264" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/layout/remove_item.xml" value="0.176" />

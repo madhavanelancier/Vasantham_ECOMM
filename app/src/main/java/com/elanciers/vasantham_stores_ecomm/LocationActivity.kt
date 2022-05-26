@@ -101,8 +101,14 @@ class LocationActivity : AppCompatActivity(),OnMapReadyCallback {
         ab!!.setDisplayShowHomeEnabled(true)
         ab!!.setDisplayHomeAsUpEnabled(true)
         ab.setHomeAsUpIndicator(R.drawable.ic_arrow_back_ios_24px)
-        custlongitude = if (intent.hasExtra("lng")) intent.getStringExtra("lng").toString().toDouble() else 0.0
-        custlatitude = if (intent.hasExtra("lat")) intent.getStringExtra("lat").toString().toDouble() else 0.0
+        if (intent.hasExtra("lng")) {
+            custlongitude = if (intent.hasExtra("lng")) intent.getStringExtra("lng").toString()
+                .toDouble() else 0.0
+            custlatitude = if (intent.hasExtra("lat")) intent.getStringExtra("lat").toString()
+                .toDouble() else 0.0
+        }else{
+            Deliveriboyloaction().execute()
+        }
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(object : OnMapReadyCallback{
             override fun onMapReady(googleMap: GoogleMap?) {

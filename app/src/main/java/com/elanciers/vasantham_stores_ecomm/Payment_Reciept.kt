@@ -36,6 +36,7 @@ class Payment_Reciept : AppCompatActivity() {
     var amout=""
     var rec=""
     var due=""
+    var coupon=""
     val RequestPermissionCode = 7
     private var mNotifyManager: NotificationManager? = null
     private var mBuilder: NotificationCompat.Builder? = null
@@ -52,6 +53,7 @@ class Payment_Reciept : AppCompatActivity() {
         amout=intent!!.getString("amout").toString()
         rec=intent!!.getString("rec").toString()
         due=intent!!.getString("due").toString()
+        coupon=intent!!.getString("coupon").toString()
         val times=intent!!.getString("date").toString()
 
         paydt.setText(times)
@@ -60,6 +62,15 @@ class Payment_Reciept : AppCompatActivity() {
         card.setText(cards)
         ordid.setText(rec)
         textView8.setText(Appconstands.rupees + amout)
+        if (coupon.isNotEmpty()){
+            linearLayout25.visibility=View.VISIBLE
+            view8.visibility=View.VISIBLE
+            couponamnt.setText(coupon)
+        }else{
+            linearLayout25.visibility=View.GONE
+            view8.visibility=View.GONE
+            couponamnt.setText(coupon)
+        }
 
         if(CheckingPermissionIsEnabledOrNot(this)){
 

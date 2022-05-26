@@ -316,10 +316,11 @@ class OtpActivity : AppCompatActivity() {
                             if (ad.response!![0].name.isNullOrEmpty()) "" else ad.response!![0].name.toString()
                         val email =
                             if (ad.response!![0].email.isNullOrEmpty()) "" else ad.response!![0].email.toString()
-                        val mobile =
-                            if (ad.response!![0].mobile.isNullOrEmpty()) "" else ad.response!![0].mobile.toString()
+                        val mobile = if (ad.response!![0].mobile.isNullOrEmpty()) "" else ad.response!![0].mobile.toString()
+                        val dob = if (ad.response!![0].dob.isNullOrEmpty()) "" else ad.response!![0].dob.toString()
+                        val gender = if (ad.response!![0].gender.isNullOrEmpty()) "" else ad.response!![0].gender.toString()
                         val address = ad.response!![0].address
-                        utils.setUser(userid, name, mobile, email)
+                        utils.setUser(userid, name, mobile, email,dob, gender)
                         println("userid : " + userid)
                         utils.setLogin(true)
                        /* for (ads in 0 until address!!.size) {
@@ -408,7 +409,7 @@ class OtpActivity : AppCompatActivity() {
                         val email = if (ad.response!![0].email.isNullOrEmpty())"" else ad.response!![0].email.toString()
                         val mobile = if (ad.response!![0].mobile.isNullOrEmpty())"" else ad.response!![0].mobile.toString()
                         val address = ad.response!![0].address*/
-                        utils.setUser(userid, name, mob, email)
+                        utils.setUser(userid, name, mob, email,"","")
                         utils.setLogin(true)
                         /*for (ads in 0 until address!!.size){
                             val type = if (address[ads].type.isNullOrEmpty())"" else address[ads].type.toString()

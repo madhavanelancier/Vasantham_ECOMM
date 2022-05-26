@@ -40,9 +40,11 @@
                     android:textSize="16sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/na"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:hint="@string/name"
                     android:theme="@style/textinput">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -50,16 +52,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/brandon_text_reg_otf"
-                        android:hint="NAME"
                         android:inputType="textPersonName"
                         android:textAllCaps="true"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:hint="@string/mobile_number"
                     android:theme="@style/textinput">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -69,7 +72,6 @@
                         android:digits="1234567890"
                         android:enabled="false"
                         android:fontFamily="@font/brandon_text_reg_otf"
-                        android:hint="PHONE NUMBER"
                         android:inputType="phone"
                         android:maxLength="10"
                         android:textAllCaps="true"
@@ -77,9 +79,11 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/em"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:hint="@string/email"
                     android:theme="@style/textinput">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -87,17 +91,53 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/brandon_text_reg_otf"
-                        android:hint="EMAIL"
                         android:inputType="text|textEmailAddress"
                         android:textAllCaps="true"
                         android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ge"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/gender"
+                    android:theme="@style/textinput">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:inputType="none"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/datetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/dob"
+                    android:theme="@style/textinput"
+                    app:endIconDrawable="@drawable/ic_calendar_alt_regular"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:inputType="none"
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/select_address"
                     android:fontFamily="@font/brandon_text_med_otf"
                     android:gravity="center"
