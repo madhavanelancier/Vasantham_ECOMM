@@ -43,6 +43,7 @@ object Appconstands {
     val Domin ="http://teamdev.co.in/vasantham/api/"
     //val Domin_due ="http://vasanthamstore.in/chit/app/"
     val Domin_lng ="http://vasanthamstore.in/chit/app/"
+    val Domin_hyper ="http://vasanthamhypermart.in/"
     val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
     val ImageDomain ="http://teamdev.co.in/vasantham/"
     val rupees ="₹ "

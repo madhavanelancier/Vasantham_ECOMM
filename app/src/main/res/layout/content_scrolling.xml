@@ -198,7 +198,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="40dp"
@@ -220,10 +221,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
+            android:onClick="openFB"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:padding="8dp"
@@ -234,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="Facebook"
-                android:textSize="10sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -242,10 +244,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
+            android:onClick="openInsta"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:padding="8dp"
@@ -256,7 +259,7 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="Instagram"
-                android:textSize="10sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -264,7 +267,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="40dp"
@@ -286,10 +290,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
+            android:onClick="openYt"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:padding="8dp"
@@ -300,7 +305,7 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="youtube"
-                android:textSize="10sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

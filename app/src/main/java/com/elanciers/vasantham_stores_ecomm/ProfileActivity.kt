@@ -3,26 +3,25 @@ package com.elanciers.vasantham_stores_ecomm
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.app.TimePickerDialog
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.content_scrolling.*
-import android.net.Uri
-import android.text.format.DateFormat
-import android.view.animation.Animation
-import android.view.animation.Transformation
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.animation.Transformation
 import android.widget.*
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.isValidEmail
@@ -32,7 +31,7 @@ import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
 import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.edit_profile_layout.*
+import kotlinx.android.synthetic.main.content_scrolling.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -490,6 +489,72 @@ class ProfileActivity : AppCompatActivity() {
         val height =  (displaymetrics.heightPixels * 1);
         openwith.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         openwith.show()*/
+    }
+    fun getFacebookPageURL(): String? {
+        val FACEBOOK_URL="https://www.facebook.com/Vasanthamsupermart"
+        val FACEBOOK_PAGE_ID = "Vasanthamsupermart"
+        val packageManager: PackageManager = this.getPackageManager()
+        return try {
+            val versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode
+            if (versionCode >= 3002850) { //newer versions of fb app
+                "fb://facewebmodal/f?href=$FACEBOOK_URL"
+            } else { //older versions of fb app
+                "fb://page/$FACEBOOK_PAGE_ID"
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            FACEBOOK_URL //normal web url
+        }
+    }
+    fun openFB(view: View){
+        val y = "https://www.facebook.com/Vasanthamsupermart"
+        val uri = Uri.parse(y)
+        val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+        likeIng.setPackage("com.facebook.katana")
+        try {
+            startActivity(likeIng)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(y)
+                )
+            )
+        }
+    }
+    fun openInsta(view: View){
+        val uri = Uri.parse("https://www.instagram.com/vasanthamsupermart")
+        val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+        likeIng.setPackage("com.instagram.android")
+        try {
+            startActivity(likeIng)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.instagram.com/vasanthamsupermart")
+                )
+            )
+        }
+    }
+
+    fun openYt(view: View){
+        val y = "https://www.youtube.com/channel/UCYIia86MKba5BBiy0YX7Yqw"
+        val uri = Uri.parse(y)
+        val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+        likeIng.setPackage("com.google.android.youtube")
+        try {
+            startActivity(likeIng)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(y)
+                )
+            )
+        }
     }
 
 }

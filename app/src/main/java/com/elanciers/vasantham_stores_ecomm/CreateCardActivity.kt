@@ -79,6 +79,16 @@ class CreateCardActivity : AppCompatActivity() {
                 select_chitGroup.setText(chitgroup.chit[p2].chiteName)
                 select_chitGroup.setAdapter(ChitGroupSpinnerAdapter(activity,chitgroup.chit))
                 select_chitGroup.error=null
+                if(chitgroup.chit[p2].fund.toString()=="1"){
+                    getFunds()
+                }else{
+                    Funds.fund1 = arrayListOf()
+                    Funds.fund2 = arrayListOf()
+                    select_fund1.setText("")
+                    select_fund2.setText("")
+                    select_fund1.setAdapter(FundSpinnerAdapter(activity,Funds.fund1))
+                    select_fund2.setAdapter(FundSpinnerAdapter(activity,Funds.fund2))
+                }
             }
         }
         select_fund1.onItemClickListener = object : AdapterView.OnItemClickListener{
@@ -112,12 +122,25 @@ class CreateCardActivity : AppCompatActivity() {
             validatePhoneNo(mob)
             if ( validatename(name) /*&& validatename(adrs)*/ && validatePhoneNo(mob) &&
                 !selectedYear.id.isNullOrEmpty()&&
-                !selectedChit.id.isNullOrEmpty()&&
-                !selectedFund1.id.isNullOrEmpty()&&
-                !selectedFund2.id.isNullOrEmpty()&& findarea())
+                !selectedChit.id.isNullOrEmpty()&& findarea())
             {
                 println("Ready to Submit")
-                getCardCheck()
+                if (Funds.fund1.isNotEmpty()){
+                    if (!selectedFund1.id.isNullOrEmpty()&&
+                        !selectedFund2.id.isNullOrEmpty()){
+                        getCardCheck()
+                    }else{
+                        if (selectedFund1.id.isNullOrEmpty()){
+                            select_fund1.setError("Required Field")
+                        }
+                        if (selectedFund2.id.isNullOrEmpty()){
+                            select_fund2.setError("Required Field")
+                        }
+                    }
+                }else{
+                    getCardCheck()
+                }
+
             }else{
                 println("Error")
                 if (selectedYear.id.isNullOrEmpty()){
@@ -125,12 +148,6 @@ class CreateCardActivity : AppCompatActivity() {
                 }
                 if (selectedChit.id.isNullOrEmpty()){
                     select_chitGroup.setError("Required Field")
-                }
-                if (selectedFund1.id.isNullOrEmpty()){
-                    select_fund1.setError("Required Field")
-                }
-                if (selectedFund2.id.isNullOrEmpty()){
-                    select_fund2.setError("Required Field")
                 }
                 if(select_area.text.isEmpty()/*city.selectedItemPosition==0*/||!findarea()){
                     val errorText = select_area//.getSelectedView() as TextView
@@ -149,7 +166,6 @@ class CreateCardActivity : AppCompatActivity() {
         super.onResume()
         getBranch()
         getyear()
-        getFunds()
         getAreas()
     }
 
@@ -399,8 +415,8 @@ class CreateCardActivity : AppCompatActivity() {
         obj.addProperty("area", selectedArea.areaname.toString())
         obj.addProperty("address", adrs.text.toString())
         obj.addProperty("who", who)
-        obj.addProperty("fund1", selectedFund1.id)
-        obj.addProperty("fund2", selectedFund2.id)
+        obj.addProperty("fund1", if (Funds.fund1.isNullOrEmpty())"" else selectedFund1.id)
+        obj.addProperty("fund2", if (Funds.fund2.isNullOrEmpty())"" else selectedFund2.id)
         obj.addProperty("gid", "")
         obj.addProperty("collect_id", "")
         Log.d(tag, obj.toString())

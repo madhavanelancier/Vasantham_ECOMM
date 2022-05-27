@@ -34,12 +34,17 @@ import com.elanciers.vasantham_stores_ecomm.Adapter.TabAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.*
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.RequestPermissionCode
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.net_status
+import com.elanciers.vasantham_stores_ecomm.DataClass.CheckCardData
 import com.elanciers.vasantham_stores_ecomm.DataClass.ImageScroll
+import com.elanciers.vasantham_stores_ecomm.DataClass.LoyaltyPoints
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
 import com.elanciers.vasantham_stores_ecomm.retrofit.Resp
 import com.elanciers.vasantham_stores_ecomm.retrofit.Respval
+import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.android.gms.location.LocationRequest
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -258,6 +263,10 @@ var locationManager: LocationManager? = null;
             toast.setGravity(Gravity.CENTER,0,0)
             toast.show()
 
+        }
+
+        points_lay.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, PointsListActivity::class.java))
         }
 
         var data1 = ImageScroll()
@@ -508,6 +517,7 @@ var locationManager: LocationManager? = null;
         highLightCurrentTab()
         selecttab1(0)
         cartitem()
+        getLoyaltypoints()
         if (!utils.login()){
             finish()
         }
@@ -1491,5 +1501,40 @@ var locationManager: LocationManager? = null;
         points_txt.setText(AppUtil.languageString("points"))
         shopby_txt.setText(AppUtil.languageString("shopbycat"))
         catall.setText(AppUtil.languageString("see_all"))
+    }
+
+    fun getLoyaltypoints(){
+        //pDialog.show()
+        val obj = JsonObject()
+        obj.addProperty("mobile", utils.mobile())
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.getLoyaltypoints("http://vasanthamhypermart.in/api/loyaltybycustomer",obj)
+        call.enqueue(object : Callback<LoyaltyPoints> {
+            override fun onResponse(call: Call<LoyaltyPoints>, response: Response<LoyaltyPoints>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as LoyaltyPoints
+                        val data = Gson().toJson(example, LoyaltyPoints::class.java).toString()
+                        println("data : "+data)
+                    if (example.status == "success") {
+                        val res = example.response!!
+                        points.setText(res.toString())
+                    }
+                }
+                //pDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<LoyaltyPoints>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                //pDialog.dismiss()
+            }
+        })
     }
 }

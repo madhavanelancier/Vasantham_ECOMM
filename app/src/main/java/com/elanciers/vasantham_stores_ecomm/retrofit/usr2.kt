@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Url
 
 interface usr2 {
 
@@ -44,5 +45,12 @@ interface usr2 {
 
     @POST("coupon.php")
     fun CheckCopon(@Body()obj : JsonObject): Call<CouponData>
+
+    @POST()
+    fun getLoyaltypoints(@Url() url: String,@Body()obj : JsonObject): Call<LoyaltyPoints>
+
+    @POST()
+    fun getLoyaltypointsList(@Url() url: String,@Body()obj : JsonObject): Call<LoyaltyList>
+
 
 }

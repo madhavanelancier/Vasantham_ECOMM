@@ -8,14 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardListRecyclerAdapter
+import com.elanciers.vasantham_stores_ecomm.Adapters.PointsListRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
-import com.elanciers.vasantham_stores_ecomm.DataClass.CardList
-import com.elanciers.vasantham_stores_ecomm.DataClass.CardsData
-import com.elanciers.vasantham_stores_ecomm.DataClass.CardsResponse
-import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
+import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -47,39 +45,42 @@ class PointsListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemCli
 
     override fun onResume() {
         super.onResume()
-        //getCards()
+        getPoints()
     }
 
-    fun getCards(){
+    fun getPoints(){
         pDialog.show()
         val obj = JsonObject()
-        obj.addProperty("type", "cardLists")
-        obj.addProperty("phone", utils.mobile())
+        obj.addProperty("mobile", utils.mobile())
         Log.d(tag, obj.toString())
-        val call = RetrofitClient2.Get.getCards(obj)
-        call.enqueue(object : Callback<CardsData> {
-            override fun onResponse(call: Call<CardsData>, response: Response<CardsData>) {
+        val call = RetrofitClient2.Get.getLoyaltypointsList("http://vasanthamhypermart.in/api/salesbycustomer",obj)
+        call.enqueue(object : Callback<LoyaltyList> {
+            override fun onResponse(call: Call<LoyaltyList>, response: Response<LoyaltyList>) {
                 Log.e("$tag response", response.toString())
                 if (response.isSuccessful()) {
-                    val example = response.body() as CardsData
-                    if (example.Status == "Success") {
-                        cards = example.Response.cardList
-                        val data = Gson().toJson(example, CardsData::class.java).toString()
-                        println("data : "+data)
-                        recyclerView.adapter=CardListRecyclerAdapter(activity,cards,this@PointsListActivity)
-                        if (cards.isNotEmpty()) {
-                            nodata.visibility = View.GONE
-                        }else{
-                            nodata.visibility = View.VISIBLE
+                    val example = response.body() as LoyaltyList
+                    val data = Gson().toJson(example, LoyaltyList::class.java).toString()
+                    println("data : "+data)
+                    if (example.success!=null) {
+                        example.success?.let {
+                            if (it.orders.isEmpty()){
+                                nodata.visibility=View.VISIBLE
+                            }else {
+                                nodata.visibility = View.GONE
+                                recyclerView.adapter =
+                                    PointsListRecyclerAdapter(activity, it.orders)
+                            }
                         }
                     }else{
-                        nodata.visibility= View.VISIBLE
+                        nodata.visibility=View.VISIBLE
                     }
+                }else{
+                    nodata.visibility=View.VISIBLE
                 }
                 pDialog.dismiss()
             }
 
-            override fun onFailure(call: Call<CardsData>, t: Throwable) {
+            override fun onFailure(call: Call<LoyaltyList>, t: Throwable) {
                 Log.e("$tag Fail response", t.toString())
                 if (t.toString().contains("time")) {
                     Toast.makeText(

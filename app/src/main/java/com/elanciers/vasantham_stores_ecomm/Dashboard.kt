@@ -101,9 +101,9 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
 
         pay.setOnClickListener {
             pay.isEnabled=false
-            couponData=null
-            coupon()
             startpayment()
+            /*couponData=null
+            coupon()*/
         }
 
         imageView6.setOnClickListener {

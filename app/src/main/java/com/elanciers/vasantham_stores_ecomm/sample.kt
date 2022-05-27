@@ -33,4 +33,14 @@ inline fun <reified T> genericFunc() {
 "pincode": "Pincode",
 "door_delivery": "Door Delivery",
 "alt_mobile_number": "Alternate Mobile Number",
+
+"Home": "Home",
+"Search": "Search",
+"Orders": "Orders",
+"Profile": "Profile",
+"dob": "DOB",
+"gender": "Gender",
+"email": "Email",
+"coupon_amount": "Coupon Amount :",
+"payable_amount": "Payable Amount :"
 */

@@ -37,7 +37,8 @@ data class ChitGroupResponse (
 data class Chit (
 
     @SerializedName("id"         ) var id        : String? = null,
-    @SerializedName("chite_name" ) var chiteName : String? = null
+    @SerializedName("chite_name" ) var chiteName : String? = null,
+    @SerializedName("fund"       ) var fund      : String? = null
 
 )
 
@@ -217,5 +218,59 @@ data class CouponResponse (
 
     @SerializedName("amount"    ) var amount   : String? = null,
     @SerializedName("coupon_no" ) var couponNo : String? = null
+
+)
+
+data class HyperLogin (
+
+    @SerializedName("success" ) var success : Success? = Success()
+
+)
+
+data class Success (
+
+    @SerializedName("token"  ) var token  : Token? = Token(),
+    @SerializedName("userId" ) var userId : Int?   = null
+
+)
+
+data class Token (
+
+    @SerializedName("name"           ) var name          : String?           = null,
+    @SerializedName("abilities"      ) var abilities     : ArrayList<String> = arrayListOf(),
+    @SerializedName("tokenable_id"   ) var tokenableId   : Int?              = null,
+    @SerializedName("tokenable_type" ) var tokenableType : String?           = null,
+    @SerializedName("updated_at"     ) var updatedAt     : String?           = null,
+    @SerializedName("created_at"     ) var createdAt     : String?           = null,
+    @SerializedName("id"             ) var id            : Int?              = null
+
+)
+
+data class LoyaltyPoints (
+
+    @SerializedName("status"   ) var status   : String? = null,
+    @SerializedName("response" ) var response : String? = null
+
+)
+
+data class LoyaltyList (
+
+    @SerializedName("success" ) var success : LSuccess? = LSuccess()
+
+)
+
+data class LSuccess (
+
+    @SerializedName("orders"        ) var orders       : ArrayList<Orders> = arrayListOf(),
+    @SerializedName("record_counts" ) var recordCounts : String?           = null
+
+)
+
+data class Orders (
+
+    @SerializedName("id"            ) var id           : String? = null,
+    @SerializedName("date"          ) var date         : String? = null,
+    @SerializedName("bill_amount"   ) var billAmount   : String? = null,
+    @SerializedName("points_earned" ) var pointsEarned : String? = null
 
 )

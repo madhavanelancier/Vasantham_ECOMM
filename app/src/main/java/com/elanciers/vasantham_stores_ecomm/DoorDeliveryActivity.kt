@@ -3,6 +3,7 @@ package com.elanciers.vasantham_stores_ecomm
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -19,16 +20,10 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import kotlinx.android.synthetic.main.activity_create_card.*
+import com.razorpay.Checkout
+import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_door_deivery.*
-import kotlinx.android.synthetic.main.activity_door_deivery.area
-import kotlinx.android.synthetic.main.activity_door_deivery.card_number
-import kotlinx.android.synthetic.main.activity_door_deivery.imageView5
-import kotlinx.android.synthetic.main.activity_door_deivery.mob
-import kotlinx.android.synthetic.main.activity_door_deivery.select_area
-import kotlinx.android.synthetic.main.activity_door_deivery.submit
-import kotlinx.android.synthetic.main.activity_door_deivery.textView9
-import kotlinx.android.synthetic.main.activity_doordelivery_list.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DoorDeliveryActivity : AppCompatActivity() {
+class DoorDeliveryActivity : AppCompatActivity(), PaymentResultListener {
     var tag = "door"
     lateinit var activity : Activity
     lateinit var pDialog: CustomLoadingDialog
@@ -99,8 +94,10 @@ class DoorDeliveryActivity : AppCompatActivity() {
             validatename(pincode)
             validatename(card_number)
             validatePhoneNo(mob)
+            findarea()
             if (validatename(adrs1)&&validatename(adrs2)&&validatename(landmark)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)&&findarea()){
-                saveDelivery()
+                //saveDelivery()
+                startpayment()
             }else{
                 if(select_area.text.isEmpty()/*city.selectedItemPosition==0*/||!findarea()){
                     val errorText = select_area//.getSelectedView() as TextView
@@ -214,7 +211,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
         select_area.setAdapter(ArrayAdapter(this@DoorDeliveryActivity,R.layout.spinner_item1,areaarrname))
     }
 
-    fun saveDelivery(){
+    fun saveDelivery(trans_id:String){
         pDialog.show()
         /*{
     "cus_id":"",
@@ -226,8 +223,8 @@ class DoorDeliveryActivity : AppCompatActivity() {
     "dpincode":"",
     "landmark":"",
     "aphone":"",
-    "area":""
-
+    "area":"",
+    "trans_id":""
 }*/
         val obj = JsonObject()
         obj.addProperty("cus_id", customer.id)
@@ -240,6 +237,7 @@ class DoorDeliveryActivity : AppCompatActivity() {
         obj.addProperty("landmark", landmark.text.toString().trim())
         obj.addProperty("aphone", mob.text.toString().trim())
         obj.addProperty("area", select_area.text.toString().trim())
+        obj.addProperty("trans_id", trans_id)
         Log.d(tag, obj.toString())
         val call = RetrofitClient2.Get.CreateDelivery(obj)
         call.enqueue(object : Callback<CreateDeliveryData> {
@@ -326,5 +324,64 @@ class DoorDeliveryActivity : AppCompatActivity() {
         //pincode.setHint(AppUtil.languageString("pincode"))
         area.setHint(AppUtil.languageString("select_area"))
         submit.setText(AppUtil.languageString("submit"))
+    }
+
+    fun startpayment() {
+        val checkout = Checkout()
+        checkout.setKeyID(utils.razorpay_key)
+        println("key : "+utils.razorpay_key)
+        try {
+            val total = customer.deliveryAmt.toString().toDouble()
+            val options = JSONObject()
+            options.put("name", "Vasantham Stores")
+            options.put("description", customer.cardNo.toString())
+            options.put("image","https://elancier.xyz/vasantham_stores/assets/images/logo.png")
+            options.put("currency", "INR")
+            val st =
+                StringTokenizer(total.toString().trim({ it <= ' ' }), ".")
+            val value1 = st.nextToken()
+            val value2 = st.nextToken()
+            println("total : " + total)
+            println("st : " + st)
+            println("value2 : " + value2)
+            val paymentamount = Integer.valueOf(value2)
+            println("paymentamount : " + (paymentamount * 100))
+            options.put("amount", total * 100)//paymentamount * 100
+            val preFill = JSONObject()
+            preFill.put("email", utils.email())
+            preFill.put("contact", utils.mobile())
+            options.put("prefill", preFill)
+            pDialog.dismiss()
+            checkout.open(activity, options)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun onPaymentSuccess(razorpayPaymentID: String?) {
+        try {
+            Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show()
+            Log.e("razorpayPaymentID", razorpayPaymentID!!)
+            saveDelivery(razorpayPaymentID.toString())
+        } catch (e: java.lang.Exception) {
+            Log.e(
+                "dvsf",
+                "Exception in onPaymentSuccess",
+                e
+            )
+        }
+    }
+
+    override fun onPaymentError(code: Int, response: String) {
+        try {
+            Toast.makeText(this, "Payment Cancelled or Failed", Toast.LENGTH_LONG).show()
+            Log.d("razorpay", "Payment failed: $code $response")
+        } catch (e: java.lang.Exception) {
+            Log.e(
+                "fvf",
+                "Exception in onPaymentError",
+                e
+            )
+        }
     }
 }
