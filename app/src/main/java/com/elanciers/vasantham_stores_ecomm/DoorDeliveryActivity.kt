@@ -95,13 +95,16 @@ class DoorDeliveryActivity : AppCompatActivity(), PaymentResultListener {
             validatename(card_number)
             validatePhoneNo(mob)
             findarea()
-            if (validatename(adrs1)&&validatename(adrs2)&&validatename(landmark)&&validatename(pincode)&&validatename(card_number)&&validatePhoneNo(mob)&&findarea()){
+            if (validatename(adrs1)&&validatename(adrs2)&&validatename(landmark)&&validatename(pincode)&&validatename(card_number)&&(validatePhoneNo(mob)&&mob.text.toString()!=customer.phone)&&findarea()){
                 //saveDelivery()
                 startpayment()
             }else{
                 if(select_area.text.isEmpty()/*city.selectedItemPosition==0*/||!findarea()){
                     val errorText = select_area//.getSelectedView() as TextView
                     errorText.error = "Select Area"
+                }
+                if (mob.text.toString()==customer.phone){
+                    mob.setError("Not Same as Mobile Number")
                 }
             }
         }

@@ -42,11 +42,13 @@ class PointsListRecyclerAdapter(val activity : Activity, private var items: Arra
         internal var date : TextView
         internal var point : TextView
         internal var amount : TextView
+        internal var branch : TextView
         init {
 
             date = itemView.findViewById(R.id.date) as TextView
             point = itemView.findViewById(R.id.point) as TextView
             amount = itemView.findViewById(R.id.amount) as TextView
+            branch = itemView.findViewById(R.id.branch) as TextView
 
             /*opt.setOnClickListener {
                 lastSelectedPosition = getAdapterPosition();
@@ -79,6 +81,7 @@ class PointsListRecyclerAdapter(val activity : Activity, private var items: Arra
         holder.date.setText(items[position].date)
         holder.amount.setText(items[position].billAmount)
         holder.point.setText(items[position].pointsEarned)
+        holder.branch.setText(items[position].branch)
     }
 
 

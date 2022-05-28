@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">Vasantham Stores</string>
-    <string name="splash1_1">Just Order and Relax !</string><!--Send Packages with \nQuality-->
+    <!--<string name="splash1_1">Just Order and Relax !</string>&lt;!&ndash;Send Packages with \nQuality&ndash;&gt;
     <string name="sample1">Our riders will picks up your order and brings it to you.</string>
     <string name="sample2">We are providing home services at your door steps.</string>
     <string name="sample3">We ensure the safety measures on orders,preparation and delivery !!</string>
-    <string name="splash_2">Providing services at your door steps</string><!--Daily Grocery and Fruits, \nVagitables-->
-    <string name="splash_3">Contactless Deivery !!</string><!--Meat and Fish \nFresh Eat-->
+    <string name="splash_2">Providing services at your door steps</string>&lt;!&ndash;Daily Grocery and Fruits, \nVagitables&ndash;&gt;
+    <string name="splash_3">Contactless Deivery !!</string>&lt;!&ndash;Meat and Fish \nFresh Eat&ndash;&gt;-->
+
+    <string name="splash1_1">Sit back and Relax !</string><!--Send Packages with \nQuality-->
+    <string name="sample1">Our riders will picks up your order and brings it to you.</string>
+    <string name="sample2">Enjoy shopping ! we bring your orders with care to your doorstep.</string>
+    <string name="sample3">Explore more , Save more , delicious orders and stay healthy !!</string>
+    <string name="splash_2">Anything from Anywhere</string><!--Daily Grocery and Fruits, \nVagitables-->
+    <string name="splash_3">Fresh Food or Grocery !!</string><!--Meat and Fish \nFresh Eat-->
+
     <string name="linearmanager">androidx.recyclerview.widget.LinearLayoutManager</string>
     <string name="work_u">Work</string>
     <string name="home_u">Home</string>
@@ -107,6 +115,10 @@
     <string name="email">Email</string>
     <string name="coupon_amount">Coupon Amount :</string>
     <string name="payable_amount">Payable Amount :</string>
+    <string name="viewbills"><u>View Bills</u></string>
+    <string name="redeem">Redeem</string>
+    <string name="billamnt">Bill Amount</string>
+    <string name="pointsearned">Points Earned</string>
 
 
 </resources>

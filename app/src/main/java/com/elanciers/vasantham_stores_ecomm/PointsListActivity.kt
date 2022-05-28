@@ -22,7 +22,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PointsListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemClickListener {
+class PointsListActivity : AppCompatActivity() {
     var tag = "pointslist"
     lateinit var activity : Activity
     lateinit var pDialog: CustomLoadingDialog
@@ -51,7 +51,7 @@ class PointsListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemCli
     fun getPoints(){
         pDialog.show()
         val obj = JsonObject()
-        obj.addProperty("mobile", utils.mobile())
+        obj.addProperty("mobile", "9042215989")//utils.mobile())
         Log.d(tag, obj.toString())
         val call = RetrofitClient2.Get.getLoyaltypointsList("http://vasanthamhypermart.in/api/salesbycustomer",obj)
         call.enqueue(object : Callback<LoyaltyList> {
@@ -96,9 +96,8 @@ class PointsListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemCli
     }
     fun lang() {
         textView9.setText(AppUtil.languageString("loyalty_points"))
-    }
-
-    override fun OnItemClick(view: View, position: Int, card: CardList) {
-
+        date.setText(AppUtil.languageString("date"))
+        billamnt.setText(AppUtil.languageString("billamnt"))
+        pointsearned.setText(AppUtil.languageString("pointsearned"))
     }
 }

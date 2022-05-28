@@ -556,5 +556,86 @@ class ProfileActivity : AppCompatActivity() {
             )
         }
     }
+    fun openWhatsapp(view: View){
+        val items = arrayListOf<String>("+919047183288","+916381594409")
+        /*val listPopupWindow = ListPopupWindow(this)
+        listPopupWindow.setAdapter(
+            ArrayAdapter<String>(
+                this,
+                R.layout.spinner_item1, items
+            )
+        )
+        listPopupWindow.setAnchorView(view)
+        listPopupWindow.setWidth(ListPopupWindow.WRAP_CONTENT)
+        listPopupWindow.setContentWidth(ListPopupWindow.WRAP_CONTENT)
+        //listPopupWindow.setWidth()
+        //listPopupWindow.setHeight(400)
+
+        //listPopupWindow.setModal(true)
+        listPopupWindow.setOnItemClickListener(object : AdapterView.OnItemClickListener {
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                Whatsapp(items[p2])
+            }
+
+        })
+        listPopupWindow.show()*/
+        val wrapper = ContextThemeWrapper(this, R.style.pop_PopupMenu)
+        val popupMenu = PopupMenu(wrapper, view)
+        popupMenu.menu.add("+919047183288")
+        popupMenu.menu.add("+916381594409")
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                return if (item.toString()=="+919047183288"){
+                    Whatsapp("+919047183288")
+                    popupMenu.dismiss()
+                    true
+                }else if (item.toString()=="+916381594409"){
+                    Whatsapp("+916381594409")
+                    popupMenu.dismiss()
+                    true
+                }else false
+
+            }
+        })
+        popupMenu.show()
+
+    }
+
+    fun Whatsapp(number : String){
+        //9047183288 / 63815 94409
+        val y = "https://wa.me/"+number//"https://api.whatsapp.com/send?phone="
+        val uri = Uri.parse(y)
+        val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+        likeIng.setPackage("com.whatsapp")
+        try {
+            startActivity(likeIng)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(y)
+                )
+            )
+        }
+    }
+    fun openTwitter(view: View){
+        //9047183288 / 63815 94409
+        val y = "https://twitter.com/Vasanthamstore"
+        val uri = Uri.parse(y)
+        val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+        likeIng.setPackage("com.twitter.android")
+        try {
+            startActivity(likeIng)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(y)
+                )
+            )
+        }
+    }
 
 }

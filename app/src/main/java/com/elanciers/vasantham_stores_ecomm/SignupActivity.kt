@@ -93,7 +93,7 @@ class SignupActivity : AppCompatActivity() {
 
         signupbtn.setOnClickListener {
             if (CheckingPermissionIsEnabledOrNot()) {
-                if (name.text.toString().trim().isNotEmpty() && mobile.text.toString().trim().length==10){
+                if (name.text.toString().trim().isNotEmpty() && mobile.text.toString().trim().length==10&&email.text.toString().trim().isNotEmpty()){
                     if (email.text.toString().trim().isNotEmpty()){
                         if (isValidEmail(email)){
                             SendLogin(name.text.toString().trim(),mobile.text.toString().trim(),email.text.toString().trim())
@@ -109,6 +109,9 @@ class SignupActivity : AppCompatActivity() {
                     }
                     if (mobile.text.toString().trim().isEmpty()){
                         name.setError("Enter Valid Mobile Number")
+                    }
+                    if (email.text.toString().trim().isEmpty()){
+                        email.setError("Enter Valid Email")
                     }
                 }
             } else {

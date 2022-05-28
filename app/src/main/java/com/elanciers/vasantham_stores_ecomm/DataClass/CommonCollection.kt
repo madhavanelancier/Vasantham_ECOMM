@@ -270,6 +270,7 @@ data class Orders (
 
     @SerializedName("id"            ) var id           : String? = null,
     @SerializedName("date"          ) var date         : String? = null,
+    @SerializedName("branch"        ) var branch       : String? = null,
     @SerializedName("bill_amount"   ) var billAmount   : String? = null,
     @SerializedName("points_earned" ) var pointsEarned : String? = null
 

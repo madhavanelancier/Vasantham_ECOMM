@@ -31,9 +31,9 @@
         android:name=".AppController"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_luncher"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:icon="@mipmap/ic_luncher"
         android:roundIcon="@mipmap/ic_luncher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAction"
@@ -207,7 +207,7 @@
         -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/dot_light_screen1" />
+            android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_vasanth_noti" />
