@@ -202,8 +202,18 @@ data class SettingsData (
 
 data class SettingsResponse (
 
-    @SerializedName("delivery_amount" ) var deliveryAmount : String? = null,
-    @SerializedName("razorpay_key"    ) var razorpayKey    : String? = null
+    @SerializedName("delivery_amount" ) var deliveryAmount : String?               = null,
+    @SerializedName("razorpay_key"    ) var razorpayKey    : String?               = null,
+    @SerializedName("diwali_suprise"  ) var diwaliSuprise  : String?               = null,
+    @SerializedName("whatsapp_order"  ) var whatsappOrder  : String?               = null,
+    @SerializedName("customer_care"   ) var customerCare   : String?               = null,
+    @SerializedName("branch_list"     ) var branchList     : ArrayList<BranchList> = arrayListOf()
+
+)
+data class BranchList (
+
+    @SerializedName("branch"  ) var branch  : String? = null,
+    @SerializedName("address" ) var address : String? = null
 
 )
 

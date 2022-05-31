@@ -42,7 +42,7 @@
     <string name="connection_error">Connection Error</string>
     <string name="connection_des">Please check your Network connectivity and try again.</string>
     <string name="retry">retry</string>
-    <string name="contact_us">https://vasanthamstore.com/</string>
+    <string name="contact_us">https://vasanthamstore.com</string>
 
     <string name="time_square">Time square</string>
     <string name="i_am_snippet">I am snippet</string>
