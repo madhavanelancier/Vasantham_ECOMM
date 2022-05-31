@@ -372,7 +372,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginEnd="4dp"
-                                                android:visibility="gone"
+                                                android:visibility="visible"
                                                 app:cardCornerRadius="4dp"
                                                 app:cardUseCompatPadding="true">
 
@@ -381,9 +381,9 @@
                                                     android:layout_height="match_parent"
                                                     android:gravity="center_vertical"
                                                     android:orientation="horizontal"
-                                                    android:paddingStart="8dp"
+                                                    android:paddingStart="4dp"
                                                     android:paddingTop="2dp"
-                                                    android:paddingEnd="8dp"
+                                                    android:paddingEnd="4dp"
                                                     android:paddingBottom="2dp">
 
                                                     <ImageView
@@ -402,7 +402,7 @@
                                                         android:includeFontPadding="false"
                                                         android:paddingStart="4dp"
                                                         android:paddingEnd="4dp"
-                                                        android:text="Gold"
+                                                        android:text="Silver"
                                                         android:textColor="#E64A19"
                                                         android:textSize="12sp"
                                                         android:textStyle="bold" />
@@ -482,7 +482,7 @@
                                             android:paddingStart="8dp"
                                             android:paddingEnd="8dp"
                                             android:paddingBottom="10dp"
-                                            android:visibility="gone">
+                                            android:visibility="visible">
 
                                             <androidx.constraintlayout.widget.ConstraintLayout
                                                 android:layout_width="match_parent"
@@ -495,7 +495,7 @@
                                                     android:layout_height="5dp"
                                                     android:layout_weight="1"
                                                     android:indeterminate="false"
-                                                    android:progress="80"
+                                                    android:progress="0"
                                                     android:progressDrawable="@drawable/custom_progressbar"
                                                     app:layout_constraintEnd_toEndOf="parent"
                                                     app:layout_constraintStart_toStartOf="parent"
@@ -507,7 +507,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="4dp"
                                                     android:fontFamily="@font/brandon_bold"
-                                                    android:text="444/500"
+                                                    android:text="1/500"
                                                     android:textColor="#E4FFFFFF"
                                                     android:textSize="12sp"
                                                     app:layout_constraintBottom_toBottomOf="parent"

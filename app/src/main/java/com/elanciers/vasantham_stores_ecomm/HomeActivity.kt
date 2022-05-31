@@ -51,6 +51,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class HomeActivity : AppCompatActivity()/*, LocationListener*/ {
@@ -1506,7 +1507,7 @@ var locationManager: LocationManager? = null;
     fun getLoyaltypoints(){
         //pDialog.show()
         val obj = JsonObject()
-        obj.addProperty("mobile", utils.mobile())
+        obj.addProperty("mobile", utils.mobile())//"9042215989")//
         Log.d(tag, obj.toString())
         val call = RetrofitClient2.Get.getLoyaltypoints("http://vasanthamhypermart.in/api/loyaltybycustomer",obj)
         call.enqueue(object : Callback<LoyaltyPoints> {
@@ -1518,6 +1519,29 @@ var locationManager: LocationManager? = null;
                         println("data : "+data)
                     if (example.status == "success") {
                         val res = example.response!!
+                        textView61.setText(example.plan.toString())
+
+                        if (example.range_end.toString()!="0") {
+                            progressBar2.max = Integer.parseInt(example.range_end.toString())
+                            textView62.setText(example.range_start+"/"+example.range_end)
+                            if (!example.response.isNullOrEmpty()){
+                                //val per=(example.response.toString().toFloat().toInt()/example.range_end.toString().toInt())*100
+                                progressBar2.progress = example.response.toString().toFloat().toInt()// per
+                                //println("per : "+per)
+                            }
+                        }else{
+                            progressBar2.max = Integer.parseInt(example.range_start.toString())
+                            textView62.setText(example.range_start+"/above")
+                            if (!example.response.isNullOrEmpty()){
+                                //val re=example.response.toString().toDouble().toInt()
+                                //val en =example.range_start.toString().toDouble().roundToInt()
+                                val per = example.response.toString().toFloat().toInt()//(re/en)*100
+                                progressBar2.progress = per
+                                //println("re : "+re)
+                                //println("en : "+en)
+                                println("per : "+per)
+                            }
+                        }
                         points.setText(res.toString())
                     }
                 }

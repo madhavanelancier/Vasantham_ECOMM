@@ -51,7 +51,7 @@ class PointsListActivity : AppCompatActivity() {
     fun getPoints(){
         pDialog.show()
         val obj = JsonObject()
-        obj.addProperty("mobile", "9042215989")//utils.mobile())
+        obj.addProperty("mobile", utils.mobile())
         Log.d(tag, obj.toString())
         val call = RetrofitClient2.Get.getLoyaltypointsList("http://vasanthamhypermart.in/api/salesbycustomer",obj)
         call.enqueue(object : Callback<LoyaltyList> {

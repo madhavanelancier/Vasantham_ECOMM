@@ -2,6 +2,7 @@ package com.elanciers.vasantham_stores_ecomm
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.elanciers.vasantham_stores_ecomm.Adapters.BranchAdapter
@@ -11,6 +12,7 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsData
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_contact_us.*
+import kotlinx.android.synthetic.main.category_list_adapter.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +49,24 @@ class ContactUsActivity : AppCompatActivity() {
                         val data = Gson().toJson(example, SettingsData::class.java).toString()
                         println("data : "+data)
                         if (settings != null) {
+                            if (settings.diwaliSuprise.isNullOrEmpty()){
+                                diwali_lay.visibility=View.GONE
+                            }else {
+                                diwali_lay.visibility=View.VISIBLE
+                                diwali.setText(settings.diwaliSuprise)
+                            }
+                            if (settings.whatsappOrder.isNullOrEmpty()){
+                                whatsapp_lay.visibility=View.GONE
+                            }else {
+                                whatsapp_lay.visibility=View.VISIBLE
+                                whatsapp.setText(settings.whatsappOrder)
+                            }
+                            if (settings.customerCare.isNullOrEmpty()){
+                                care_lay.visibility=View.GONE
+                            }else {
+                                care.setText(settings.customerCare)
+                                care_lay.visibility=View.VISIBLE
+                            }
                             recyclerview.adapter = BranchAdapter(this@ContactUsActivity,settings.branchList)
                         }
                     }

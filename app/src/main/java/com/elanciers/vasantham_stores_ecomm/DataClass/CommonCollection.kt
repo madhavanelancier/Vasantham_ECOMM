@@ -259,7 +259,10 @@ data class Token (
 data class LoyaltyPoints (
 
     @SerializedName("status"   ) var status   : String? = null,
-    @SerializedName("response" ) var response : String? = null
+    @SerializedName("response" ) var response : String? = null,
+    @SerializedName("plan" ) var plan : String? = null,
+    @SerializedName("range_start" ) var range_start : String? = null,
+    @SerializedName("range_end" ) var range_end : String? = null
 
 )
 
