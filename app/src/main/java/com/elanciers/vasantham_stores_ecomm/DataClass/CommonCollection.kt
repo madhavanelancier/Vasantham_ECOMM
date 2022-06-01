@@ -213,7 +213,8 @@ data class SettingsResponse (
 data class BranchList (
 
     @SerializedName("branch"  ) var branch  : String? = null,
-    @SerializedName("address" ) var address : String? = null
+    @SerializedName("address" ) var address : String? = null,
+    @SerializedName("phone" ) var phone : String? = null
 
 )
 

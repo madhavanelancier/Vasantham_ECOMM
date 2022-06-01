@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@android:color/transparent"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/branch_bg"
         android:orientation="vertical"
         android:padding="4dp">
 
@@ -18,19 +20,71 @@
             android:id="@+id/brnm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="start|center_vertical"
             android:padding="4dp"
-            android:text="Branch Name"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Branch Name" />
 
-        <TextView
-            android:id="@+id/bradr"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/store"
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/bradr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:textSize="18sp"
+                app:drawableTint="@color/white"
+                tools:text="Vasantham Hyper Mart\r\n30-C, Rakesh Towers,\r\nBypass Road, Madurai - 625016\r\nPhone: 9047053288" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="Branch Address"
-            android:textSize="16sp" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/phone"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:text="Phone : "
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableTint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/ph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_light"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:textSize="16sp"
+                tools:text="98798465654" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
