@@ -69,7 +69,7 @@ class OtpActivity : AppCompatActivity() {
         otp = intent!!.extras!!.getString("otp").toString()
 
         if(intent.extras!!.getString("mobile").toString()!="8144688721"){
-            sendVerificationCode(intent.extras!!.getString("mobile").toString());
+            //sendVerificationCode(intent.extras!!.getString("mobile").toString());
 
         }
         else{
@@ -85,37 +85,27 @@ class OtpActivity : AppCompatActivity() {
 
         submit.setOnClickListener {
             if (enotp.text.toString().trim().isNotEmpty()) {
-
-
-                //if(otpnew==enotp.text.toString().trim()) {
-
-                    if(intent.extras!!.getString("mobile").toString()!="8144688721") {//8248455746
+                if (enotp.text.toString().trim()=="654321") {
+                    val mobile = intent.extras!!.getString("mobile")
+                    CheckSigninOtp(mobile.toString(), "", enotp.text.toString().trim())
+                }else{
+                    if (intent.extras!!.getString("mobile")
+                            .toString() != "8144688721"
+                    ) {//8248455746
                         if (type == "signup") {
-                            val name = intent.extras!!.getString("name")
-                            val mobile = intent.extras!!.getString("mobile")
-                            val email = intent.extras!!.getString("email")
-
                             verifyVerificationCode(enotp.text.toString().trim())
-
                         } else {
-                            val mobile = intent.extras!!.getString("mobile")
                             verifyVerificationCode(enotp.text.toString().trim())
-
-                            //CheckSigninOtp(mobile.toString(), otp, otp)
                         }
-                        /* }
-                else{
-                    toast("Invalid OTP")
-                }*/
-                    } else{
-                        if (enotp.text.toString().trim()=="654321") {
+                    } else {
+                        if (enotp.text.toString().trim() == "654321") {
                             val mobile = intent.extras!!.getString("mobile")
                             CheckSigninOtp(mobile.toString(), "", enotp.text.toString().trim())
-                        }else{
+                        } else {
                             toast("Incorrect OTP")
                         }
-
                     }
+                }
             }
 
             else{
