@@ -207,7 +207,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/brandon_text_reg_otf"
-                            android:text="Referral Mobile Number"
+                            android:text="Referral Mobile Number (optional)"
                             android:textSize="16sp"
                             app:fontFamily="@font/brandon_text_reg_otf" />
 

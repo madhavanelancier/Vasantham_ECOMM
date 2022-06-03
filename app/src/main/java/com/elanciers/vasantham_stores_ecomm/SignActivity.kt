@@ -21,10 +21,12 @@ class SignActivity : AppCompatActivity() {
         Glide.with(this).load(R.drawable.logo_gif).into(imageView3);
         signin.setOnClickListener {
             startActivity(Intent(this, SigninActivity::class.java))
+            finish()
         }
 
         signup.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
+            finish()
         }
 
 

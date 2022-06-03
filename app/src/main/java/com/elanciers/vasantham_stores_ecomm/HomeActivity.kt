@@ -1502,8 +1502,12 @@ var locationManager: LocationManager? = null;
         points_txt.setText(AppUtil.languageString("points"))
         shopby_txt.setText(AppUtil.languageString("shopbycat"))
         catall.setText(AppUtil.languageString("see_all"))
+        textView10.setText(AppUtil.languageString("coming_soon"))
     }
 
+    fun redeem(view: View){
+        Toast.makeText(this, AppUtil.languageString("coming_soon"), Toast.LENGTH_SHORT).show()
+    }
     fun getLoyaltypoints(){
         //pDialog.show()
         val obj = JsonObject()

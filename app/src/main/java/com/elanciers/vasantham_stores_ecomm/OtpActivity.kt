@@ -69,12 +69,13 @@ class OtpActivity : AppCompatActivity() {
         otp = intent!!.extras!!.getString("otp").toString()
 
         if(intent.extras!!.getString("mobile").toString()!="8144688721"){
-            //sendVerificationCode(intent.extras!!.getString("mobile").toString());
-
+            //if (!BuildConfig.DEBUG) {
+                sendVerificationCode(intent.extras!!.getString("mobile").toString());
+            //}
         }
-        else{
+        //else{
 
-        }
+        //}
 
         back.setOnClickListener {
             finish()
@@ -85,29 +86,12 @@ class OtpActivity : AppCompatActivity() {
 
         submit.setOnClickListener {
             if (enotp.text.toString().trim().isNotEmpty()) {
-                if (enotp.text.toString().trim()=="654321") {
-                    val mobile = intent.extras!!.getString("mobile")
-                    CheckSigninOtp(mobile.toString(), "", enotp.text.toString().trim())
-                }else{
-                    if (intent.extras!!.getString("mobile")
-                            .toString() != "8144688721"
-                    ) {//8248455746
-                        if (type == "signup") {
-                            verifyVerificationCode(enotp.text.toString().trim())
-                        } else {
-                            verifyVerificationCode(enotp.text.toString().trim())
-                        }
-                    } else {
-                        if (enotp.text.toString().trim() == "654321") {
-                            val mobile = intent.extras!!.getString("mobile")
-                            CheckSigninOtp(mobile.toString(), "", enotp.text.toString().trim())
-                        } else {
-                            toast("Incorrect OTP")
-                        }
-                    }
+                if (type == "signup") {
+                    verifyVerificationCode(enotp.text.toString().trim())
+                } else {
+                    verifyVerificationCode(enotp.text.toString().trim())
                 }
             }
-
             else{
 
                 enotp.setError("Enter Otp")
