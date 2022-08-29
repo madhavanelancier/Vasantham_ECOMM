@@ -1,14 +1,17 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.app.Activity
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Toast
+import android.view.Window
+import android.view.WindowManager
+import android.widget.*
+import androidx.appcompat.app.ActionBar
 import com.elanciers.vasantham_stores_ecomm.Adapters.AreaSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.ChitGroupSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.FundSpinnerAdapter
@@ -20,6 +23,8 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.razorpay.Checkout
+import com.razorpay.PaymentResultListener
 import kotlinx.android.synthetic.main.activity_create_card.*
 import kotlinx.android.synthetic.main.activity_create_card.area
 import kotlinx.android.synthetic.main.activity_create_card.card_number
@@ -30,11 +35,12 @@ import kotlinx.android.synthetic.main.activity_create_card.submit
 import kotlinx.android.synthetic.main.activity_create_card.textView9
 import kotlinx.android.synthetic.main.activity_door_deivery.*
 import kotlinx.android.synthetic.main.activity_doordelivery_list.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CreateCardActivity : AppCompatActivity() {
+class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
     var tag = "card"
     lateinit var activity : Activity
     lateinit var pDialog: CustomLoadingDialog
@@ -49,6 +55,12 @@ class CreateCardActivity : AppCompatActivity() {
     var selectedFund2 = Fund1()
     var selectedArea = AreaResponse()
     var who = "11"
+    var amountint = 0
+
+    var tid=""
+    var Paymentmode = "Razorpay"
+    var success = "success"
+    var failed = "failed"
     lateinit var utils: Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +89,7 @@ class CreateCardActivity : AppCompatActivity() {
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 selectedChit = chitgroup.chit[p2]
                 select_chitGroup.setText(chitgroup.chit[p2].chiteName)
+                amount.setText(chitgroup.chit[p2].amount)
                 select_chitGroup.setAdapter(ChitGroupSpinnerAdapter(activity,chitgroup.chit))
                 select_chitGroup.error=null
                 if(chitgroup.chit[p2].fund.toString()=="1"){
@@ -157,6 +170,70 @@ class CreateCardActivity : AppCompatActivity() {
         }
 
     }
+
+    fun startPayment() { /*
+          You need to pass current activity in order to let Razorpay create CheckoutActivity
+         */
+        val activity: Activity = this
+        val co = Checkout()
+        co.setKeyID(Utils(this).razorpay_key)
+        try {
+            val options = JSONObject()
+            options.put("name", "Vasantham Hyper")
+            options.put("description", mob.text.toString())
+            //You can omit the image option to fetch the image from dashboard
+            options.put("image", R.mipmap.ic_logo)
+            options.put("currency", "INR")
+            amountint = Integer.valueOf(amount.text.toString())
+            options.put("amount", amountint * 100)
+            val preFill = JSONObject()
+            preFill.put("email", "")
+            preFill.put("contact", mob.text.toString())
+            options.put("prefill", preFill)
+            co.open(activity, options)
+        } catch (e: Exception) {
+            Toast.makeText(activity, "Error in payment: " + e.message, Toast.LENGTH_SHORT)
+                .show()
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * The name of the function has to be
+     * onPaymentSuccess
+     * Wrap your code in try catch, as shown, to ensure that this method runs correctly
+     */
+    override fun onPaymentSuccess(razorpayPaymentID: String) {
+        try {
+            Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show()
+            Log.i(
+                "Payment Sucess",
+                "Payment Successful: $razorpayPaymentID"
+            )
+            tid=razorpayPaymentID
+
+            getCardCreate()
+
+        } catch (e: Exception) {
+            Log.e("tag", "Exception in onPaymentSuccess", e)
+        }
+    }
+
+    /**
+     * The name of the function has to be
+     * onPaymentError
+     * Wrap your code in try catch, as shown, to ensure that this method runs correctly
+     */
+    override fun onPaymentError(code: Int, response: String) {
+        try { // Toast.makeText(this, "Payment failed: " + code + " " + response, Toast.LENGTH_SHORT).show();
+            Log.i("Payment Error", "Payment failed: $code $response")
+
+            Toast.makeText(applicationContext,"Payment Failed. Try Again Later",Toast.LENGTH_LONG).show()
+
+        } catch (e: Exception) {
+            Log.e("tag", "Exception in onPaymentError", e)
+        }
+    }
     fun findarea() : Boolean{
         areaarrname.forEach { d->if (select_area.text.toString().trim()==d) return true }
         return false
@@ -202,6 +279,37 @@ class CreateCardActivity : AppCompatActivity() {
                 pDialog.dismiss()
             }
         })
+    }
+
+    fun showthankspopup() { //open = new Dialog(LoginActivity.this,R.style.MyCustomTheme);
+        val open = Dialog(this)
+        open.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val popup = layoutInflater.inflate(R.layout.card_success_popup1, null)
+        val ok = popup.findViewById<View>(R.id.yes) as TextView
+        //open.getWindow().getAttributes().windowAnimations = R.style.MyCustomTheme;
+        open.setContentView(popup)
+        open.window!!.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+        )
+        open.window!!.setBackgroundDrawable(
+            ColorDrawable(Color.TRANSPARENT)
+        )
+        val lparam = WindowManager.LayoutParams()
+        lparam.copyFrom(open.window!!.attributes)
+        open.setCancelable(false)
+        open.window!!.setLayout(
+            ActionBar.LayoutParams.MATCH_PARENT,
+            ActionBar.LayoutParams.WRAP_CONTENT
+        )
+        open.show()
+        ok.setOnClickListener {
+            // TODO Auto-generated method stub
+            open.dismiss()
+            finish()
+            /*Intent intent = new Intent(PaymentActivity.this, JewelHome.class);
+                    startActivity(intent);
+                    finish();*/
+        }
     }
 
     fun getChitGroup(){
@@ -369,13 +477,13 @@ class CreateCardActivity : AppCompatActivity() {
                         val data = Gson().toJson(example, CheckCardData::class.java).toString()
                         println("data : "+data)
                         chitgroup.cardNo = res.cardNo
-                        getCardCreate()
+                        startPayment()
                     }
                 }
                 pDialog.dismiss()
             }
 
-            override fun onFailure(call: Call<CheckCardData>, t: Throwable) {
+            override fun onFailure(call:Call<CheckCardData>, t:Throwable) {
                 Log.e("$tag Fail response", t.toString())
                 if (t.toString().contains("time")) {
                     Toast.makeText(
@@ -415,6 +523,8 @@ class CreateCardActivity : AppCompatActivity() {
         obj.addProperty("area", selectedArea.areaname.toString())
         obj.addProperty("address", adrs.text.toString())
         obj.addProperty("who", who)
+        obj.addProperty("tid", tid)
+        obj.addProperty("amount", amount.text.toString())
         obj.addProperty("fund1", if (Funds.fund1.isNullOrEmpty())"" else selectedFund1.id)
         obj.addProperty("fund2", if (Funds.fund2.isNullOrEmpty())"" else selectedFund2.id)
         obj.addProperty("gid", "")
@@ -433,11 +543,15 @@ class CreateCardActivity : AppCompatActivity() {
                         println("data : "+data)
                         finish()
                     }
+                    else{
+                        finish()
+                    }
                 }
             }
 
             override fun onFailure(call: Call<CreateCardData>, t: Throwable) {
                 Log.e("$tag Fail response", t.toString())
+                finish()
                 if (t.toString().contains("time")) {
                     Toast.makeText(
                         activity,

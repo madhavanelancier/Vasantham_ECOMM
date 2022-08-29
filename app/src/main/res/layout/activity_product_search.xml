@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +7,226 @@
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
+    <WebView
+        android:id="@+id/wbview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/black"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="@color/black"
+                app:tabGravity="fill"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/tabImageView1"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_home"
+                        android:tint="@color/background" />
+
+                    <TextView
+                        android:id="@+id/tabTextView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Home"
+                        android:textColor="@color/background"
+                        android:textSize="12sp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/tabImageView2"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_search"
+                        android:tint="@color/background" />
+
+                    <TextView
+                        android:id="@+id/tabTextView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Search"
+                        android:textColor="@color/background"
+                        android:textSize="12sp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:visibility="visible">
+
+                <com.elanciers.vasantham_stores_ecomm.Common.CircleImageView
+                    android:id="@+id/tabImageViews"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_width="1dp"
+                    app:srcCompat="@mipmap/ic_luncher" />
+
+            </LinearLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/oders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/tabImageView3"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_shopping_bag"
+                        android:tint="@color/background" />
+
+                    <TextView
+                        android:id="@+id/tabTextView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Orders"
+                        android:textColor="@color/background"
+                        android:textSize="12sp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/offers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/tabImageView4"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_discount"
+                        android:tint="@color/background" />
+
+                    <TextView
+                        android:id="@+id/tabTextView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Offers"
+                        android:textColor="@color/background"
+                        android:textSize="12sp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+            </LinearLayout>-->
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                app:tabGravity="fill"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1023,8 +1240,10 @@
 
         </LinearLayout>
 
-        <include layout="@layout/connection_error"/>
+
+
+        <include layout="@layout/connection_error" />
 
     </FrameLayout>
 
-</LinearLayout>
+</FrameLayout>

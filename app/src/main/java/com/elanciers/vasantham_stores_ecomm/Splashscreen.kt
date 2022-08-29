@@ -80,7 +80,6 @@ class Splashscreen : AppCompatActivity() {
         }*/
 
         Handler().postDelayed(Runnable {
-            if (CheckingPermissionIsEnabledOrNot()) {
                 /*if (utils.login()) {
                     startActivity(Intent(activity, HomeActivity::class.java))
                     finish()
@@ -89,10 +88,8 @@ class Splashscreen : AppCompatActivity() {
                     finish()
                 }*/
                 download()
-            }else{
-                RequestMultiplePermission()
-            }
-        }, 4000)
+                //RequestMultiplePermission()
+        }, 2000)
 
     }
     fun CheckingPermissionIsEnabledOrNot(): Boolean {
@@ -150,14 +147,14 @@ class Splashscreen : AppCompatActivity() {
                                     HomeActivity::class.java))
                                 finish()
                             }else{
-                                startActivity(Intent(activity,WelcomeScreen::class.java))
+                                startActivity(Intent(activity,HomeActivity::class.java))
                                 finish()
                             }
                         }
                         //Toast.makeText(this@MainFirstActivity, "Permission Granted", Toast.LENGTH_LONG).show()
                     } else {
                         //Toast.makeText(this@MainFirstActivity, "Permission Denied", Toast.LENGTH_LONG).show()
-                        RequestMultiplePermission()
+                        //RequestMultiplePermission()
                     }
                 }
 
@@ -189,7 +186,7 @@ class Splashscreen : AppCompatActivity() {
                             startActivity(Intent(this, HomeActivity::class.java))
                             finish()
                         } else {
-                            startActivity(Intent(this, WelcomeScreen::class.java))
+                            startActivity(Intent(this, HomeActivity::class.java))
                             finish()
                         }
                     }

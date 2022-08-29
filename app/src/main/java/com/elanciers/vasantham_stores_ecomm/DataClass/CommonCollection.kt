@@ -38,7 +38,8 @@ data class Chit (
 
     @SerializedName("id"         ) var id        : String? = null,
     @SerializedName("chite_name" ) var chiteName : String? = null,
-    @SerializedName("fund"       ) var fund      : String? = null
+    @SerializedName("fund"       ) var fund      : String? = null,
+    @SerializedName("amount"       ) var amount  : String? = null
 
 )
 
@@ -227,7 +228,7 @@ data class CouponData (
 )
 data class CouponResponse (
 
-    @SerializedName("amount"    ) var amount   : String? = null,
+    @SerializedName("amount") var amount   : String? = null,
     @SerializedName("coupon_no" ) var couponNo : String? = null
 
 )

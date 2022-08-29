@@ -27,7 +27,6 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
-import kotlinx.android.synthetic.main.activity_create_card.*
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_dashboard.imageView6
 import kotlinx.android.synthetic.main.activity_dashboard.name

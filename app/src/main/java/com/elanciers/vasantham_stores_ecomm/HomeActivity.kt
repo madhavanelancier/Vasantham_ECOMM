@@ -6,10 +6,12 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.location.*
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +19,9 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +39,6 @@ import com.elanciers.vasantham_stores_ecomm.Adapter.TabAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.*
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.RequestPermissionCode
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.net_status
-import com.elanciers.vasantham_stores_ecomm.DataClass.CheckCardData
 import com.elanciers.vasantham_stores_ecomm.DataClass.ImageScroll
 import com.elanciers.vasantham_stores_ecomm.DataClass.LoyaltyPoints
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils
@@ -51,10 +55,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.util.*
-import kotlin.math.roundToInt
 
 
-class HomeActivity : AppCompatActivity()/*, LocationListener*/ {
+class HomeActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateReceiverListener/*, LocationListener*/ {
 var permissionCode = 1000;
 
     val tag = "Home"
@@ -62,6 +65,7 @@ var permissionCode = 1000;
     lateinit var utils : Utils
     lateinit var pDialog: Dialog
     lateinit var db: DBController
+    private var networkStateReceiver: NetworkStateReceiver? = null
 
     private var hasNextPage: Boolean = true
     val TAG: String = activity::class.java.name
@@ -111,7 +115,7 @@ var permissionCode = 1000;
                         println("singlelocation : " + location.latitude + " , " + location.longitude)
                         location_shimmer.stopShimmer()
                         location_shimmer.visibility = View.GONE
-                        location_layout.visibility = View.VISIBLE
+                        //location_layout.visibility = View.VISIBLE
                         getCompleteAddressString(location)
                     }
 
@@ -135,7 +139,7 @@ var permissionCode = 1000;
                     println("lastknown : " + location.latitude + " , " + location.longitude)
                     location_shimmer.stopShimmer()
                     location_shimmer.visibility=View.GONE
-                    location_layout.visibility=View.VISIBLE
+                   // location_layout.visibility=View.VISIBLE
                     getCompleteAddressString(location)
                 }
             }
@@ -154,6 +158,21 @@ var permissionCode = 1000;
         })*/
 
     }
+
+    fun startNetworkBroadcastReceiver(currentContext: Context?) {
+        networkStateReceiver = NetworkStateReceiver()
+        networkStateReceiver!!.addListener(currentContext as NetworkStateReceiver.NetworkStateReceiverListener?)
+        registerNetworkBroadcastReceiver(currentContext!!)
+    }
+    fun unregisterNetworkBroadcastReceiver(currentContext: Context) {
+        currentContext.unregisterReceiver(networkStateReceiver)
+    }
+    fun registerNetworkBroadcastReceiver(currentContext: Context) {
+        currentContext.registerReceiver(
+            networkStateReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
+    }
 var locationManager: LocationManager? = null;
     var mContext: Context? = null;
     var fList = ArrayList<Fragment>()
@@ -169,6 +188,7 @@ var locationManager: LocationManager? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        startNetworkBroadcastReceiver(this);
         changeStatusBarColor()
         db = DBController(activity)
         utils = Utils(activity)
@@ -181,9 +201,9 @@ var locationManager: LocationManager? = null;
         //DBController(activity).dropHoleCart()
         //DBController(activity).dropLocation()
         mFragmentTitleList1.add(AppUtil.languageString("Home").toString())
-        mFragmentTitleList1.add(AppUtil.languageString("Search").toString())
+        mFragmentTitleList1.add(("All Category"))
         mFragmentTitleList2.add(AppUtil.languageString("Orders").toString())
-        mFragmentTitleList2.add(AppUtil.languageString("Profile").toString())
+        mFragmentTitleList2.add("Profile")
 
         mFragmentIconList1.add(R.drawable.ic_home)
         mFragmentIconList1.add(R.drawable.ic_search)
@@ -192,33 +212,121 @@ var locationManager: LocationManager? = null;
 
 
         location_shimmer.visibility=View.GONE
-        location_layout.visibility=View.VISIBLE
+       /// location_layout.visibility=View.VISIBLE
         location_shimmer.stopShimmer()
 
-        /*if (CheckingPermissionIsEnabledOrNot()){
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED) {
-               // val mLocationManager =  getSystemService(LOCATION_SERVICE) as (LocationManager);
-               // mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5f, this);
-                locationManager = mContext!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-                locationManager!!.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
-                    2000,
-                    10F,
-                    locationListenerGPS
-                )
 
 
+        wbview.settings.setJavaScriptEnabled(true)
+       // wbview!!.setWebViewClient(HelloWebViewClient())
+        wbview.getSettings().setLoadWithOverviewMode(true);
+        wbview.getSettings().setUseWideViewPort(true);
+        val settings = wbview.settings
+        settings.setAppCacheEnabled(true)
+        settings.cacheMode = WebSettings.LOAD_DEFAULT
+        settings.setAppCachePath(cacheDir.path)
+
+
+
+        // Enable zooming in web view
+        settings.setSupportZoom(false)
+        settings.builtInZoomControls = false
+        settings.displayZoomControls = false
+
+        // Zoom web view text
+        settings.textZoom = 100
+
+        // Enable disable images in web view
+        settings.blockNetworkImage = false
+        // Whether the WebView should load image resources
+        settings.loadsImagesAutomatically = true
+
+
+        // More web view settings
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            settings.safeBrowsingEnabled = true  // api 26
+        }
+        //settings.pluginState = WebSettings.PluginState.ON
+        settings.useWideViewPort = true
+        settings.loadWithOverviewMode = true
+        settings.javaScriptCanOpenWindowsAutomatically = true
+        settings.mediaPlaybackRequiresUserGesture = false
+
+
+        // More optional settings, you can enable it by yourself
+        settings.domStorageEnabled = true
+        settings.setSupportMultipleWindows(true)
+        settings.loadWithOverviewMode = true
+        settings.allowContentAccess = true
+        settings.setGeolocationEnabled(true)
+        settings.allowUniversalAccessFromFileURLs = true
+        settings.allowFileAccess = true
+
+        // WebView settings
+        wbview.fitsSystemWindows = true
+
+
+        /*
+            if SDK version is greater of 19 then activate hardware acceleration
+            otherwise activate software acceleration
+        */
+        wbview.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+
+        button7.setOnClickListener {
+            button7.visibility=View.GONE
+            wbview.loadUrl("https://vasanthamstore.com/contactus")
+            wbview.visibility=View.VISIBLE
+
+        }
+        wbview.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                view?.loadUrl(url.toString())
+                Log.e("urlphone",url.toString())
+                if (url!!.startsWith("tel:")) {
+                    wbview.visibility=View.INVISIBLE
+                    button7.visibility=View.VISIBLE
+                    val intent = Intent(
+                        Intent.ACTION_DIAL,
+                        Uri.parse(url)
+                    )
+                    startActivity(intent)
+                }
+                else{
+                    wbview.visibility=View.VISIBLE
+                    button7.visibility=View.GONE
+                }
+                return true
             }
+        }
+        wbview.loadUrl("https://vasanthamstore.com/")
+//https://vasanthamstore.com/contactus
 
 
-            statusCheck()
-            //getLocation()
-        }else{
-            RequestMultiplePermission()
-        }*/
+
+    /*if (CheckingPermissionIsEnabledOrNot()){
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED) {
+           // val mLocationManager =  getSystemService(LOCATION_SERVICE) as (LocationManager);
+           // mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5f, this);
+            locationManager = mContext!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager!!.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                2000,
+                10F,
+                locationListenerGPS
+            )
+
+
+        }
+
+
+        statusCheck()
+        //getLocation()
+    }else{
+        RequestMultiplePermission()
+    }*/
         sliderAdp = MyPageAdapter(supportFragmentManager, fList)
         viewPager.setAdapter(sliderAdp)
         //viewPager.setPageTransformer(false, CustPageTransformer(activity));
@@ -254,10 +362,10 @@ var locationManager: LocationManager? = null;
         }
 
         if (net_status(activity)){
-            getSlider()
+            //getSlider()
             //getCategory()
-            version()
-            getpopup()
+            //version()
+            //getpopup()
         }
         else{
             val toast=Toast.makeText(applicationContext,"No internet connection",Toast.LENGTH_LONG)
@@ -513,14 +621,75 @@ var locationManager: LocationManager? = null;
 
     }
 
+
+
+    /*private inner class HelloWebViewClient : WebViewClient() {
+        override fun shouldOverrideUrlLoading(
+            view: WebView,
+            url: String
+        ): Boolean {
+            view.loadUrl(url)
+            println("loadurl" + url)
+            runOnUiThread {
+                 if (url.contains("tel:")) {
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse(url)
+                    startActivity(intent)
+                }
+               else {
+                    view.loadUrl(url)
+                }
+                //  textView8.setText("Almost finish...")
+                Appconstands.loading_show(activity, pDialog).show()
+            }
+            return true
+        }
+        override fun onPageFinished(view: WebView?, url: String?) {
+            // TODO Auto-generated method stub
+            super.onPageFinished(view, url)
+            // pdialog!!.dismiss()
+            Appconstands.loading_show(activity, pDialog).dismiss()
+
+            //frameLayout1.visibility=View.VISIBLE
+            wbview!!.visibility=View.VISIBLE
+
+            //https://virtuewin.com/v3/#/reward-history
+            //https://virtuewin.com/v3/#/online-training
+            //https://virtuewin.com/v3/#/video
+
+
+
+
+
+
+
+
+        }
+        override fun onReceivedError(
+            view: WebView?, errorCode: Int,
+            description: String, failingUrl: String?
+        ) {
+            Log.i(
+                "FragmentActivity.TAG",
+                "GOT Page error : code : $errorCode Desc : $description"
+            )
+            //frameLayout1.visibility=View.VISIBLE
+            wbview!!.visibility=View.VISIBLE
+            //TODO We can show customized HTML page when page not found/ or server not found error.
+            super.onReceivedError(view, errorCode, description, failingUrl)
+        }
+    }*/
+
     override fun onResume() {
         super.onResume()
+        registerNetworkBroadcastReceiver(this)
+
         highLightCurrentTab()
         selecttab1(0)
-        cartitem()
-        getLoyaltypoints()
+       // cartitem()
+        //getLoyaltypoints()
         if (!utils.login()){
-            finish()
+            //finish()
         }
     }
 
@@ -589,7 +758,7 @@ var locationManager: LocationManager? = null;
             //Toast.makeText(this@HomeActivity, msg, Toast.LENGTH_LONG).show()
             location_shimmer.stopShimmer()
             location_shimmer.visibility=View.GONE
-            location_layout.visibility=View.VISIBLE
+           // location_layout.visibility=View.VISIBLE
             getCompleteAddressString(location)
         }
 
@@ -735,6 +904,8 @@ var locationManager: LocationManager? = null;
                 it.putExtra("frm", "home")
 
                 startActivity(it)
+                overridePendingTransition(0,0)
+
             }
         }
     }
@@ -787,6 +958,7 @@ var locationManager: LocationManager? = null;
 
         if (position==0){
             startActivity(Intent(activity, OrderActivity::class.java))
+            overridePendingTransition(0,0)
         }else{
             //if (location_shimmer.visibility==View.GONE) {
                 val it = Intent(activity, ProfileActivity::class.java)
@@ -795,10 +967,13 @@ var locationManager: LocationManager? = null;
                 it.putExtra("lat", lat)
                 it.putExtra("lng", longi)
                 startActivity(it)
+            overridePendingTransition(0,0)
+
             //}
         }
 
     }
+
     fun getCentreTab(position: Int):View{
         val view = LayoutInflater.from(activity).inflate(R.layout.centre_tab, null)
         //val tabTextView = view.findViewById<TextView>(R.id.tabTextView)
@@ -844,6 +1019,7 @@ var locationManager: LocationManager? = null;
         )
         return view
     }
+
 
     inner class MyPageAdapter(fm: FragmentManager, private val fragments: List<Fragment>) : FragmentPagerAdapter(
         fm
@@ -914,6 +1090,7 @@ var locationManager: LocationManager? = null;
                 ACCESS_COARSE_LOCATION == PackageManager.PERMISSION_GRANTED //&&
                 //CALL_PHONE == PackageManager.PERMISSION_GRANTED
     }
+
     fun RequestMultiplePermission() {
 
         // Creating String Array with Permissions.
@@ -927,9 +1104,8 @@ var locationManager: LocationManager? = null;
                 //android.Manifest.permission.CALL_PHONE
             ), RequestPermissionCode
         )
-
-
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -1320,7 +1496,8 @@ var locationManager: LocationManager? = null;
                     }
                 })*/
             //}
-        }else{
+        }
+        else{
             println("else : ")
 
             if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
@@ -1495,6 +1672,30 @@ var locationManager: LocationManager? = null;
             }
         })
     }
+
+    override fun onBackPressed() {
+        val alert = AlertDialog.Builder(activity)
+        alert.setTitle("Exit")
+        alert.setMessage("Are you sure want to exit?")
+        alert.setPositiveButton("yes",object : DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                dialog!!.dismiss()
+                val intent = Intent(Intent.ACTION_MAIN)
+                intent.addCategory(Intent.CATEGORY_HOME)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
+
+        })
+        alert.setNegativeButton("no",object : DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                dialog!!.dismiss()
+            }
+
+        })
+        alert.show()
+    }
+
     fun lang(){
         profile.setText(if (utils.language=="Tamil") "த" else "En")
         textView9.setText(AppUtil.languageString("home"))
@@ -1564,5 +1765,13 @@ var locationManager: LocationManager? = null;
                 //pDialog.dismiss()
             }
         })
+    }
+
+    override fun networkAvailable() {
+    }
+
+    override fun networkUnavailable() {
+        val i=Intent(this, NetActivity::class.java)
+        startActivity(i)
     }
 }

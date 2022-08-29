@@ -25,7 +25,10 @@ interface usr2 {
     @POST("collection_common.php")
     fun CheckCard(@Body()obj : JsonObject): Call<CheckCardData>
 
-    @POST("card_create.php")
+    /*@POST("card_create.php")
+    fun CreatCard(@Body()obj : JsonObject): Call<CreateCardData>*/
+
+    @POST("online_customer.php")
     fun CreatCard(@Body()obj : JsonObject): Call<CreateCardData>
 
     @POST("collection_common.php")
