@@ -20,6 +20,9 @@ interface usr2 {
     fun getFunds(@Body()obj : JsonObject): Call<FundsData>
 
     @POST("collection_common.php")
+    fun getproplace(@Body()obj : JsonObject): Call<ChitGroupData>
+
+    @POST("collection_common.php")
     fun getAreas(@Body()obj : JsonObject): Call<AreaData>
 
     @POST("collection_common.php")

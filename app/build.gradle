@@ -5,40 +5,32 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.elanciers.vasantham_stores_ecomm"
         minSdkVersion 19
-        targetSdkVersion 31
-        versionCode 18
-        versionName "1.18"
+        targetSdkVersion 32
+        versionCode 20
+        versionName "1.20"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
 repositories {
-    /*maven {
-        url "https://jitpack.io"
-    }
-
-    maven {
-        repositories {
-            url 'https://oss.sonatype.org/content/repositories/releases/'
-        }
-    }*/
-
-    //for razorpay
     mavenCentral()
 }
 
@@ -119,7 +111,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.1'
     implementation 'com.google.firebase:firebase-iid:20.0.2'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
-
     //razorpay
     implementation 'com.razorpay:checkout:1.6.19'
 

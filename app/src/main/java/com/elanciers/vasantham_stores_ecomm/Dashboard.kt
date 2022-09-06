@@ -16,18 +16,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elancier.vasantham_stores.Adapters.Due_list
+import com.elanciers.vasantham_stores_ecomm.Adapters.FundSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.*
-import com.elanciers.vasantham_stores_ecomm.DataClass.CouponData
-import com.elanciers.vasantham_stores_ecomm.DataClass.CouponResponse
-import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsData
-import com.elanciers.vasantham_stores_ecomm.DataClass.YearsData
+import com.elanciers.vasantham_stores_ecomm.DataClass.*
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
+import kotlinx.android.synthetic.main.activity_create_card.*
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_dashboard.amt
 import kotlinx.android.synthetic.main.activity_dashboard.imageView6
 import kotlinx.android.synthetic.main.activity_dashboard.name
 import kotlinx.android.synthetic.main.activity_dashboard.textView9
@@ -319,6 +319,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         pDialog.show()
         getSetings()
         Dues().execute()
+        getFunds()
+
     }
 
     inner class Dues : AsyncTask<String?, String?, String?>() {
@@ -392,6 +394,39 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                 e.printStackTrace()
             }
         }
+    }
+
+
+    fun getFunds(){
+        val obj = JsonObject()
+        obj.addProperty("type", "product_place")
+        obj.addProperty("cardno", intent.getStringExtra("cardno"))
+        Log.d(tag, obj.toString())
+        val call = RetrofitClient2.Get.getproplace(obj)
+        call.enqueue(object : Callback<ChitGroupData> {
+            override fun onResponse(call: Call<ChitGroupData>, response: Response<ChitGroupData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as ChitGroupData
+                    if (example.Status == "Success") {
+                        couponlay.visibility=View.VISIBLE
+                        location.setText(example.Response!!.place)
+                        date.setText(example.Response!!.issue_date)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ChitGroupData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
     }
 
 

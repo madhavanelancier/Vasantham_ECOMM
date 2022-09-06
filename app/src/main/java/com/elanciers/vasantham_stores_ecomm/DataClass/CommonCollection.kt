@@ -29,6 +29,8 @@ data class ChitGroupResponse (
     @SerializedName("msg"   ) var msg   : Int?             = null,
     @SerializedName("regno" ) var regno : Int?             = null,
     @SerializedName("card_no" ) var cardNo : String?             = null,
+    @SerializedName("place" ) var place : String?             = null,
+    @SerializedName("issue_date" ) var issue_date : String?             = null,
     @SerializedName("cardmsg" ) var cardmsg : String?             = null,
     @SerializedName("chit"  ) var chit  : ArrayList<Chit>  = arrayListOf(),
 

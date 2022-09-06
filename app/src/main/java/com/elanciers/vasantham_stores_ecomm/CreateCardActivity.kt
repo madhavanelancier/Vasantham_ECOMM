@@ -180,7 +180,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
         try {
             val options = JSONObject()
             options.put("name", "Vasantham Hyper")
-            options.put("description", mob.text.toString())
+            options.put("description", card_number.text.toString())
             //You can omit the image option to fetch the image from dashboard
             options.put("image", R.mipmap.ic_logo)
             options.put("currency", "INR")

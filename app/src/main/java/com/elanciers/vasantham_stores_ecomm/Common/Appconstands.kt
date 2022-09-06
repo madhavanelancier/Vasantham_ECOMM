@@ -44,8 +44,8 @@ object Appconstands {
     //val Domin_due ="http://vasanthamstore.in/chit/app/"
     val Domin_lng ="http://vasanthamstore.in/chit/app/"
     val Domin_hyper ="http://vasanthamhypermart.in/"
-    val Domin_due ="https://elancier.xyz/vasantham_stores/chit/app/"
-    val ImageDomain ="http://teamdev.co.in/vasantham/"
+    val Domin_due ="http://vasanthamstore.in/chit/app/"
+    val ImageDomain ="http://vasanthamstore.in/chit/app/"
     val rupees ="₹ "
     val new_reg = "customers/register"
     val login = Domin+"customers/store"
@@ -74,6 +74,7 @@ object Appconstands {
     val duelogin= Domin_due+"login.php"
     val payment= Domin_due+"userdetails.php"
     val paymentlist= Domin_due+"payment.php"
+    val proplace= Domin_due+"payment.php"
     val payment_list= Domin_due+"payment_list.php"
 
     /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -206,7 +207,8 @@ object Appconstands {
                     })
             alert = alert11.create()
             alert.show()
-        }else{
+        }
+        else{
             if (!alert.isShowing) {
                 val alert11 = AlertDialog.Builder(activity)
                 alert11.setCancelable(false)
