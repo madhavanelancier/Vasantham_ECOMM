@@ -31,6 +31,8 @@ data class ChitGroupResponse (
     @SerializedName("card_no" ) var cardNo : String?             = null,
     @SerializedName("place" ) var place : String?             = null,
     @SerializedName("issue_date" ) var issue_date : String?             = null,
+    @SerializedName("time" ) var time : String?             = null,
+    @SerializedName("title" ) var title : String?             = null,
     @SerializedName("cardmsg" ) var cardmsg : String?             = null,
     @SerializedName("chit"  ) var chit  : ArrayList<Chit>  = arrayListOf(),
 
@@ -84,14 +86,14 @@ data class AreaData (
 
 )
 
-data class AreaResponse (
+data class AreaResponse(
 
-    @SerializedName("id"       ) var id       : String? = null,
-    @SerializedName("areaname" ) var areaname : String? = null
+    @SerializedName("id")       var id       : String? = null,
+    @SerializedName("areaname") var areaname : String? = null
 
 )
 
-data class CheckCardData (
+data class CheckCardData(
 
     @SerializedName("Status"   ) var Status   : String?   = null,
     @SerializedName("message"  ) var message  : String?   = null,
@@ -208,9 +210,11 @@ data class SettingsResponse (
     @SerializedName("delivery_amount" ) var deliveryAmount : String?               = null,
     @SerializedName("razorpay_key"    ) var razorpayKey    : String?               = null,
     @SerializedName("diwali_suprise"  ) var diwaliSuprise  : String?               = null,
-    @SerializedName("whatsapp_order"  ) var whatsappOrder  : String?               = null,
-    @SerializedName("customer_care"   ) var customerCare   : String?               = null,
-    @SerializedName("branch_list"     ) var branchList     : ArrayList<BranchList> = arrayListOf()
+    @SerializedName("whatsapp_order") var whatsappOrder  : String?               = null,
+    @SerializedName("customer_care") var customerCare   : String?               = null,
+    @SerializedName("online_card") var online_card   : String?               = null,
+    @SerializedName("online_door") var online_door   : String?               = null,
+    @SerializedName("branch_list") var branchList     : ArrayList<BranchList> = arrayListOf()
 
 )
 data class BranchList (

@@ -189,7 +189,7 @@
         android:textColor="@color/black"
         android:textStyle="bold" />-->
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
+   <!-- <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/multiple_actions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -203,26 +203,40 @@
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonColorPressed="@color/colorAccent"
         app:fab_addButtonPlusIconColor="@color/black"
-        app:fab_labelStyle="@style/menu_labels_style">
+        app:fab_labelStyle="@style/menu_labels_style">-->
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <Button
             android:id="@+id/cardcreate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorAccent"
-            app:fab_colorPressed="@color/colorAccent"
-            app:fab_icon="@drawable/ic_address_card_solid"
-            app:fab_title="@string/creat_card" />
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/add_address"
+            android:drawableLeft="@drawable/ic_address_card_solid"
+            android:text="@string/creat_card"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/doordelivery"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorAccent"
-            app:fab_colorPressed="@color/colorAccent"
-            app:fab_icon="@drawable/ic_door_closed_solid"
-            app:fab_title="@string/door_delivery" />
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/add_address"
+            android:drawableLeft="@drawable/ic_door_closed_solid"
+            android:text="@string/door_delivery"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
+    </LinearLayout>
 </FrameLayout>

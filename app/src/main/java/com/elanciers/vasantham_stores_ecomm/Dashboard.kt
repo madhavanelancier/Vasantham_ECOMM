@@ -1,7 +1,7 @@
 package com.elanciers.vasantham_stores_ecomm
 
-import android.app.Activity
-import android.app.Dialog
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
@@ -16,21 +16,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elancier.vasantham_stores.Adapters.Due_list
-import com.elanciers.vasantham_stores_ecomm.Adapters.FundSpinnerAdapter
-import com.elanciers.vasantham_stores_ecomm.Adapters.YearSpinnerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.*
-import com.elanciers.vasantham_stores_ecomm.DataClass.*
+import com.elanciers.vasantham_stores_ecomm.DataClass.ChitGroupData
+import com.elanciers.vasantham_stores_ecomm.DataClass.CouponData
+import com.elanciers.vasantham_stores_ecomm.DataClass.CouponResponse
+import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsData
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
-import kotlinx.android.synthetic.main.activity_create_card.*
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_dashboard.amt
-import kotlinx.android.synthetic.main.activity_dashboard.imageView6
-import kotlinx.android.synthetic.main.activity_dashboard.name
-import kotlinx.android.synthetic.main.activity_dashboard.textView9
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -190,10 +186,11 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show()
             Log.e("razorpayPaymentID", razorpayPaymentID!!)
             tid=razorpayPaymentID.toString()
+            pDialog.show()
             Handler().postDelayed(Runnable {
                 val payment = OrderSend()
                 payment.execute(tid, "razorpay", "success")
-            }, 2000)
+            }, 1000)
 
         } catch (e: java.lang.Exception) {
             Log.e(
@@ -209,6 +206,21 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
             pay.isEnabled=true
 
             Toast.makeText(this, "Payment failed: $code $response", Toast.LENGTH_LONG).show()
+
+            val alert=AlertDialog.Builder(this)
+            alert.setCancelable(false)
+            alert.setTitle("Payment Failed")
+            alert.setMessage("Close app and retry payment")
+            alert.setPositiveButton("Ok",DialogInterface.OnClickListener{dialogInterface, i ->
+                dialogInterface.dismiss()
+                val startMain = Intent(Intent.ACTION_MAIN)
+                startMain.addCategory(Intent.CATEGORY_HOME)
+                startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(startMain)
+
+            })
+            val pop=alert.create()
+            pop.show()
            /* val payment = PaymentStatus()
             payment.execute("", response)*/
             /*if (dbCon.getOverAll() === 0) {
@@ -229,7 +241,6 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
         override fun onPreExecute() {
             //pDialog = Dialog(activity)
             //Appconstands.loading_show(activity, pDialog).show()
-            pDialog.show()
         }
 
         override fun doInBackground(vararg param: String): String? {
@@ -412,6 +423,8 @@ class Dashboard : AppCompatActivity(), PaymentResultListener {
                         couponlay.visibility=View.VISIBLE
                         location.setText(example.Response!!.place)
                         date.setText(example.Response!!.issue_date)
+                        time.setText(example.Response!!.time)
+                        locationlbl.setText(example.Response!!.title)
                     }
                 }
             }

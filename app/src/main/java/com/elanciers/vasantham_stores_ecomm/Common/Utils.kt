@@ -193,6 +193,8 @@ class Utils(internal var _context: Context) {
             val editor = sharedPreferences.edit()
             editor.putString("razorpay_key", settings.razorpayKey)
             editor.putString("delivery_amount", settings.deliveryAmount)
+            editor.putString("online_card", settings.online_card)
+            editor.putString("online_door", settings.online_door)
             editor.commit()
         }
     }

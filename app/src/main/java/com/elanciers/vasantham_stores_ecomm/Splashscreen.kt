@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
@@ -25,6 +26,8 @@ import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.languagefile
 import com.elanciers.vasantham_stores_ecomm.Common.DownLoadFile
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils.BASE_URL
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_splashscreen.*
 import org.json.JSONObject
@@ -56,6 +59,18 @@ class Splashscreen : AppCompatActivity() {
 
         FirebaseMessaging.getInstance()
             .subscribeToTopic(("vasantham"))
+
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(tag, "getInstanceId failed", task.exception)
+                    //signin(mobile, "")
+                    return@OnCompleteListener
+                }
+                // Get new Instance ID token
+                val token = task.result?.token
+                Log.e("token", token.toString())
+            })
 
         val currentapiVersion = Build.VERSION.SDK_INT
        /* if (currentapiVersion <= 21) {

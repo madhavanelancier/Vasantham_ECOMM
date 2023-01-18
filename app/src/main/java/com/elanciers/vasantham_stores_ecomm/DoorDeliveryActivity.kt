@@ -1,6 +1,7 @@
 package com.elanciers.vasantham_stores_ecomm
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -54,6 +55,13 @@ class DoorDeliveryActivity : AppCompatActivity(), PaymentResultListener {
         imageView5.setOnClickListener {
             finish()
         }
+
+        gotolist.setOnClickListener {
+            val st = Intent(this,DoorDeliveryListActivity::class.java)
+            startActivity(st)
+            finish()
+        }
+
 
 
         select_area.onItemClickListener = object : AdapterView.OnItemClickListener{

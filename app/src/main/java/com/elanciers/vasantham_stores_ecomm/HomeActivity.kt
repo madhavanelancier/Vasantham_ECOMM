@@ -1674,26 +1674,35 @@ var locationManager: LocationManager? = null;
     }
 
     override fun onBackPressed() {
-        val alert = AlertDialog.Builder(activity)
-        alert.setTitle("Exit")
-        alert.setMessage("Are you sure want to exit?")
-        alert.setPositiveButton("yes",object : DialogInterface.OnClickListener{
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                dialog!!.dismiss()
-                val intent = Intent(Intent.ACTION_MAIN)
-                intent.addCategory(Intent.CATEGORY_HOME)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
+        if(wbview.url.toString().equals("https://vasanthamstore.com/")){
+            val alert = AlertDialog.Builder(activity)
+            alert.setTitle("Exit")
+            alert.setMessage("Are you sure want to exit?")
+            alert.setPositiveButton("yes",object : DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    dialog!!.dismiss()
+                    val intent = Intent(Intent.ACTION_MAIN)
+                    intent.addCategory(Intent.CATEGORY_HOME)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                }
+
+            })
+            alert.setNegativeButton("no",object : DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    dialog!!.dismiss()
+                }
+
+            })
+            alert.show()
+        }
+        else{
+            if(wbview.canGoBack()){
+                wbview.goBack()
             }
 
-        })
-        alert.setNegativeButton("no",object : DialogInterface.OnClickListener{
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                dialog!!.dismiss()
-            }
+        }
 
-        })
-        alert.show()
     }
 
     fun lang(){

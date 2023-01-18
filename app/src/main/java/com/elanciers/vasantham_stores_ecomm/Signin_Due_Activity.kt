@@ -20,12 +20,18 @@ import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.loading_show
 import com.elanciers.vasantham_stores_ecomm.Common.Connection
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
+import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
+import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_due_singin.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItemClickListener {
     val tag = "Signin"
@@ -49,6 +55,8 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         pDialog = Dialog(activity)
         db = CardHistoryDatabase.getDatabase(activity)!!
         lang()
+        getSetings()
+
 
 
         signinbtn.setOnClickListener {
@@ -79,13 +87,50 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
 
         })
         cardcreate.setOnClickListener {
-            val st = Intent(this@Signin_Due_Activity,CardListActivity::class.java)
+            val st = Intent(this@Signin_Due_Activity,CreateCardActivity::class.java)
             startActivity(st)
         }
         doordelivery.setOnClickListener {
-            val st = Intent(this@Signin_Due_Activity,DoorDeliveryListActivity::class.java)
+            val st = Intent(this@Signin_Due_Activity,DoorDeliveryActivity::class.java)
             startActivity(st)
         }
+    }
+
+    fun getSetings(){
+        val call = RetrofitClient2.Get.getSettings()
+        call.enqueue(object : Callback<SettingsData> {
+            override fun onResponse(call: Call<SettingsData>, response: Response<SettingsData>) {
+                Log.e("$tag response", response.toString())
+                if (response.isSuccessful()) {
+                    val example = response.body() as SettingsData
+                    if (example.Status == "Success") {
+                        val settings = example.Response
+                        utils.setSettings(settings)
+
+                        if(utils.getValue("online_card").toString()=="1"){
+                            cardcreate.visibility=View.VISIBLE
+                        }
+
+                        if(utils.getValue("online_door").toString()=="1"){
+                            doordelivery.visibility=View.VISIBLE
+                        }
+                        val data = Gson().toJson(example, SettingsData::class.java).toString()
+                        println("data : "+data)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SettingsData>, t: Throwable) {
+                Log.e("$tag Fail response", t.toString())
+                if (t.toString().contains("time")) {
+                    Toast.makeText(
+                        activity,
+                        "Poor network connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
     }
 
     override fun onResume() {
@@ -211,7 +256,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         textView48.setText(AppUtil.languageString("recentlyused"))
         entercard.setText(AppUtil.languageString("entercard"))
         signinbtn.setText(AppUtil.languageString("submit"))
-        cardcreate.title=(AppUtil.languageString("creat_card")).toString()
-        doordelivery.title=(AppUtil.languageString("door_delivery")).toString()
+        cardcreate.setText((AppUtil.languageString("creat_card")).toString())
+        doordelivery.setText(AppUtil.languageString("door_delivery").toString())
     }
 }

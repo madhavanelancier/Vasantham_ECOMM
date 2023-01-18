@@ -2,6 +2,7 @@ package com.elanciers.vasantham_stores_ecomm
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -33,8 +34,6 @@ import kotlinx.android.synthetic.main.activity_create_card.mob
 import kotlinx.android.synthetic.main.activity_create_card.select_area
 import kotlinx.android.synthetic.main.activity_create_card.submit
 import kotlinx.android.synthetic.main.activity_create_card.textView9
-import kotlinx.android.synthetic.main.activity_door_deivery.*
-import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -120,6 +119,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
                 select_fund2.error=null
             }
         }
+
         select_area.onItemClickListener = object : AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 selectedArea = Areas[p2]
@@ -127,6 +127,12 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
                 select_area.setAdapter(AreaSpinnerAdapter(activity,Areas))*/
                 select_area.error=null
             }
+        }
+
+        gotolist.setOnClickListener {
+            val st = Intent(this,CardListActivity::class.java)
+            startActivity(st)
+            finish()
         }
 
         submit.setOnClickListener {
@@ -499,20 +505,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
 
     fun getCardCreate(){
         pDialog.show()
-        /*{
-    "reg_no":"1025",
-    "cid":"4",
-    "card_year":"2",
-    "name":"Test1",
-    "card_no":"20221240",
-    "phone":"9786039322",
-    "area":"Adalai",
-    "who":"7",
-    "fund1":"",
-    "fund2":"",
-    "gid":"",
-    "collect_id":"1"
-}*/
+
         val obj = JsonObject()
         obj.addProperty("reg_no", chitgroup.regno.toString())
         obj.addProperty("cid", selectedChit.id.toString())
