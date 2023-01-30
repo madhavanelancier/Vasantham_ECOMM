@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <uses-feature
         android:name="android.hardware.location"
         android:required="true" />
@@ -32,14 +33,18 @@
         android:name=".AppController"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_luncher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:icon="@mipmap/ic_luncher"
         android:roundIcon="@mipmap/ic_luncher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAction"
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.facebook.shimmer">
+        <activity
+            android:name=".NotificationWebActivity"
+            android:launchMode="singleTop"
+            android:exported="true" />
         <activity
             android:name=".DoorDeliveryListActivity"
             android:exported="false" />
@@ -158,6 +163,7 @@
         <activity
             android:name=".Splashscreen"
             android:exported="true"
+            android:launchMode="singleTop"
             android:theme="@style/NoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -185,9 +191,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <!--<meta-data
+        <!--
+<meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_KZgc6B2cbRuJWW" />--> <!-- "rzp_test_gpzrKwVavfIrqC" -->
+            android:value="rzp_live_KZgc6B2cbRuJWW" />
+        -->
+        <!-- "rzp_test_gpzrKwVavfIrqC" -->
         <service
             android:name=".pushnotification.MyFirebaseMessagingService"
             android:exported="false">

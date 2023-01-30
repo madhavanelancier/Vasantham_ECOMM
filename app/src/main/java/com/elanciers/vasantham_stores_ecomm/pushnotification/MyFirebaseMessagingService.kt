@@ -12,8 +12,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import com.elanciers.vasantham_stores_ecomm.NotificationWebActivity
 import com.elanciers.vasantham_stores_ecomm.R
-import com.elanciers.vasantham_stores_ecomm.Splashscreen
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -117,10 +117,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     private fun sendNotification(title : String,messageBody: String) {
         var pendingIntent : PendingIntent
-        val intent = Intent(this, Splashscreen::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val intent = Intent(this, NotificationWebActivity::class.java)
+
         pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-            PendingIntent.FLAG_ONE_SHOT)
+            PendingIntent.FLAG_UPDATE_CURRENT
+                    or PendingIntent.FLAG_ONE_SHOT)
         /*if (!utils.today().isNullOrEmpty())
         {
             val dt = SimpleDateFormat("dd-MM-yyyy").format(Date())
@@ -161,6 +162,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setSound(defaultSoundUri)
             .setOnlyAlertOnce(true)
             .setDefaults(Notification.DEFAULT_SOUND)
+            .setOngoing(true)
             .setContentIntent(pendingIntent)
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

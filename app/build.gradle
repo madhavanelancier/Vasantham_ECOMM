@@ -11,8 +11,8 @@ android {
         applicationId "com.elanciers.vasantham_stores_ecomm"
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 23
-        versionName "1.23"
+        versionCode 24
+        versionName "1.24"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -108,9 +108,9 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
 
     //firebase
-    implementation 'com.google.firebase:firebase-core:17.2.1'
-    implementation 'com.google.firebase:firebase-iid:20.0.2'
-    implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-iid:21.1.0'
+    implementation 'com.google.firebase:firebase-messaging:23.1.1'
     //razorpay
     implementation 'com.razorpay:checkout:1.6.19'
 

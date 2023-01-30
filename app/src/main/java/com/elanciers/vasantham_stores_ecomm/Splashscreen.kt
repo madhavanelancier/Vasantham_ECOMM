@@ -19,13 +19,10 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands
-import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin
-import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin_due
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.Domin_lng
 import com.elanciers.vasantham_stores_ecomm.Common.Appconstands.languagefile
 import com.elanciers.vasantham_stores_ecomm.Common.DownLoadFile
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
-import com.elanciers.vasantham_stores_ecomm.retrofit.ApproveUtils.BASE_URL
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
@@ -49,6 +46,8 @@ class Splashscreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+        processIntent(getIntent());
+
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -72,6 +71,7 @@ class Splashscreen : AppCompatActivity() {
                 Log.e("token", token.toString())
             })
 
+
         val currentapiVersion = Build.VERSION.SDK_INT
        /* if (currentapiVersion <= 21) {
             frameLayout1.visibility= View.GONE
@@ -94,17 +94,7 @@ class Splashscreen : AppCompatActivity() {
             //imageView5!!.visibility = View.VISIBLE
         }*/
 
-        Handler().postDelayed(Runnable {
-                /*if (utils.login()) {
-                    startActivity(Intent(activity, HomeActivity::class.java))
-                    finish()
-                } else {
-                    startActivity(Intent(activity, WelcomeScreen::class.java))
-                    finish()
-                }*/
-                download()
-                //RequestMultiplePermission()
-        }, 2000)
+
 
     }
     fun CheckingPermissionIsEnabledOrNot(): Boolean {
@@ -173,6 +163,34 @@ class Splashscreen : AppCompatActivity() {
                     }
                 }
 
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        processIntent(intent)
+    }
+
+    private fun processIntent(intent: Intent) {
+        //get your extras
+        Log.e("insode",intent.extras.toString())
+        if(intent.extras!=null){
+            val intent=Intent(this,NotificationWebActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        else{
+            Handler().postDelayed(Runnable {
+                /*if (utils.login()) {
+                    startActivity(Intent(activity, HomeActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(activity, WelcomeScreen::class.java))
+                    finish()
+                }*/
+                download()
+                //RequestMultiplePermission()
+            }, 2000)
         }
     }
 

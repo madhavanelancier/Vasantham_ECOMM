@@ -64,47 +64,10 @@ class RouteService : Service(), ConnectionCallbacks,
         return null
     }
 
-    override fun onConnected(@Nullable bundle: Bundle?) {
-        Log.d(TAG, "Connection method has been called")
-        val builder =
-            LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest!!)
-        val result: PendingResult<LocationSettingsResult> =
-            LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build())
-        result.setResultCallback(object : ResultCallback<LocationSettingsResult?> {
-            override fun onResult(result: LocationSettingsResult?) {
-                val status: Status = result!!.status
-                when (status.getStatusCode()) {
-                    LocationSettingsStatusCodes.SUCCESS -> if (ActivityCompat.checkSelfPermission(
-                            applicationContext,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        ) === PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(
-                            applicationContext,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                        ) === PackageManager.PERMISSION_GRANTED
-                    ) {
-                        mLastLocation =
-                            LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient)
-                        if (mLastLocation != null) {
-                            latitudeValue = mLastLocation!!.getLatitude()
-                            longitudeValue = mLastLocation!!.getLongitude()
-                            Log.d(
-                                TAG,
-                                "Latitude 1: $latitudeValue Longitude 1: $longitudeValue"
-                            )
-                            LocationServices.FusedLocationApi.requestLocationUpdates(
-                                mGoogleApiClient,
-                                mLocationRequest,
-                                this@RouteService
-                            )
-                        }
-                    }
-                    LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
-                    }
-                }
-            }
-        })
+    override fun onConnected(p0: Bundle?) {
+
     }
+
 
     override fun onConnectionSuspended(i: Int) {}
     override fun onConnectionFailed(connectionResult: ConnectionResult) {}

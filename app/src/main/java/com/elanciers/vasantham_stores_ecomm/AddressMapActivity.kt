@@ -773,7 +773,7 @@ class AddressMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCli
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this,
-                        PLAY_SERVICES_RESOLUTION_REQUEST).show()
+                        PLAY_SERVICES_RESOLUTION_REQUEST)!!.show()
             } else {
                 //finish();
             }
@@ -961,7 +961,7 @@ class AddressMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCli
             // Indicates that Google Play Services is either not installed or not up to date. Prompt
             // the user to correct the issue.
             GoogleApiAvailability.getInstance().getErrorDialog(this, e.connectionStatusCode,
-                    0 /* requestCode */).show()
+                    0 /* requestCode */)!!.show()
         } catch (e: GooglePlayServicesNotAvailableException) {
             // Indicates that Google Play Services is not available and the problem is not easily
             // resolvable.

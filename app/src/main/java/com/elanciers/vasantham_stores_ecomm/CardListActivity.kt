@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_doordelivery_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class CardListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemClickListener {
     var tag = "cardlist"
@@ -51,6 +52,13 @@ class CardListActivity : AppCompatActivity(),CardListRecyclerAdapter.OnItemClick
         create.setOnClickListener {
             val st = Intent(this,CreateCardActivity::class.java)
             startActivity(st)
+        }
+
+        try {
+
+        }
+        catch (e:Exception){
+
         }
     }
 

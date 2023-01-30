@@ -21,6 +21,8 @@ import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
 import com.elanciers.vasantham_stores_ecomm.Common.CustomLoadingDialog
 import com.elanciers.vasantham_stores_ecomm.Common.Utils
 import com.elanciers.vasantham_stores_ecomm.DataClass.*
+import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
+import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -34,6 +36,7 @@ import kotlinx.android.synthetic.main.activity_create_card.mob
 import kotlinx.android.synthetic.main.activity_create_card.select_area
 import kotlinx.android.synthetic.main.activity_create_card.submit
 import kotlinx.android.synthetic.main.activity_create_card.textView9
+import kotlinx.android.synthetic.main.activity_due_singin.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,6 +58,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
     var selectedArea = AreaResponse()
     var who = "11"
     var amountint = 0
+    lateinit var db : CardHistoryDatabase
 
     var tid=""
     var Paymentmode = "Razorpay"
@@ -65,6 +69,8 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_card)
         activity = this
+        db = CardHistoryDatabase.getDatabase(activity)!!
+
         utils = Utils(this)
         pDialog = CustomLoadingDialog(this)
         pDialog.setHandler(false)
@@ -182,7 +188,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
          */
         val activity: Activity = this
         val co = Checkout()
-        co.setKeyID(Utils(this).razorpay_key)
+        co.setKeyID("rzp_test_gpzrKwVavfIrqC")
         try {
             val options = JSONObject()
             options.put("name", "Vasantham Hyper")
@@ -529,11 +535,23 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
                 Log.e("$tag response", response.toString())
                 pDialog.dismiss()
                 if (response.isSuccessful()) {
-                    val example = response.body() as CreateCardData
+                    val example = response.body() as CheckCardData
                     Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
                     if (example.Status == "Success") {
-                        val data = Gson().toJson(example, CreateCardData::class.java).toString()
+                        val data = Gson().toJson(example, CheckCardData::class.java).toString()
                         println("data : "+data)
+                        println("number : "+example.Response!!.cardNo.toString())
+
+                        val datas = CardHistoryData();
+                        datas.id = ""
+                        datas.username = example.Response!!.cardNo.toString()
+                        datas.name = name.text.toString()
+                        datas.phone = mob.text.toString()
+                        datas.cardno = example.Response!!.cardNo.toString()
+                        datas.createdAt = (System.currentTimeMillis()/1000)
+                        db!!.cardDao()!!.insertCart(datas);
+
+
                         finish()
                     }
                     else{
