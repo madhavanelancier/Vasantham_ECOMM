@@ -10,6 +10,7 @@
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_ECOMM_09_FEB_2022/app/src/main/res/layout/activity_signin.xml" value="0.17552083333333332" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_ECOMM_09_FEB_2022/app/src/main/res/layout/imgae_popup.xml" value="0.17552083333333332" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/drawable-mdpi/feeddrawable_green.xml" value="0.1" />
+        <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/drawable/addcomplaint_background.xml" value="0.1215" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/drawable/down_arrow_spinner.xml" value="0.1" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.1" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/drawable/ic_shopping_bag.xml" value="0.1" />
@@ -21,7 +22,7 @@
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_dashboard.xml" value="0.16666666666666666" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_door_deivery.xml" value="0.22" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_doordelivery_list.xml" value="0.14666666666666667" />
-        <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_due_singin.xml" value="0.16666666666666666" />
+        <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_due_singin.xml" value="0.3333333333333333" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_home.xml" value="0.14666666666666667" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_myrewards_point.xml" value="0.26328125" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/activity_net.xml" value="0.22" />
@@ -40,6 +41,7 @@
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/card_success_popup1.xml" value="0.26328125" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/connection_error.xml" value="0.22" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/content_scrolling.xml" value="0.26328125" />
+        <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/mobiledialog.xml" value="0.22" />
         <entry key="..\:/Madhavan Recent Files 2021/Vasantham_Ecomm_25_jun_2022/app/src/main/res/layout/success_popup1.xml" value="0.4466666666666667" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable-xxxhdpi/ic_baseline_local_phone_24.xml" value="0.24479166666666666" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/drawable-xxxhdpi/ic_calendar_alt_regular.xml" value="0.1655" />
@@ -220,8 +222,6 @@
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.1" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/mipmap-anydpi-v26/ic_luncher.xml" value="0.163" />
         <entry key="..\:/Saravana/Vasantham_ECOMM/app/src/main/res/mipmap-anydpi-v26/ic_luncher_round.xml" value="0.1655" />
-        <entry key="..\:/Vasantham_ECOMM/app/src/main/res/layout/activity_create_card.xml" value="0.17282051282051283" />
-        <entry key="..\:/Vasantham_ECOMM/app/src/main/res/layout/activity_due_singin.xml" value="0.17282051282051283" />
       </map>
     </option>
   </component>

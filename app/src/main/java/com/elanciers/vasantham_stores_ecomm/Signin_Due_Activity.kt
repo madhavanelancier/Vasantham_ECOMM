@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.AsyncTask
 import android.os.Bundle
 import android.text.Editable
@@ -29,8 +30,11 @@ import com.elanciers.vasantham_stores_ecomm.DataClass.SettingsData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryData
 import com.elanciers.vasantham_stores_ecomm.Database.CardHistoryDatabase
 import com.elanciers.vasantham_stores_ecomm.retrofit.RetrofitClient2
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_due_singin.*
+import kotlinx.android.synthetic.main.coupon_adapter.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -44,6 +48,7 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
     val activity = this
     lateinit var utils : Utils
     lateinit var pDialog: Dialog
+    lateinit var dialog: Dialog
     lateinit var db : CardHistoryDatabase
     lateinit var adp : CardHistoyRecyclerAdapter
     var history : ArrayList<CardHistoryData?>? = null
@@ -62,6 +67,16 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
         db = CardHistoryDatabase.getDatabase(activity)!!
         lang()
         getSetings()
+
+        if(utils.mobile()!!.isNotEmpty()){
+            moblay.visibility=View.VISIBLE
+            mobtext.setText(utils.mobile())
+        }
+
+        logout.setOnClickListener {
+            utils.savePreferences("mobile","")
+            moblay.visibility=View.GONE
+        }
 
 
 
@@ -109,39 +124,34 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
     }
 
     fun mobileDialog(){
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Enter Your Mobile Number")
-        val input = EditText(this)
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.inputType =
-            InputType.TYPE_CLASS_NUMBER
-        builder.setCancelable(false)
-        builder.setView(input)
 
-        input.setTextColor(Color.parseColor("#000000"))
-        input.setHint("Enter Registered Mobile Number")
+        dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
+        dialog.setContentView(R.layout.mobiledialog)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(true)
 
-        builder.setPositiveButton("OK",
-            DialogInterface.OnClickListener { dialog, which ->
-                if(input.text.toString().length==10){
-                    utils.savePreferences("mobile",input.text.toString())
-                    val st = Intent(this@Signin_Due_Activity,CreateCardActivity::class.java)
-                    startActivity(st)
+        val input=dialog.findViewById<View>(R.id.mobval) as TextInputEditText
+        (dialog.findViewById<View>(R.id.next) as MaterialCardView).setOnClickListener {
+            if(input.text.toString().length==10){
+                utils.savePreferences("mobile",input.text.toString())
+                val st = Intent(this@Signin_Due_Activity,CreateCardActivity::class.java)
+                startActivity(st)
+                dialog.dismiss()
+            }
+            else{
+                if(input.text!!.length!=10||input.text.toString().isEmpty()){
+                    input.setError("Enter valid mobile number")
                 }
-                else{
-                    if(input.text.length!=10||input.text.toString().isEmpty()){
-                        input.setError("Enter valid mobile number")
-                    }
 
-                }
-            })
-        builder.setNegativeButton("Cancel",
-            DialogInterface.OnClickListener {
-                    dialog, which -> dialog.cancel()
-            })
+            }
+        }
+        (dialog.findViewById<View>(R.id.close) as MaterialCardView).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
 
-        builder.show()
     }
 
     fun getSetings(){
