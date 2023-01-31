@@ -1,18 +1,23 @@
 package com.elanciers.vasantham_stores_ecomm
 
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.elanciers.vasantham_stores_ecomm.Adapters.CardHistoyRecyclerAdapter
 import com.elanciers.vasantham_stores_ecomm.Common.AppUtil
@@ -32,6 +37,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItemClickListener {
     val tag = "Signin"
@@ -87,13 +93,55 @@ class Signin_Due_Activity : AppCompatActivity(),CardHistoyRecyclerAdapter.OnItem
 
         })
         cardcreate.setOnClickListener {
-            val st = Intent(this@Signin_Due_Activity,CreateCardActivity::class.java)
-            startActivity(st)
+            if(utils.mobile()!!.isEmpty()){
+                mobileDialog()
+            }
+            else{
+                val st = Intent(this@Signin_Due_Activity,CreateCardActivity::class.java)
+                startActivity(st)
+            }
+
         }
         doordelivery.setOnClickListener {
             val st = Intent(this@Signin_Due_Activity,DoorDeliveryActivity::class.java)
             startActivity(st)
         }
+    }
+
+    fun mobileDialog(){
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Enter Your Mobile Number")
+        val input = EditText(this)
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.inputType =
+            InputType.TYPE_CLASS_NUMBER
+        builder.setCancelable(false)
+        builder.setView(input)
+
+        input.setTextColor(Color.parseColor("#000000"))
+        input.setHint("Enter Registered Mobile Number")
+
+        builder.setPositiveButton("OK",
+            DialogInterface.OnClickListener { dialog, which ->
+                if(input.text.toString().length==10){
+                    utils.savePreferences("mobile",input.text.toString())
+                    val st = Intent(this@Signin_Due_Activity,CreateCardActivity::class.java)
+                    startActivity(st)
+                }
+                else{
+                    if(input.text.length!=10||input.text.toString().isEmpty()){
+                        input.setError("Enter valid mobile number")
+                    }
+
+                }
+            })
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener {
+                    dialog, which -> dialog.cancel()
+            })
+
+        builder.show()
     }
 
     fun getSetings(){

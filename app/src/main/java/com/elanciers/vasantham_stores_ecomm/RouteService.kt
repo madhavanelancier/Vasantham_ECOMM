@@ -30,7 +30,7 @@ class RouteService : Service(), ConnectionCallbacks,
     private var mLocationRequest: LocationRequest? = null
     private var latitudeValue = 0.0
     private var longitudeValue = 0.0
-    private var customSharedPreference: Utils? = null
+    private var customSharedPreference:Utils? = null
     private var query: DBController? = null
     private var startTimeInMilliSeconds = 0L
     private var isServiceRunning = false

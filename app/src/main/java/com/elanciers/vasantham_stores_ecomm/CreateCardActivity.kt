@@ -64,10 +64,12 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
     var Paymentmode = "Razorpay"
     var success = "success"
     var failed = "failed"
+    var mobilenum=""
     lateinit var utils: Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_card)
+
         activity = this
         db = CardHistoryDatabase.getDatabase(activity)!!
 
@@ -188,7 +190,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
          */
         val activity: Activity = this
         val co = Checkout()
-        co.setKeyID("rzp_test_gpzrKwVavfIrqC")
+        co.setKeyID(Utils(this).razorpay_key)
         try {
             val options = JSONObject()
             options.put("name", "Vasantham Hyper")
@@ -522,6 +524,8 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
         obj.addProperty("area", selectedArea.areaname.toString())
         obj.addProperty("address", adrs.text.toString())
         obj.addProperty("who", who)
+        obj.addProperty("promoamt","")
+        obj.addProperty("promocode","")
         obj.addProperty("tid", tid)
         obj.addProperty("amount", amount.text.toString())
         obj.addProperty("fund1", if (Funds.fund1.isNullOrEmpty())"" else selectedFund1.id)
@@ -529,25 +533,25 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
         obj.addProperty("gid", "")
         obj.addProperty("collect_id", "")
         Log.d(tag, obj.toString())
-        val call = RetrofitClient2.Get.CreatCard(obj)
-        call.enqueue(object : Callback<CreateCardData> {
-            override fun onResponse(call: Call<CreateCardData>, response: Response<CreateCardData>) {
+        val call = RetrofitClient2.Get.CreatCardNew(obj)
+        call.enqueue(object : Callback<OnlineCustomer> {
+            override fun onResponse(call: Call<OnlineCustomer>, response: Response<OnlineCustomer>) {
                 Log.e("$tag response", response.toString())
                 pDialog.dismiss()
                 if (response.isSuccessful()) {
-                    val example = response.body() as CheckCardData
-                    Toast.makeText(activity, example.message, Toast.LENGTH_SHORT).show()
+                    val example = response.body() as OnlineCustomer
+                    Toast.makeText(activity, example.Response, Toast.LENGTH_SHORT).show()
                     if (example.Status == "Success") {
-                        val data = Gson().toJson(example, CheckCardData::class.java).toString()
-                        println("data : "+data)
-                        println("number : "+example.Response!!.cardNo.toString())
+                        //val data = Gson().toJson(example, CheckCardData::class.java).toString()
+                        //println("data : "+data)
+                        println("numbercard : "+example.cardNo.toString())
 
                         val datas = CardHistoryData();
-                        datas.id = ""
-                        datas.username = example.Response!!.cardNo.toString()
+                        datas.id = example.cardNo.toString()
+                        datas.username = example.cardNo.toString()
                         datas.name = name.text.toString()
                         datas.phone = mob.text.toString()
-                        datas.cardno = example.Response!!.cardNo.toString()
+                        datas.cardno = example.cardNo.toString()
                         datas.createdAt = (System.currentTimeMillis()/1000)
                         db!!.cardDao()!!.insertCart(datas);
 
@@ -560,7 +564,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
                 }
             }
 
-            override fun onFailure(call: Call<CreateCardData>, t: Throwable) {
+            override fun onFailure(call: Call<OnlineCustomer>, t: Throwable) {
                 Log.e("$tag Fail response", t.toString())
                 finish()
                 if (t.toString().contains("time")) {

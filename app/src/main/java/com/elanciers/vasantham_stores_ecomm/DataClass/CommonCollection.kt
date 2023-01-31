@@ -101,6 +101,14 @@ data class CheckCardData(
 
 )
 
+data class OnlineCustomer(
+
+    @SerializedName("Status"   ) var Status   : String?   = null,
+    @SerializedName("card_no"  ) var cardNo  : String?   = null,
+    @SerializedName("Response" ) var Response : String? = null
+
+)
+
 data class CardCheckResponse (
 
     @SerializedName("card_no" ) var cardNo : String? = null
