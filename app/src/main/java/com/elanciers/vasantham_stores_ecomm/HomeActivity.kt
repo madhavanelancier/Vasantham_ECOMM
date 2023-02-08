@@ -306,14 +306,7 @@ var locationManager: LocationManager? = null;
             }
         }
 
-        if(notify=="notify"){
-            wbview.loadUrl("https://vasanthamstore.com/notification")
 
-        }
-        else{
-            wbview.loadUrl("https://vasanthamstore.com/")
-
-        }
 
 
 //https://vasanthamstore.com/contactus
@@ -923,6 +916,19 @@ var locationManager: LocationManager? = null;
 
                 startActivity(it)
                 overridePendingTransition(0,0)
+
+            }
+        }
+        if (position==0){
+            if (location_shimmer.visibility==View.GONE) {
+                if(notify=="notify"){
+                    wbview.loadUrl("https://vasanthamstore.com/notification")
+
+                }
+                else{
+                    wbview.loadUrl("https://vasanthamstore.com/")
+
+                }
 
             }
         }

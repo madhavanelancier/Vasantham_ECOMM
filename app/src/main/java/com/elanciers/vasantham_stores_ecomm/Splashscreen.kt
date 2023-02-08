@@ -46,7 +46,23 @@ class Splashscreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        processIntent(getIntent());
+        if (!wasLaunchedFromRecents()) {
+            // from notification
+            processIntent(intent)
+        }
+        else{
+            Handler().postDelayed(Runnable {
+                /*if (utils.login()) {
+                    startActivity(Intent(activity, HomeActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(activity, WelcomeScreen::class.java))
+                    finish()
+                }*/
+                download()
+                //RequestMultiplePermission()
+            }, 2000)
+        }
 
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -166,6 +182,12 @@ class Splashscreen : AppCompatActivity() {
         }
     }
 
+
+
+    private fun wasLaunchedFromRecents(): Boolean {
+        return getIntent().flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY === Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         processIntent(intent)
@@ -174,7 +196,7 @@ class Splashscreen : AppCompatActivity() {
     private fun processIntent(intent: Intent) {
         //get your extras
         Log.e("insode",intent.extras.toString())
-        if(intent.extras!=null){
+        if(intent.extras!=null&&intent.extras.toString()!="null"){
             val intent=Intent(this,HomeActivity::class.java)
             intent.putExtra("new","notify")
             startActivity(intent)
