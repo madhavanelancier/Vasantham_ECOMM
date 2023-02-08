@@ -115,9 +115,7 @@ class ProductSearchActivity : AppCompatActivity(),NetworkStateReceiver.NetworkSt
         wbview.getSettings().setLoadWithOverviewMode(true);
         wbview.getSettings().setUseWideViewPort(true);
         val settings = wbview.settings
-        settings.setAppCacheEnabled(true)
         settings.cacheMode = WebSettings.LOAD_DEFAULT
-        settings.setAppCachePath(cacheDir.path)
 
 
         // Enable zooming in web view

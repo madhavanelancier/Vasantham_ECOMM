@@ -522,7 +522,7 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
         obj.addProperty("name", name.text.toString())
         obj.addProperty("card_no", chitgroup.cardNo.toString())
         obj.addProperty("phone", mob.text.toString())
-        obj.addProperty("area", selectedArea.areaname.toString())
+        obj.addProperty("area", select_area.text.toString())
         obj.addProperty("address", adrs.text.toString())
         obj.addProperty("who", who)
         obj.addProperty("promoamt","")

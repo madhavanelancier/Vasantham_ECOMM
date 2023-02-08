@@ -29,9 +29,7 @@ class NotificationWebActivity : AppCompatActivity() {
         web.getSettings().setLoadWithOverviewMode(true);
         web.getSettings().setUseWideViewPort(true);
         val settings = web.settings
-        settings.setAppCacheEnabled(true)
         settings.cacheMode = WebSettings.LOAD_DEFAULT
-        settings.setAppCachePath(cacheDir.path)
 
 
         // Enable zooming in web view

@@ -23,6 +23,7 @@
         android:fontFamily="@font/brandon_text_light"
         android:gravity="center"
         android:singleLine="true"
+        android:ellipsize="marquee"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:visibility="visible" />

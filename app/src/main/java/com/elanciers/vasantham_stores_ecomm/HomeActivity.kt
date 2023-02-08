@@ -184,11 +184,20 @@ var locationManager: LocationManager? = null;
     var timer: Timer? = null
     val DELAY_MS: Long = 600 //delay in milliseconds before task is to be executed
     val PERIOD_MS: Long = 4000
+    var notify=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         startNetworkBroadcastReceiver(this);
+
+        try{
+            notify=intent.getStringExtra("new").toString()
+
+        }
+        catch(e:Exception){
+            notify=""
+        }
         changeStatusBarColor()
         db = DBController(activity)
         utils = Utils(activity)
@@ -222,9 +231,7 @@ var locationManager: LocationManager? = null;
         wbview.getSettings().setLoadWithOverviewMode(true);
         wbview.getSettings().setUseWideViewPort(true);
         val settings = wbview.settings
-        settings.setAppCacheEnabled(true)
         settings.cacheMode = WebSettings.LOAD_DEFAULT
-        settings.setAppCachePath(cacheDir.path)
 
 
 
@@ -298,7 +305,17 @@ var locationManager: LocationManager? = null;
                 return true
             }
         }
-        wbview.loadUrl("https://vasanthamstore.com/")
+
+        if(notify=="notify"){
+            wbview.loadUrl("https://vasanthamstore.com/notification")
+
+        }
+        else{
+            wbview.loadUrl("https://vasanthamstore.com/")
+
+        }
+
+
 //https://vasanthamstore.com/contactus
 
 
@@ -866,6 +883,7 @@ var locationManager: LocationManager? = null;
         val view4 = LayoutInflater.from(activity).inflate(R.layout.custom_tab, null)
         val tabTextView4 = view4.findViewById<TextView>(R.id.tabTextView)
         tabTextView4.setText(mFragmentTitleList1.get(1))
+        tabTextView4.isSelected=true
         val tabImageView4 = view4.findViewById<ImageView>(R.id.tabImageView)
         tabImageView4.setImageResource(mFragmentIconList1.get(1))
         tab4.setCustomView(view4)

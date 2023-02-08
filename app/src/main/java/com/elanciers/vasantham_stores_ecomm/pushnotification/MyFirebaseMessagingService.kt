@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import com.elanciers.vasantham_stores_ecomm.HomeActivity
 import com.elanciers.vasantham_stores_ecomm.NotificationWebActivity
 import com.elanciers.vasantham_stores_ecomm.R
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -117,7 +118,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     private fun sendNotification(title : String,messageBody: String) {
         var pendingIntent : PendingIntent
-        val intent = Intent(this, NotificationWebActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
 
         pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
             PendingIntent.FLAG_UPDATE_CURRENT

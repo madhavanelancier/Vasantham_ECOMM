@@ -175,7 +175,8 @@ class Splashscreen : AppCompatActivity() {
         //get your extras
         Log.e("insode",intent.extras.toString())
         if(intent.extras!=null){
-            val intent=Intent(this,NotificationWebActivity::class.java)
+            val intent=Intent(this,HomeActivity::class.java)
+            intent.putExtra("new","notify")
             startActivity(intent)
             finish()
         }
