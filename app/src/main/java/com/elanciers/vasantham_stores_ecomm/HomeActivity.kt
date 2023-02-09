@@ -364,7 +364,6 @@ var locationManager: LocationManager? = null;
         highLightCurrentTab()
         selecttab1(0)
 
-        version()
 
         tabImageViews.setOnClickListener {
             startActivity(Intent(activity, Signin_Due_Activity::class.java))
@@ -698,7 +697,9 @@ var locationManager: LocationManager? = null;
 
         highLightCurrentTab()
         selecttab1(0)
-       // cartitem()
+        version()
+
+        // cartitem()
         //getLoyaltypoints()
         if (!utils.login()){
             //finish()
@@ -1670,13 +1671,7 @@ var locationManager: LocationManager? = null;
                                     }
 
                                 })
-                            alertDialog.setNegativeButton("cancel",
-                                object : DialogInterface.OnClickListener {
-                                    override fun onClick(dialog: DialogInterface?, p1: Int) {
-                                        dialog!!.dismiss()
-                                    }
 
-                                })
                             alertDialog.show()
                         }
 

@@ -190,8 +190,8 @@ class CreateCardActivity : AppCompatActivity(), PaymentResultListener {
          */
         val activity: Activity = this
         val co = Checkout()
-        co.setKeyID("rzp_test_gpzrKwVavfIrqC")
-        //co.setKeyID(Utils(this).razorpay_key)
+        //co.setKeyID("rzp_test_gpzrKwVavfIrqC")
+        co.setKeyID(Utils(this).razorpay_key)
         try {
             val options = JSONObject()
             options.put("name", "Vasantham Hyper")
