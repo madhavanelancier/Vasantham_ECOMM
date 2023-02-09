@@ -364,6 +364,8 @@ var locationManager: LocationManager? = null;
         highLightCurrentTab()
         selecttab1(0)
 
+        version()
+
         tabImageViews.setOnClickListener {
             startActivity(Intent(activity, Signin_Due_Activity::class.java))
             /*val st = Intent(this,Dashboard::class.java)
@@ -1639,25 +1641,24 @@ var locationManager: LocationManager? = null;
     fun version(){
         Appconstands.maintenance(activity)
         val call = ApproveUtils.Get.Version()
-        call.enqueue(object : Callback<Resp> {
-            override fun onResponse(call: Call<Resp>, response: Response<Resp>) {
+        call.enqueue(object : Callback<List<Resp.Resp2>> {
+            override fun onResponse(call: Call<List<Resp.Resp2>>, response: Response<List<Resp.Resp2>>) {
                 Log.e("$tag response", response.toString())
                 if (response.isSuccessful()) {
-                    val example = response.body() as Resp
+                    val example = response.body() as List<Resp.Resp2>
                     println(example)
-                    if (example.status == "Success") {
                         //Toast.makeText(activity, example.message!!, Toast.LENGTH_LONG).show()
                         //val version = Build.VERSION.SDK_INT
                         val version2 = BuildConfig.VERSION_CODE
                         //println("version : "+version)
-                        println("example.message!! : " + example.message!!)
+                        //println("example.message!! : " + example.message!!)
                         println("version2 : " + version2)
 
-                        if (example.message!!.toString().toInt() > version2.toString().toInt()) {
+                        if (example[0].version!! > version2.toString().toInt()) {
                             val alertDialog = AlertDialog.Builder(activity)
-                            alertDialog.setCancelable(true)
+                            alertDialog.setCancelable(false)
                             alertDialog.setTitle("Update Available")
-                            alertDialog.setMessage("You are using older version of vasantham stores. Click to update new version and get more features also.")
+                            alertDialog.setMessage("You are using older version of Vasantham Hyper Mart. Click to update new version and get more features also.")
                             alertDialog.setPositiveButton("Update",
                                 object : DialogInterface.OnClickListener {
                                     override fun onClick(dialog: DialogInterface?, p1: Int) {
@@ -1678,12 +1679,12 @@ var locationManager: LocationManager? = null;
                                 })
                             alertDialog.show()
                         }
-                    }
+
                 }
                 pDialog.dismiss()
             }
 
-            override fun onFailure(call: Call<Resp>, t: Throwable) {
+            override fun onFailure(call: Call<List<Resp.Resp2>>, t: Throwable) {
                 Log.e("$tag Fail response", t.toString())
                 if (t.toString().contains("time")) {
                     Toast.makeText(

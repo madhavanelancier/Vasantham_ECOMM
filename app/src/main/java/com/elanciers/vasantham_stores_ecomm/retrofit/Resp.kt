@@ -19,12 +19,12 @@ class Resp {
 
     inner  class Resp2 {
 
-        @SerializedName("Status")
+        @SerializedName("id")
         @Expose
-        var status: String? = null
-        @SerializedName("Response")
+        var id: Int? = null
+        @SerializedName("version")
         @Expose
-        var response: List<PovaData>? = null
+        var version: Int? = null
 
     }
     inner  class FailResp {

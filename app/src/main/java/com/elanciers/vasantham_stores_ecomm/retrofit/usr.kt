@@ -209,8 +209,8 @@ interface usr {
     @POST("single_order")
     fun getsts(@Field("id")id : String): Call<Resp>
 
-    @POST("version")
-    fun Version(): Call<Resp>
+    @GET("versions")
+    fun Version(): Call<List<Resp.Resp2>>
 
     @FormUrlEncoded
     @POST("coupon")

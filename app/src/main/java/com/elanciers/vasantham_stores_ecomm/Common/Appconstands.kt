@@ -40,7 +40,7 @@ object Appconstands {
     lateinit var alert : AlertDialog
 
     val languagefile = "VS_ecom_language_file.js"
-    val Domin ="http://teamdev.co.in/vasantham/api/"
+    val Domin ="https://vasanthamhypermart.in/vasantham/api/"
     //val Domin_due ="http://vasanthamstore.in/chit/app/"
     val Domin_lng ="http://vasanthamstore.in/chit/app/"
     val Domin_hyper ="http://vasanthamhypermart.in/"
