@@ -46,11 +46,28 @@ class Splashscreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        if (!wasLaunchedFromRecents()) {
-            // from notification
-            processIntent(intent)
+
+        if(CheckingPermissionIsEnabledOrNot()){
+            if (!wasLaunchedFromRecents()) {
+                // from notification
+                processIntent(intent)
+            }
+            else{
+                Handler().postDelayed(Runnable {
+                    /*if (utils.login()) {
+                        startActivity(Intent(activity, HomeActivity::class.java))
+                        finish()
+                    } else {
+                        startActivity(Intent(activity, WelcomeScreen::class.java))
+                        finish()
+                    }*/
+                    download()
+                    //RequestMultiplePermission()
+                }, 2000)
+            }
         }
         else{
+            RequestMultiplePermission()
             Handler().postDelayed(Runnable {
                 /*if (utils.login()) {
                     startActivity(Intent(activity, HomeActivity::class.java))
@@ -61,8 +78,11 @@ class Splashscreen : AppCompatActivity() {
                 }*/
                 download()
                 //RequestMultiplePermission()
-            }, 2000)
+            }, 4000)
         }
+
+
+
 
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -116,17 +136,14 @@ class Splashscreen : AppCompatActivity() {
     fun CheckingPermissionIsEnabledOrNot(): Boolean {
 
         val INTERNET = ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET)
-        val ACCESS_NETWORK_STATE = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_NETWORK_STATE)
+        val ACCESS_NETWORK_STATE = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
         //val ACCESS_NOTIFICATION_POLICY = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_NOTIFICATION_POLICY)
-        val ACCESS_FINE_LOCATION = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-        val ACCESS_COARSE_LOCATION = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
         //val CALL_PHONE = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)
 
         return INTERNET == PackageManager.PERMISSION_GRANTED &&
-                ACCESS_NETWORK_STATE == PackageManager.PERMISSION_GRANTED &&
+                ACCESS_NETWORK_STATE == PackageManager.PERMISSION_GRANTED
                 //ACCESS_NOTIFICATION_POLICY == PackageManager.PERMISSION_GRANTED &&
-                ACCESS_FINE_LOCATION == PackageManager.PERMISSION_GRANTED &&
-                ACCESS_COARSE_LOCATION == PackageManager.PERMISSION_GRANTED //&&
+
                 //CALL_PHONE == PackageManager.PERMISSION_GRANTED
     }
     fun RequestMultiplePermission() {
@@ -134,9 +151,8 @@ class Splashscreen : AppCompatActivity() {
         // Creating String Array with Permissions.
         ActivityCompat.requestPermissions(this, arrayOf<String>
         (android.Manifest.permission.INTERNET,
-                android.Manifest.permission.ACCESS_NETWORK_STATE,
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION//,
+                android.Manifest.permission.CAMERA,
+
                 //android.Manifest.permission.CALL_PHONE
         ), Appconstands.RequestPermissionCode)
 
@@ -153,23 +169,31 @@ class Splashscreen : AppCompatActivity() {
                     val INTERNET = grantResults[0] == PackageManager.PERMISSION_GRANTED
                     val ACCESS_NETWORK_STATE = grantResults[1] == PackageManager.PERMISSION_GRANTED
                     //val ACCESS_NOTIFICATION_POLICY = grantResults[2] == PackageManager.PERMISSION_GRANTED
-                    val ACCESS_FINE_LOCATION = grantResults[2] == PackageManager.PERMISSION_GRANTED
-                    val ACCESS_COARSE_LOCATION = grantResults[3] == PackageManager.PERMISSION_GRANTED
+
                     //val CALL_PHONE = grantResults[4] == PackageManager.PERMISSION_GRANTED
 
-                    if (INTERNET && ACCESS_NETWORK_STATE /*&& ACCESS_NOTIFICATION_POLICY*/ && ACCESS_FINE_LOCATION &&ACCESS_COARSE_LOCATION /*&&CALL_PHONE*/) {
-                        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED) {
+                    if (INTERNET && ACCESS_NETWORK_STATE /*&& ACCESS_NOTIFICATION_POLICY*/ /*&&CALL_PHONE*/) {
+                        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED) {
                             /*val mLocationManager =  getSystemService(LOCATION_SERVICE) as (LocationManager);
                             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, this);*/
                            /* locationmanager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
                             locationmanager!!.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5f, activity)*/
-                            if (utils.login()){
-                                startActivity(Intent(activity,
-                                    HomeActivity::class.java))
-                                finish()
-                            }else{
-                                startActivity(Intent(activity,HomeActivity::class.java))
-                                finish()
+                            if (!wasLaunchedFromRecents()) {
+                                // from notification
+                                processIntent(intent)
+                            }
+                            else{
+                                Handler().postDelayed(Runnable {
+                                    /*if (utils.login()) {
+                                        startActivity(Intent(activity, HomeActivity::class.java))
+                                        finish()
+                                    } else {
+                                        startActivity(Intent(activity, WelcomeScreen::class.java))
+                                        finish()
+                                    }*/
+                                    download()
+                                    //RequestMultiplePermission()
+                                }, 2000)
                             }
                         }
                         //Toast.makeText(this@MainFirstActivity, "Permission Granted", Toast.LENGTH_LONG).show()

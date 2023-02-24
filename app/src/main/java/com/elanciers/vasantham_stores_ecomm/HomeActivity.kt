@@ -19,11 +19,10 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -186,6 +185,7 @@ var locationManager: LocationManager? = null;
     val PERIOD_MS: Long = 4000
     var notify=""
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -239,7 +239,11 @@ var locationManager: LocationManager? = null;
         settings.setSupportZoom(false)
         settings.builtInZoomControls = false
         settings.displayZoomControls = false
-
+        settings.javaScriptEnabled = true
+        settings.javaScriptCanOpenWindowsAutomatically = true
+        settings.domStorageEnabled = true
+        settings.allowContentAccess = true
+        settings.mediaPlaybackRequiresUserGesture = false
         // Zoom web view text
         settings.textZoom = 100
 
@@ -306,7 +310,11 @@ var locationManager: LocationManager? = null;
             }
         }
 
-
+        wbview.setWebChromeClient(object : WebChromeClient() {
+            override fun onPermissionRequest(request: PermissionRequest) {
+                request.grant(request.resources)
+            }
+        })
 
 
 //https://vasanthamstore.com/contactus
@@ -373,6 +381,8 @@ var locationManager: LocationManager? = null;
         }
 
         if (net_status(activity)){
+            highLightCurrentTab()
+            selecttab1(0)
             //getSlider()
             //getCategory()
             //version()
@@ -695,8 +705,7 @@ var locationManager: LocationManager? = null;
         super.onResume()
         registerNetworkBroadcastReceiver(this)
 
-        highLightCurrentTab()
-        selecttab1(0)
+
         version()
 
         // cartitem()
@@ -1692,6 +1701,8 @@ var locationManager: LocationManager? = null;
             }
         })
     }
+
+
 
     override fun onBackPressed() {
         if(wbview.url.toString().equals("https://vasanthamstore.com/")){
