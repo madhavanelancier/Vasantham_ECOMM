@@ -202,7 +202,7 @@
         <!-- "rzp_test_gpzrKwVavfIrqC" -->
         <service
             android:name=".pushnotification.MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

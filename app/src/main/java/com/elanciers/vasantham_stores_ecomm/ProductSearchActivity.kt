@@ -168,7 +168,8 @@ class ProductSearchActivity : AppCompatActivity(),NetworkStateReceiver.NetworkSt
                 return true
             }
         }
-        wbview.loadUrl("https://vasanthamstore.com/category")
+        //wbview.loadUrl("https://vasanthamstore.com/category")
+        wbview.loadUrl("https://vasanthamhypermart.netlify.app/category")
 
         try{
             val frm=intent.extras

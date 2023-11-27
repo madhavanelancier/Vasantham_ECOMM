@@ -934,11 +934,13 @@ var locationManager: LocationManager? = null;
         if (position==0){
             if (location_shimmer.visibility==View.GONE) {
                 if(notify=="notify"){
-                    wbview.loadUrl("https://vasanthamstore.com/notification")
+                    //wbview.loadUrl("https://vasanthamstore.com/notification")
+                    wbview.loadUrl("https://vasanthamhypermart.netlify.app/notification")
 
                 }
                 else{
-                    wbview.loadUrl("https://vasanthamstore.com/")
+                    //wbview.loadUrl("https://vasanthamstore.com/")
+                    wbview.loadUrl("https://vasanthamhypermart.netlify.app/")
 
                 }
 

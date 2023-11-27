@@ -222,7 +222,8 @@ class OrderActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateRecei
                 return true
             }
         }
-        wbview.loadUrl("https://vasanthamstore.com/my-account/customer-order")
+        //wbview.loadUrl("https://vasanthamstore.com/my-account/customer-order")
+        wbview.loadUrl("hhttps://vasanthamhypermart.netlify.app/my-account/customer-order")
 
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
